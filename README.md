@@ -21,23 +21,31 @@ python app.py
 python -m unittest -v
 ```
 
-## 部署到 Cloud Run
+## 修改并部署到 Cloud Run
 
 先安装并登录 [Google Cloud CLI](https://cloud.google.com/sdk/docs/install)：
 
-```bash
+```powershell
 gcloud auth login
-gcloud config set project YOUR_PROJECT_ID
-gcloud services enable run.googleapis.com cloudbuild.googleapis.com
 ```
 
-从仓库根目录部署源码：
+修改 `app.py` 后，提交代码并在仓库根目录运行：
 
-```bash
-gcloud run deploy hello-world \
-  --source . \
-  --region us-central1 \
-  --allow-unauthenticated
+```powershell
+git add .
+git commit -m "Update greeting"
+git push
+./deploy.ps1
 ```
 
-部署完成后，命令会输出公开访问地址。
+`deploy.ps1` 会把当前仓库内容上传到项目 `triple-brook-472818-u8`，构建容器，并更新
+`us-central1` 中的 `hello-world` 服务。每次部署会创建一个新的 Cloud Run revision，
+服务 URL 保持不变：
+
+<https://hello-world-489762766956.us-central1.run.app>
+
+例如，把 `app.py` 中的 `Hello World from Cloud Run!` 改成 `Hello WS`，提交并重新运行
+`./deploy.ps1` 后，网页就会显示新的内容。
+
+> `git commit` 和 `git push` 用来保存代码历史；真正触发 Cloud Run 更新的是
+> `./deploy.ps1`。如果希望 `git push` 后自动部署，可以进一步配置 GitHub Actions。
