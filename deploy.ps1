@@ -7,7 +7,7 @@ param(
 $ErrorActionPreference = "Stop"
 
 if (-not (Get-Command gcloud -ErrorAction SilentlyContinue)) {
-    throw "找不到 gcloud。请先安装 Google Cloud CLI 并运行 gcloud auth login。"
+    throw "gcloud was not found. Install Google Cloud CLI and run: gcloud auth login"
 }
 
 gcloud services enable `
@@ -17,7 +17,7 @@ gcloud services enable `
     --project $ProjectId
 
 if ($LASTEXITCODE -ne 0) {
-    throw "启用 Google Cloud API 失败。"
+    throw "Failed to enable the required Google Cloud APIs."
 }
 
 gcloud run deploy $Service `
@@ -28,7 +28,12 @@ gcloud run deploy $Service `
     --quiet
 
 if ($LASTEXITCODE -ne 0) {
-    throw "Cloud Run 部署失败。"
+    throw "Cloud Run deployment failed."
 }
 
-Write-Host "部署完成：运行 'gcloud run services describe $Service --project $ProjectId --region $Region --format=value(status.url)' 查看网址。"
+Write-Host "Deployment complete."
+Write-Host "Service URL:"
+gcloud run services describe $Service `
+    --project $ProjectId `
+    --region $Region `
+    --format="value(status.url)"
