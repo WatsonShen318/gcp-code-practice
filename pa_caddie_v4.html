@@ -1,0 +1,1393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PA Caddie — Guided Review</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --red:#e31837;--navy:#181c2b;--blue:#2563eb;--blue-lt:#eff6ff;
+  --teal:#0284c7;--teal-lt:#e0f2fe;--green:#059669;--green-lt:#ecfdf5;
+  --amber:#d97706;--amber-lt:#fffbeb;
+  --g50:#f8fafc;--g100:#f1f5f9;--g200:#e2e8f0;--g300:#cbd5e1;
+  --g400:#94a3b8;--g500:#64748b;--g700:#334155;--g900:#0f172a;
+  --white:#fff;--bar:46px;--strip:52px;--layout-top:98px;
+  font-family:'Segoe UI',system-ui,-apple-system,sans-serif;
+  font-size:13px;color:var(--g900);
+}
+/* ─── APPBAR ─────────────────────────────────────── */
+.appbar{position:fixed;top:0;left:0;right:0;height:var(--bar);background:var(--navy);border-bottom:1.5px solid rgba(227,24,55,.45);display:flex;align-items:center;padding:0 18px;gap:10px;z-index:300;box-shadow:0 2px 10px rgba(0,0,0,.35)}
+.brand{color:var(--red);font-weight:800;font-size:16px;letter-spacing:.1em}
+.bar-sep{color:#374151;font-size:20px;font-weight:100}
+.bar-title{color:#cbd5e1;font-size:13px;font-weight:400}
+.bar-right{margin-left:auto;display:flex;align-items:center;gap:12px}
+.bar-role{color:#94a3b8;font-size:11px}
+.demo-pill{display:flex;align-items:center;gap:5px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:20px;padding:2px 10px 2px 8px}
+.demo-lbl{color:#64748b;font-size:9px;text-transform:uppercase;letter-spacing:.07em;flex-shrink:0}
+.demo-sel{background:transparent;color:#cbd5e1;border:none;font-size:11px;cursor:pointer;outline:none}
+.demo-sel option{background:#1e293b;color:#fff}
+/* ─── STRIP ──────────────────────────────────────── */
+.strip{position:fixed;top:var(--bar);left:0;right:0;height:var(--strip);background:var(--white);border-bottom:1px solid var(--g200);box-shadow:0 1px 6px rgba(0,0,0,.06);z-index:200;display:flex;align-items:center;padding:0 24px;overflow-x:auto;scrollbar-width:none}
+.strip::-webkit-scrollbar{display:none}
+.sf{flex:1;min-width:0;display:flex;flex-direction:column;padding:0 12px}
+.sf:first-child{padding-left:0}
+.sf-lbl{font-size:9px;font-weight:700;color:var(--g400);text-transform:uppercase;letter-spacing:.07em;line-height:1.1;margin-bottom:2px}
+.sf-val{font-size:12px;color:var(--g900);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sf-val.b{font-weight:700;font-size:13px}
+.strip-div{width:1px;height:26px;background:var(--g200);flex-shrink:0}
+/* ─── LEG BAR ────────────────────────────────────── */
+.leg-bar{position:fixed;top:calc(var(--bar) + var(--strip));left:0;right:0;background:var(--white);border-bottom:1px solid var(--g200);padding:5px 16px;display:flex;align-items:center;gap:6px;height:36px;z-index:190}
+.ltab{padding:3px 12px;border-radius:5px;border:1px solid var(--g200);background:var(--white);color:var(--g700);font-size:11px;font-weight:500;cursor:pointer;transition:all .12s}
+.ltab.act{background:var(--navy);color:var(--white);border-color:var(--navy)}
+.ltab:hover:not(.act){background:var(--g50)}
+.ai-dot{display:inline-block;background:#f59e0b;color:#fff;font-size:8px;font-weight:800;padding:1px 5px;border-radius:8px;margin-right:3px}
+/* ─── LAYOUT ─────────────────────────────────────── */
+.layout{display:flex;background:var(--g50);min-height:100vh;margin-top:var(--layout-top)}
+/* ─── LEFT RAIL ──────────────────────────────────── */
+.left-rail{width:310px;min-width:240px;padding:10px 8px;display:flex;flex-direction:column;gap:7px;position:sticky;top:var(--layout-top);max-height:calc(100vh - var(--layout-top));overflow-y:auto;scrollbar-width:thin;align-self:flex-start}
+.lsec{background:var(--white);border:1px solid var(--g200);border-radius:8px;overflow:visible}
+.lsec-hdr{display:flex;align-items:center;justify-content:space-between;padding:8px 11px;cursor:pointer;user-select:none;border-radius:8px}
+.lsec-hdr:hover{background:var(--g50)}
+.lsec-ttl{font-size:10px;font-weight:700;color:var(--g500);text-transform:uppercase;letter-spacing:.08em}
+.lsec-icon{font-size:10px;color:var(--g400)}
+.lsec-body{padding:2px 11px 11px}
+.mgrid{display:flex;flex-direction:column;gap:4px}
+.mr{display:flex;align-items:baseline;gap:6px}
+.ml{font-size:10px;color:var(--g400);font-weight:600;min-width:54px;flex-shrink:0}
+.mv{font-size:12px;color:var(--g900)}
+.pai-grid{display:flex;flex-direction:column;gap:6px}
+.pairow{display:flex;flex-direction:column;gap:2px}
+.pail{font-size:9px;font-weight:700;color:var(--g400);text-transform:uppercase;letter-spacing:.06em}
+.paiv{font-size:11px;color:var(--g900);line-height:1.4}
+.urgent-row{display:flex;align-items:center;gap:7px;margin-top:4px;padding:5px 8px;border-radius:6px;border:1.5px dashed var(--g200);cursor:pointer}
+.urgent-row:hover{background:var(--g50)}
+.urgent-cb{width:14px;height:14px;cursor:pointer;accent-color:var(--red)}
+.urgent-lbl{font-size:11px;color:var(--g700);font-weight:600;cursor:pointer;user-select:none}
+.urgent-row.is-urgent{border-color:#fca5a5;background:#fff1f2}
+.urgent-row.is-urgent .urgent-lbl{color:var(--red)}
+.mc-btns{display:flex;flex-direction:column;gap:5px;padding:2px 0 4px}
+.mc-btn{display:flex;align-items:center;gap:8px;width:100%;padding:8px 10px;background:var(--white);border:1.5px solid var(--g200);border-radius:7px;color:var(--g700);font-size:12px;font-weight:500;cursor:pointer;text-align:left;transition:all .12s}
+.mc-btn:hover{background:var(--blue-lt);border-color:#93c5fd;color:var(--blue)}
+.mc-ico{font-size:13px;line-height:1}
+.mc-lbl{flex:1}
+.mc-arr{font-size:13px;color:var(--g300);transition:color .12s}
+.mc-btn:hover .mc-arr{color:var(--blue)}
+/* ─── WORKFLOW MAIN ───────────────────────────────── */
+.wf-main{flex:1;min-width:0;padding:10px 14px 24px}
+.wf-steps{display:flex;flex-direction:column;gap:8px}
+/* ─── STEP CARD ───────────────────────────────────── */
+.wf-step{background:var(--white);border:1px solid var(--g200);border-radius:10px;box-shadow:0 1px 4px rgba(15,23,42,.06);overflow:hidden;transition:box-shadow .15s}
+.wf-step.wf-active{border-color:#93c5fd;box-shadow:0 0 0 2px rgba(37,99,235,.08),0 1px 4px rgba(15,23,42,.06)}
+.wf-step.wf-done{border-color:#6ee7b7}
+.wf-step.wf-locked{opacity:.55;pointer-events:none}
+.wf-step-hdr{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;cursor:pointer;user-select:none;gap:12px}
+.wf-step-hdr:hover{background:var(--g50)}
+.wf-step-hdr.no-toggle{cursor:default}
+.wf-step-hdr.no-toggle:hover{background:transparent}
+.wf-step-left{display:flex;align-items:flex-start;gap:10px;flex:1;min-width:0}
+.wf-step-num{width:24px;height:24px;border-radius:50%;background:var(--g200);color:var(--g700);font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.wf-step.wf-active .wf-step-num{background:var(--blue);color:#fff}
+.wf-step.wf-done .wf-step-num{background:var(--green);color:#fff}
+.wf-step.wf-input{border-color:#fcd34d}
+.wf-step.wf-input .wf-step-num{background:#fbbf24;color:#78350f}
+.wf-step-meta{flex:1;min-width:0}
+.wf-step-title{font-size:13px;font-weight:700;color:var(--g900)}
+.wf-step-sub{font-size:11px;color:var(--g500);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.wf-step-right{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.wf-chev{font-size:10px;color:var(--g400)}
+/* ─── STATUS BADGES ───────────────────────────────── */
+.wf-status{font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;white-space:nowrap}
+.st-verified{background:var(--green-lt);color:#065f46;border:1px solid #a7f3d0}
+.st-complete{background:var(--green-lt);color:#065f46;border:1px solid #a7f3d0}
+.st-active{background:var(--blue-lt);color:#1e40af;border:1px solid #93c5fd}
+.st-review{background:var(--amber-lt);color:#92400e;border:1px solid #fde68a}
+.st-pending{background:var(--g100);color:var(--g500);border:1px solid var(--g300)}
+.st-warning{background:#fffbeb;color:#92400e;border:1px solid #fde68a}
+.st-approved{background:var(--green-lt);color:#065f46;border:1px solid #a7f3d0}
+.st-denied{background:#fee2e2;color:#991b1b;border:1px solid #fca5a5}
+/* ─── STEP BODY ───────────────────────────────────── */
+.wf-step-body{padding:0 16px 16px;border-top:1px solid var(--g100)}
+/* ─── INSIGHT ROW ─────────────────────────────────── */
+.wf-insight{display:flex;align-items:flex-start;gap:10px;padding:10px 0 8px}
+.wf-insight-icon{font-size:15px;line-height:1;flex-shrink:0;padding-top:1px}
+.wf-insight-txt{font-size:12px;color:var(--g700);line-height:1.55}
+/* ─── DRUG VERIFY BADGES ──────────────────────────── */
+.wf-badges{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+.wf-badge{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:6px;font-size:11px;font-weight:600}
+.wb-drug{background:#f3f4f6;color:#374151;border:1px solid #d1d5db}
+.wb-ndc{background:#f3f4f6;color:#374151;border:1px solid #d1d5db}
+/* ─── EXPAND TOGGLE ───────────────────────────────── */
+.wf-toggle-btn{display:inline-flex;align-items:center;gap:5px;background:none;border:none;color:var(--teal);font-size:11px;font-weight:600;cursor:pointer;padding:3px 0;transition:color .12s}
+.wf-toggle-btn:hover{color:var(--blue)}
+.wf-sub-section{margin-top:10px;padding:12px;background:var(--g50);border:1px solid var(--g200);border-radius:7px}
+.wf-sub-ttl{font-size:10px;font-weight:700;color:var(--g500);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}
+/* ─── DRUG EDIT FORM ──────────────────────────────── */
+.de-row{display:flex;flex-direction:column;gap:3px;margin-bottom:8px}
+.de-lbl{font-size:9px;font-weight:700;color:var(--g500);text-transform:uppercase;letter-spacing:.06em}
+.de-val{font-size:12px;color:var(--g900);background:var(--white);border:1.5px solid var(--g200);border-radius:5px;padding:5px 9px}
+.de-sel{font-size:12px;color:var(--g900);background:var(--white);border:1.5px solid var(--g200);border-radius:5px;padding:5px 9px;cursor:pointer;width:100%}
+.de-sel:focus{outline:none;border-color:var(--blue)}
+/* ─── MOCK CLAIM ──────────────────────────────────── */
+.mc-form{display:flex;flex-direction:column;gap:10px}
+.mc-form-row{display:flex;gap:12px;flex-wrap:wrap}
+.mcf{display:flex;flex-direction:column;gap:3px;flex:1;min-width:130px}
+.mcf-lbl{font-size:9px;font-weight:700;color:var(--g500);text-transform:uppercase;letter-spacing:.06em}
+.mcf-inp{padding:6px 9px;border:1.5px solid var(--g200);border-radius:5px;font-size:12px;font-family:inherit;color:var(--g900);background:var(--white)}
+.mcf-inp:focus{outline:none;border-color:var(--blue)}
+.mcf-sel{padding:6px 9px;border:1.5px solid var(--g200);border-radius:5px;font-size:12px;font-family:inherit;color:var(--g900);background:var(--white);cursor:pointer;width:100%}
+.mc-run-btn{align-self:flex-start;padding:7px 20px;background:var(--blue);color:#fff;border:none;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;transition:background .12s}
+.mc-run-btn:hover{background:#1d4ed8}
+.mc-result-area{margin-top:10px;background:var(--white);border:1px solid var(--g200);border-radius:7px;overflow:hidden}
+.mc-tabs{display:flex;border-bottom:1px solid var(--g200);background:var(--g50)}
+.mc-tab{padding:7px 14px;font-size:11px;font-weight:600;color:var(--g500);cursor:pointer;background:none;border:none;border-bottom:2px solid transparent;transition:all .12s}
+.mc-tab:hover{background:var(--g100)}
+.mc-tab.act{color:var(--blue);border-bottom:2px solid var(--blue);background:var(--white)}
+.mc-tab-ico{margin-right:3px}
+.mc-res-body{padding:12px}
+.mc-res-lbl{font-size:9px;font-weight:700;color:var(--g500);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
+.mc-res-txt{font-size:11px;color:var(--g700);background:var(--g50);border:1px solid var(--g200);border-radius:5px;padding:8px 10px;white-space:pre-wrap;word-break:break-word;min-height:56px;margin-bottom:8px;line-height:1.55}
+.mc-settle{font-size:11px;color:var(--g700);background:var(--g50);border:1px solid var(--g200);border-radius:5px;padding:6px 10px;margin-top:4px}
+.mc-settle-lbl{font-size:9px;font-weight:700;color:var(--g500);text-transform:uppercase;letter-spacing:.06em;margin-bottom:2px}
+/* ─── PA HISTORY STEP ─────────────────────────────── */
+.dup-alert{background:#fffbeb;border:1px solid #fde68a;border-radius:7px;padding:10px 12px;display:flex;align-items:flex-start;gap:9px;margin:8px 0}
+.dup-ico{font-size:15px;flex-shrink:0}
+.dup-ttl{font-size:12px;font-weight:700;color:#92400e;margin-bottom:2px}
+.dup-detail{font-size:11px;color:#78350f;line-height:1.45}
+.ph-clear{display:flex;align-items:center;gap:8px;padding:8px 0;font-size:12px;color:var(--g500)}
+.ph-table{width:100%;border-collapse:collapse;font-size:12px;margin-top:10px}
+.ph-table th{text-align:left;padding:6px 10px;background:var(--g50);border-bottom:2px solid var(--g200);font-size:9px;font-weight:700;color:var(--g500);text-transform:uppercase;letter-spacing:.06em}
+.ph-table td{padding:7px 10px;border-bottom:1px solid var(--g100);color:var(--g900);vertical-align:middle}
+.ph-table tr:last-child td{border-bottom:none}
+.ph-table tbody tr:hover td{background:var(--g50)}
+.ph-cur td{background:var(--blue-lt)}
+.ph-cur-chip{font-size:9px;font-weight:700;padding:1px 5px;background:var(--blue);color:#fff;border-radius:4px;margin-left:5px}
+.ph-a{color:var(--green);font-weight:700}
+.ph-d{color:var(--red);font-weight:700}
+.ph-r{color:var(--amber);font-weight:700}
+/* ─── CRITERIA ────────────────────────────────────── */
+.crit-nm{font-size:11px;font-weight:600;color:var(--g500);margin-bottom:10px;display:block}
+.notice{border-radius:6px;padding:7px 10px;display:flex;gap:8px;align-items:flex-start;font-size:11px;margin-bottom:8px}
+.n-fallout{background:#fffbeb;border:1px solid #fde68a;color:#92400e}
+.n-dup{background:var(--blue-lt);border:1px solid #bfdbfe;color:#1e40af}
+.n-icon{font-size:13px;flex-shrink:0}
+.qlist{display:flex;flex-direction:column;gap:5px;margin-bottom:10px}
+.qcard{border:1px solid var(--g200);border-radius:7px;background:var(--white);overflow:hidden}
+.qcard.qdoc{border-left:3px solid var(--amber)}
+.qhdr{display:flex;align-items:center;gap:7px;padding:8px 12px;cursor:pointer}
+.qhdr:hover{background:var(--g50)}
+.qn{font-size:10px;font-weight:800;color:var(--g400);width:22px;flex-shrink:0}
+.qs{font-size:12px;font-weight:500;color:var(--g900);flex:1;min-width:0}
+.dbadge{font-size:9px;font-weight:700;padding:1px 7px;border-radius:9px;white-space:nowrap;background:var(--amber-lt);color:#92400e;border:1px solid #fcd34d}
+.crbadge{font-size:9px;font-weight:700;padding:1px 7px;border-radius:9px;white-space:nowrap;background:#eff6ff;color:#1e40af;border:1px solid #bfdbfe}
+.abadge{font-size:9px;font-weight:700;padding:1px 7px;border-radius:9px;white-space:nowrap;background:var(--green-lt);color:#065f46;border:1px solid #6ee7b7}
+.achip{font-size:10px;font-weight:700;padding:2px 9px;border-radius:9px;white-space:nowrap}
+.cy{background:var(--g200);color:var(--g700)}
+.cn{background:var(--g200);color:var(--g700)}
+.qchev{font-size:10px;color:var(--g400);flex-shrink:0}
+.qbody{padding:0 12px 11px;border-top:1px solid var(--g100)}
+.qfull{font-size:11px;color:var(--g700);line-height:1.65;margin:9px 0 8px}
+.ansrow{display:flex;gap:7px;margin-bottom:8px}
+.abtn{padding:5px 20px;border-radius:5px;border:1.5px solid var(--g200);background:var(--white);color:var(--g700);font-size:12px;font-weight:600;cursor:pointer;transition:all .1s}
+.abtn:hover{background:var(--g50)}
+.ay{background:var(--g200);border-color:var(--g500);color:var(--g900)}
+.an{background:var(--g200);border-color:var(--g500);color:var(--g900)}
+.qact{background:var(--amber-lt);border:1px solid #fde68a;border-radius:5px;padding:6px 9px;font-size:11px;color:#78350f;font-weight:600;margin-bottom:5px}
+.qnote{background:var(--g50);border:1px solid var(--g200);border-radius:5px;padding:6px 9px;font-size:11px;color:var(--g700);margin-bottom:5px}
+.qev{background:var(--green-lt);border:1px solid #a7f3d0;border-radius:5px;padding:5px 9px;font-size:11px;color:#065f46;margin-bottom:5px}
+.qev-green{background:var(--green-lt);border:1px solid #a7f3d0;border-radius:5px;padding:5px 9px;font-size:11px;color:#065f46;margin-bottom:5px}
+.qev-amber{background:#fffbeb;border:1px solid #fcd34d;border-radius:5px;padding:5px 9px;font-size:11px;color:#92400e;margin-bottom:5px}
+.nlbl,.evlbl{font-weight:700}
+.doc-view-btn{display:inline-flex;align-items:center;gap:5px;margin-top:4px;margin-bottom:2px;padding:4px 12px;background:var(--teal-lt);color:var(--teal);border:1.5px solid #7dd3fc;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer;transition:all .12s}
+.doc-view-btn:hover{background:#bae6fd}
+.calc{background:var(--blue-lt);border:1px solid #bfdbfe;border-radius:6px;padding:8px 10px;margin-bottom:9px}
+.calc-fields{display:flex;gap:12px;align-items:flex-end;flex-wrap:wrap}
+.cf{display:flex;flex-direction:column;gap:3px}
+.clbl{font-size:9px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.06em}
+.cinp{width:108px;padding:5px 8px;border:1.5px solid #bfdbfe;border-radius:5px;font-size:13px;background:var(--white)}
+.cinp:focus{outline:none;border-color:var(--blue)}
+.cres{display:flex;flex-direction:column;gap:2px;padding:5px 8px;background:var(--white);border:1.5px solid #bfdbfe;border-radius:5px;min-width:88px}
+.cpass{color:var(--green);font-size:14px;font-weight:800}
+.cfail{color:var(--red);font-size:14px;font-weight:800}
+.csub{font-size:9px;color:var(--g400)}
+.calc-hint{font-size:11px;color:var(--g700);margin-bottom:7px}
+.qcomment{display:inline-block;margin:2px 0 9px;padding:6px 11px;border:1.5px dashed var(--g300);border-radius:9px;background:var(--g100);font-size:12px;color:var(--g700)}
+.calc-confirm{align-self:flex-end;padding:7px 16px;background:var(--blue);color:#fff;border:none;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer}
+.calc-confirm:hover:not(:disabled){background:#1d4ed8}
+.calc-confirm:disabled{background:var(--g200);color:var(--g400);cursor:not-allowed}
+.calc-rec{font-size:11px;color:#065f46;font-weight:600;margin-top:7px}
+.crit-foot{border-top:1px solid var(--g100);padding-top:10px;display:flex;flex-direction:column;align-items:flex-start;gap:8px}
+.foot-btns{display:flex;gap:7px;flex-wrap:wrap}
+.btn-c{background:var(--white);color:var(--red);border:1.5px solid var(--red);border-radius:6px;padding:7px 16px;font-size:12px;font-weight:600;cursor:pointer}
+.btn-c:hover{background:#fff1f2}
+.score-sep{width:100%;border:none;border-top:1px solid var(--g200);margin:0}
+.score-row{width:100%;display:flex;justify-content:center;padding:2px 0 4px}
+.score-chip{display:inline-flex;align-items:center;padding:9px 42px;border-radius:8px;font-size:19px;font-weight:800;letter-spacing:.01em;white-space:nowrap}
+.sc-a{background:var(--green-lt);color:#065f46;border:1.5px solid #6ee7b7}
+.sc-d{background:#fee2e2;color:#991b1b;border:1.5px solid #fca5a5}
+.btn-continue{background:var(--green);color:#fff;border:none;border-radius:6px;padding:8px 20px;font-size:12px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px;transition:background .12s}
+.btn-continue:hover{background:#047857}
+/* ─── MOCK CLAIM OUTCOME ──────────────────────── */
+.mc-outcome{border-radius:7px;padding:11px 14px;margin-bottom:10px;display:flex;flex-direction:column;gap:4px}
+.mc-outcome-reject{background:#fee2e2;border:1.5px solid #fca5a5}
+.mc-outcome-clear{background:var(--green-lt);border:1.5px solid #6ee7b7}
+.mc-outcome-code{font-size:13px;font-weight:700}
+.mc-code-reject{color:#991b1b}
+.mc-code-clear{color:#065f46}
+.mc-outcome-detail{font-size:11px;color:var(--g500);margin-top:1px}
+.mc-interp{font-size:11px;color:var(--g700);margin-top:3px;font-style:italic}
+/* ─── NOTES STEP ──────────────────────────────────── */
+.notes-wrap{position:relative;margin-bottom:5px}
+.notes-ta{width:100%;min-height:90px;padding:10px 84px 10px 12px;border:1.5px solid var(--g200);border-radius:7px;font-size:12px;font-family:inherit;resize:vertical;color:var(--g900);line-height:1.6}
+.notes-ta:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 2px rgba(37,99,235,.1)}
+.gen-btn{position:absolute;right:8px;top:50%;transform:translateY(-50%);background:var(--white);color:var(--teal);border:1.5px solid #7dd3fc;border-radius:6px;padding:7px 6px;font-size:9px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;cursor:pointer;width:68px;text-align:center;line-height:1.35}
+.gen-btn:hover{background:var(--teal-lt)}
+.ncount{font-size:10px;color:var(--g400);margin-bottom:8px}
+/* ─── CASE DECISION ───────────────────────────────── */
+.dec-rec{background:var(--green-lt);border:1px solid #a7f3d0;border-radius:7px;padding:12px 14px;margin-bottom:12px;display:flex;align-items:flex-start;gap:10px}
+.dec-rec.dec-deny-rec{background:#fff1f2;border-color:#fca5a5}
+.dec-rec-ico{font-size:18px;flex-shrink:0}
+.dec-rec-body{}
+.dec-rec-ttl{font-size:13px;font-weight:700;color:#065f46;margin-bottom:2px}
+.dec-deny-rec .dec-rec-ttl{color:#991b1b}
+.dec-rec-sub{font-size:11px;color:#047857}
+.dec-deny-rec .dec-rec-sub{color:#b91c1c}
+.dec-q{font-size:13px;font-weight:600;color:var(--g900);margin-bottom:10px}
+.dec-btns{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:4px}
+.dec-yes{padding:9px 28px;background:var(--green);color:#fff;border:none;border-radius:6px;font-size:13px;font-weight:700;cursor:pointer;transition:background .12s}
+.dec-yes:hover{background:#047857}
+.dec-no{padding:9px 24px;background:var(--white);color:var(--g700);border:1.5px solid var(--g200);border-radius:6px;font-size:13px;font-weight:600;cursor:pointer;transition:background .12s}
+.dec-no:hover{background:var(--g50)}
+.dec-confirm-box{background:#eff6ff;border:1px solid #bfdbfe;border-radius:7px;padding:12px 14px;margin-bottom:10px}
+.dec-confirm-ttl{font-size:12px;font-weight:700;color:#1e40af;margin-bottom:8px}
+.dec-confirm-btns{display:flex;gap:8px}
+.dec-confirm-btn{padding:8px 20px;background:var(--green);color:#fff;border:none;border-radius:6px;font-size:12px;font-weight:700;cursor:pointer;transition:background .12s}
+.dec-confirm-btn:hover{background:#047857}
+.dec-back-btn{padding:8px 16px;background:var(--white);color:var(--g700);border:1.5px solid var(--g200);border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;transition:background .12s}
+.dec-back-btn:hover{background:var(--g50)}
+.dec-alt-list{display:flex;flex-direction:column;gap:6px;margin-top:8px}
+.dec-alt-btn{padding:8px 14px;background:var(--white);color:var(--g700);border:1.5px solid var(--g200);border-radius:6px;font-size:12px;font-weight:500;cursor:pointer;text-align:left;transition:all .12s}
+.dec-alt-btn:hover{background:var(--g50);border-color:var(--g300)}
+.dec-alt-btn.selected{background:var(--blue-lt);border-color:#93c5fd;color:#1e40af;font-weight:600}
+.dec-alt-confirm-box{background:#fff1f2;border:1px solid #fca5a5;border-radius:7px;padding:12px 14px;margin-top:10px}
+.dec-alt-confirm-ttl{font-size:12px;font-weight:700;color:#991b1b;margin-bottom:8px}
+.dec-success{text-align:center;padding:24px 16px}
+.dec-success-ico{font-size:44px;margin-bottom:10px}
+.dec-success-ttl{font-size:17px;font-weight:800;color:var(--green);margin-bottom:5px}
+.dec-success-sub{font-size:12px;color:var(--g500);line-height:1.5}
+.dec-alt-done{background:var(--g50);border:1px solid var(--g200);border-radius:7px;padding:14px;text-align:center}
+.dec-alt-done-ttl{font-size:13px;font-weight:700;color:var(--g700);margin-bottom:4px}
+.dec-alt-done-sub{font-size:11px;color:var(--g500)}
+/* ─── MODALS ──────────────────────────────────────── */
+.doc-overlay,.tool-overlay{position:fixed;inset:0;background:rgba(0,0,0,.52);z-index:9999;display:flex;align-items:center;justify-content:center;padding:24px}
+.doc-box{background:var(--white);border-radius:10px;width:100%;max-width:740px;max-height:80vh;display:flex;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,.35)}
+.doc-hdr{display:flex;align-items:center;justify-content:space-between;padding:14px 18px 12px;border-bottom:1px solid var(--g200);flex-shrink:0}
+.doc-ttl{font-size:13px;font-weight:700;color:var(--g900)}
+.doc-sub{font-size:10px;color:var(--g400);font-weight:400;margin-top:1px}
+.doc-close{background:var(--g100);border:none;border-radius:5px;width:28px;height:28px;cursor:pointer;font-size:13px;color:var(--g700);display:flex;align-items:center;justify-content:center}
+.doc-close:hover{background:var(--g200)}
+.doc-pre{flex:1;overflow-y:auto;padding:18px;font-family:'Courier New',Consolas,monospace;font-size:11.5px;line-height:1.7;color:var(--g900);white-space:pre-wrap;word-break:break-word}
+.doc-foot{display:flex;align-items:center;justify-content:flex-end;padding:10px 18px;border-top:1px solid var(--g100);flex-shrink:0}
+.doc-dismiss{padding:6px 20px;background:var(--g100);color:var(--g700);border:1.5px solid var(--g200);border-radius:6px;font-size:12px;font-weight:600;cursor:pointer}
+.doc-dismiss:hover{background:var(--g200)}
+.tool-box{background:var(--white);border-radius:10px;width:100%;max-width:680px;max-height:78vh;display:flex;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,.3);overflow:hidden}
+.tool-hdr{display:flex;align-items:center;justify-content:space-between;padding:11px 16px;background:var(--navy);flex-shrink:0}
+.tool-hdr-title{font-size:13px;font-weight:700;color:var(--white)}
+.tool-hdr-sub{font-size:10px;color:#94a3b8;margin-top:1px}
+.tool-hdr-close{background:rgba(255,255,255,.12);border:none;border-radius:5px;width:28px;height:28px;cursor:pointer;font-size:13px;color:#cbd5e1;display:flex;align-items:center;justify-content:center}
+.tool-hdr-close:hover{background:rgba(255,255,255,.22)}
+.tool-body{flex:1;overflow-y:auto;padding:16px}
+.tool-search-bar{display:flex;gap:8px;margin-bottom:14px}
+.tool-input{flex:1;padding:7px 11px;border:1.5px solid var(--g200);border-radius:6px;font-size:12px;color:var(--g900);font-family:inherit}
+.tool-input:focus{outline:none;border-color:var(--blue)}
+.tool-srch-btn{padding:7px 18px;background:var(--blue);color:#fff;border:none;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer}
+.tool-srch-btn:hover{background:#1d4ed8}
+.tool-result-card{border:1px solid var(--g200);border-radius:8px;overflow:hidden}
+.trcard-hdr{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:var(--g50);border-bottom:1px solid var(--g200)}
+.trcard-ttl{font-size:14px;font-weight:700;color:var(--g900)}
+.trcard-badge{padding:2px 10px;border-radius:20px;font-size:10px;font-weight:700}
+.tc-active{background:var(--green-lt);color:#065f46;border:1px solid #6ee7b7}
+.trow{display:flex;gap:12px;align-items:baseline;padding:6px 14px;border-bottom:1px solid var(--g100)}
+.trow:last-child{border-bottom:none}
+.trl{font-size:10px;color:var(--g400);font-weight:600;min-width:110px;flex-shrink:0}
+.trv{font-size:12px;color:var(--g900)}
+.tool-table{width:100%;border-collapse:collapse;font-size:12px}
+.tool-table th{text-align:left;padding:8px 12px;background:var(--g50);border-bottom:2px solid var(--g200);font-size:9px;font-weight:700;color:var(--g500);text-transform:uppercase;letter-spacing:.06em}
+.tool-table td{padding:8px 12px;border-bottom:1px solid var(--g100);color:var(--g900);vertical-align:middle}
+.tool-table tr:last-child td{border-bottom:none}
+.tool-table tbody tr:hover td{background:var(--g50)}
+.tr-cur td{background:var(--blue-lt)}
+.tr-cur-chip{font-size:9px;font-weight:700;padding:1px 5px;background:var(--blue);color:#fff;border-radius:4px;margin-left:5px}
+.tb-a{color:var(--green);font-weight:700}
+.tb-d{color:var(--red);font-weight:700}
+.tb-r{color:var(--amber);font-weight:700}
+</style>
+</head>
+<body>
+
+<!-- APPBAR -->
+<header class="appbar">
+  <span class="brand">CAREMARK</span>
+  <span class="bar-sep">|</span>
+  <span class="bar-title">PA Caddie — Guided Review</span>
+  <div class="bar-right">
+    <span class="bar-role" id="bar-role">Role: Technician &nbsp;|&nbsp; Queue: Pending Approval</span>
+  </div>
+</header>
+
+<!-- STRIP -->
+<div class="strip" id="strip"></div>
+
+<!-- LEG BAR -->
+<div class="leg-bar" id="leg-bar" style="display:none"></div>
+
+<!-- LAYOUT -->
+<div class="layout" id="layout">
+
+  <!-- LEFT PANEL -->
+  <aside class="left-rail" id="left-rail">
+
+    <!-- Member Info — collapsed by default -->
+    <div class="lsec">
+      <div class="lsec-hdr" onclick="toggleSec('mbr')">
+        <span class="lsec-ttl">Member Info</span>
+        <span class="lsec-icon" id="mbr-icon">▼</span>
+      </div>
+      <div class="lsec-body" id="mbr-body" style="display:none"></div>
+    </div>
+
+    <!-- PA Info — expanded by default -->
+    <div class="lsec">
+      <div class="lsec-hdr" onclick="toggleSec('pai')">
+        <span class="lsec-ttl">PA Info</span>
+        <span class="lsec-icon" id="pai-icon">▲</span>
+      </div>
+      <div class="lsec-body" id="pai-body"></div>
+    </div>
+
+    <!-- Member Center -->
+    <div class="lsec">
+      <div class="lsec-hdr" style="cursor:default">
+        <span class="lsec-ttl">Member Center</span>
+      </div>
+      <div class="lsec-body" id="mc-body"></div>
+    </div>
+
+  </aside>
+
+  <!-- MAIN GUIDED WORKFLOW -->
+  <main class="wf-main">
+    <div class="wf-steps" id="wf-steps"></div>
+  </main>
+
+</div>
+
+<!-- DOCUMENT MODAL -->
+<div class="doc-overlay" id="doc-modal" style="display:none" onclick="closeDocOverlay(event)">
+  <div class="doc-box">
+    <div class="doc-hdr">
+      <div>
+        <div class="doc-ttl" id="doc-ttl">Clinical Chart Note</div>
+        <div class="doc-sub">PA Caddie — retrieved from chart notes</div>
+      </div>
+      <button class="doc-close" onclick="closeDoc()">✕</button>
+    </div>
+    <pre id="doc-body" class="doc-pre"></pre>
+    <div class="doc-foot">
+      <button class="doc-dismiss" onclick="closeDoc()">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOOL MODAL (Member Center) -->
+<div class="tool-overlay" id="tool-modal" style="display:none" onclick="closeToolOverlay(event)">
+  <div class="tool-box">
+    <div class="tool-hdr">
+      <div>
+        <div class="tool-hdr-title" id="tool-ttl">Tool</div>
+        <div class="tool-hdr-sub" id="tool-sub">CVS Caremark</div>
+      </div>
+      <button class="tool-hdr-close" onclick="closeTool()">✕</button>
+    </div>
+    <div class="tool-body" id="tool-body"></div>
+  </div>
+</div>
+
+<script>
+// ── SKIP LOGIC (Qset 255357) ─────────────────────────────────────────────────
+const SK={
+  1:{T:2,F:32},2:{T:3,F:22},3:{T:4,F:7},4:{T:5,F:'D'},5:{T:6,F:'D'},
+  6:{T:'D',F:'A'},7:{T:8,F:'D'},8:{T:'D',F:9},9:{T:10,F:13},
+  10:{T:11,F:'D'},11:{T:12,F:'D'},12:{T:19,F:'D'},13:{T:14,F:15},
+  14:{T:19,F:'D'},15:{T:16,F:17},16:{T:19,F:'D'},17:{T:18,F:'D'},
+  18:{T:19,F:'D'},19:{T:20,F:21},20:{T:'D',F:'A'},21:{T:'D',F:'A'},
+  22:{T:23,F:'D'},23:{T:'D',F:24},24:{T:25,F:28},25:{T:26,F:'D'},
+  26:{T:27,F:'D'},27:{T:'D',F:'A'},28:{T:29,F:'D'},29:{T:30,F:'D'},
+  30:{T:31,F:'D'},31:{T:'D',F:'A'},32:{T:33,F:46},33:{T:34,F:'D'},
+  34:{T:'D',F:35},35:{T:36,F:'D'},36:{T:37,F:'D'},37:{T:38,F:40},
+  38:{T:39,F:'D'},39:{T:'D',F:'A'},40:{T:41,F:'D'},41:{T:42,F:'D'},
+  42:{T:'D',F:43},43:{T:44,F:'D'},44:{T:45,F:'D'},45:{T:'D',F:'A'},
+  46:{T:47,F:'D'},47:{T:48,F:'D'},48:{T:'D',F:49},49:{T:50,F:54},
+  50:{T:51,F:'D'},51:{T:52,F:'D'},52:{T:53,F:'D'},53:{T:'D',F:'A'},
+  54:{T:55,F:'D'},55:{T:56,F:'D'},56:{T:57,F:'D'},57:{T:'D',F:'A'}
+};
+
+// ── QUESTION METADATA ─────────────────────────────────────────────────────────
+const QM={
+  1:{s:"Diet + physical activity?",f:"Will the requested drug be used with a reduced-calorie diet AND increased physical activity to reduce excess body weight or maintain weight reduction long term?",att:"Attested by the prescriber on the ePA submission."},
+  2:{s:"Patient age 18+?",f:"Is the patient 18 years of age or older?",auto:true},
+  3:{s:"Stable maintenance dose (≥3 months)?",f:"Has the patient completed at least 3 months of therapy with the requested drug at a stable maintenance dose? [If the patient is transitioning from another drug therapy for weight loss, please answer no and proceed.]",doc:true},
+  4:{s:"Lost ≥5% baseline body weight?",f:"Has the patient lost at least 5 percent of baseline body weight OR has the patient continued to maintain their initial 5 percent weight loss?",doc:true,calc:true,act:"ACTION REQUIRED: If yes, then documentation is required for approval. Document the patient's weight prior to starting drug therapy for weight loss and the patient's current weight, including the dates the weights were taken:"},
+  5:{s:"Weight documentation submitted?",f:"Has documentation of the patient's weight prior to starting drug therapy for weight loss and the patient's current weight, including the dates the weights were taken, been submitted to CVS Health?",doc:true},
+  6:{s:"Requesting > plan allowance/month?",f:"Does the patient require MORE than the plan allowance per month of any of the following: A) 1 package/4 pens of Wegovy (semaglutide) 0.25 mg/0.5 mL injection, B) 1 package/4 pens of Wegovy (semaglutide) 0.5 mg/0.5 mL injection, C) 1 package/4 pens of Wegovy (semaglutide) 1 mg/0.5 mL injection, D) 1 package/4 pens of Wegovy (semaglutide) 1.7 mg/0.75 mL injection, E) 1 package/4 pens of Wegovy (semaglutide) 2.4 mg/0.75 mL injection, F) 1 package/4 pens of Wegovy (semaglutide) HD 7.2 mg/0.75 mL, G) 30 tablets of Wegovy (semaglutide)?",auto:true,ev:"Test claim: no quantity reject returned. 30 tablets for 30 days is within the plan allowance of 30 tablets per month."},
+  7:{s:"Weight mgmt program ≥6 months prior?",f:"Has the patient participated in a comprehensive weight management program that encourages behavioral modification, reduced-calorie diet, AND increased physical activity with continuing follow-up for at least 6 months prior to using drug therapy?",doc:true},
+  8:{s:"Baseline BMI < 27 kg/m²?",f:"Does the patient have a baseline body mass index (BMI) of less than 27 kg/m²? [If the patient is transitioning from another drug therapy for weight loss, please consider their baseline BMI at the start of any drug therapy when answering this question.]",doc:true},
+  9:{s:"Baseline BMI 27–<30 kg/m²?",f:"Does the patient have a baseline body mass index (BMI) of 27 kg/m² to less than 30 kg/m²? [If the patient is transitioning from another drug therapy for weight loss, please consider their baseline BMI at the start of any drug therapy when answering this question.]",doc:true,act:"ACTION REQUIRED: If yes, then prescriber MUST submit chart notes that show the patient's baseline BMI."},
+  10:{s:"BMI chart notes submitted (27–<30)?",f:"Have chart notes showing the patient's baseline body mass index (BMI) been submitted to CVS Health? [If the patient is transitioning from another drug therapy for weight loss, please provide their baseline BMI at the start of any drug therapy.]",doc:true},
+  11:{s:"Weight-related comorbidity present?",f:"Does the patient have at least ONE weight-related comorbid condition (e.g., hypertension, type 2 diabetes mellitus, dyslipidemia)? [If the patient is transitioning from another drug therapy for weight loss, please consider their weight-related comorbid condition(s) at the start of any drug therapy when answering this question.]",doc:true,act:"ACTION REQUIRED: If yes, then prescriber MUST submit chart notes that indicate the patient's weight-related comorbid condition(s)."},
+  12:{s:"Comorbidity chart notes submitted?",f:"Have chart notes indicating the patient's weight-related comorbid condition(s) been submitted to CVS Health? [If the patient is transitioning from another drug therapy for weight loss, please provide their weight-related comorbid condition(s) at the start of any drug therapy.]",doc:true},
+  13:{s:"Baseline BMI 30–<35 kg/m²?",f:"Does the patient have a baseline body mass index (BMI) of 30 kg/m² to less than 35 kg/m²? [If the patient is transitioning from another drug therapy for weight loss, please consider their baseline BMI at the start of any drug therapy when answering this question.]",doc:true,act:"ACTION REQUIRED: If yes, then prescriber MUST submit chart notes that show the patient's baseline BMI."},
+  14:{s:"BMI chart notes submitted (30–<35)?",f:"Have chart notes showing the patient's baseline body mass index (BMI) been submitted to CVS Health? [If the patient is transitioning from another drug therapy for weight loss, please provide their baseline BMI at the start of any drug therapy.]",doc:true},
+  15:{s:"Baseline BMI 35–<40 kg/m²?",f:"Does the patient have a baseline body mass index (BMI) of 35 kg/m² to less than 40 kg/m²? [If the patient is transitioning from another drug therapy for weight loss, please consider their baseline BMI at the start of any drug therapy when answering this question.]",doc:true,act:"ACTION REQUIRED: If yes, then prescriber MUST submit chart notes that show the patient's baseline BMI."},
+  16:{s:"BMI chart notes submitted (35–<40)?",f:"Have chart notes showing the patient's baseline body mass index (BMI) been submitted to CVS Health? [If the patient is transitioning from another drug therapy for weight loss, please provide their baseline BMI at the start of any drug therapy.]",doc:true},
+  17:{s:"Baseline BMI ≥40 kg/m²?",f:"Does the patient have a baseline body mass index (BMI) of 40 kg/m² or greater? [If the patient is transitioning from another drug therapy for weight loss, please consider their baseline BMI at the start of any drug therapy when answering this question.]",doc:true,act:"ACTION REQUIRED: If yes, then prescriber MUST submit chart notes that show the patient's baseline BMI."},
+  18:{s:"BMI chart notes submitted (≥40)?",f:"Have chart notes showing the patient's baseline body mass index (BMI) been submitted to CVS Health? [If the patient is transitioning from another drug therapy for weight loss, please provide their baseline BMI at the start of any drug therapy.]",doc:true},
+  19:{s:"Is this Wegovy injection?",f:"Is this request for Wegovy (semaglutide) injection?",auto:true,ev:"Drug confirmed as WEGOVY (semaglutide) injection per drug record and prescriber submission."},
+  20:{s:"Requesting > plan allowance (injection)?",f:"Does the patient require MORE than the plan allowance of 1 package/4 pens per month of any of the following: A) Wegovy 0.25 mg/0.5 mL injection, B) Wegovy 0.5 mg/0.5 mL injection, C) Wegovy 1 mg/0.5 mL injection, D) Wegovy 1.7 mg/0.75 mL injection, E) Wegovy 2.4 mg/0.75 mL injection, F) Wegovy HD 7.2 mg/0.75 mL injection?",auto:true,ev:"Test claim: no quantity reject. Plan allowance 1 pkg/4 pens per month — within limit."},
+  21:{s:"Requesting > plan allowance (tablet)?",f:"Does the patient require MORE than the plan allowance of 30 tablets per month of Wegovy (semaglutide)?",auto:true,ev:"Test claim: no quantity reject. Plan allowance 30 tablets per month — within limit."},
+  22:{s:"Patient age 12–17?",f:"Is the patient 12 to 17 years of age?",auto:true},
+  23:{s:"HD 7.2 mg or tablet form requested?",f:"Is this request for ANY of the following: A) Wegovy (semaglutide) HD 7.2 mg/0.75 mL injection, B) Wegovy (semaglutide) tablets?",auto:true,ev:"Drug confirmed as Wegovy 2.4 mg injection — not HD 7.2 mg or tablet formulation."},
+  24:{s:"Continuation of therapy?",f:"Is the request for continuation of therapy for a patient that has successfully titrated to a stable maintenance dose? [If the patient is transitioning from another drug therapy for weight loss, please answer no and proceed.]"},
+  25:{s:"BMI reduction from baseline?",f:"Has the patient had a reduction from their baseline body mass index (BMI) OR has the patient continued to maintain their initial BMI reduction?",doc:true,calc:true,act:"ACTION REQUIRED: If yes, then documentation is required for approval. Document the patient's BMI prior to starting drug therapy for weight loss and the patient's current BMI, including the dates the BMIs were taken:"},
+  26:{s:"BMI documentation submitted?",f:"Has documentation of the patient's body mass index (BMI) prior to starting drug therapy for weight loss and the patient's current BMI, including the dates the BMIs were taken, been submitted to CVS Health?",doc:true},
+  27:{s:"Requesting > plan allowance?",f:"Does the patient require MORE than the plan allowance of 1 package/4 pens of any of the following per month: A) Wegovy 0.25 mg/0.5 mL, B) Wegovy 0.5 mg/0.5 mL, C) Wegovy 1 mg/0.5 mL, D) Wegovy 1.7 mg/0.75 mL, E) Wegovy 2.4 mg/0.75 mL injection?",auto:true,ev:"Test claim: no quantity reject. Within plan allowance."},
+  28:{s:"Weight mgmt program ≥6 months prior?",f:"Has the patient participated in a comprehensive weight management program that encourages behavioral modification, reduced-calorie diet, AND increased physical activity with continuing follow-up for at least 6 months prior to using drug therapy?",doc:true},
+  29:{s:"BMI ≥95th percentile (age/sex)?",f:"Does the patient have a baseline body mass index (BMI) in the 95th percentile or greater standardized for age and sex (obesity)? [If the patient is transitioning from another drug therapy for weight loss, please consider their baseline BMI at the start of any drug therapy when answering this question.]",doc:true,act:"ACTION REQUIRED: If yes, then prescriber MUST submit chart notes that show the patient's baseline BMI percentile standardized for age and sex."},
+  30:{s:"BMI percentile chart notes submitted?",f:"Have chart notes showing the patient's baseline body mass index (BMI) percentile standardized for age and sex been submitted to CVS Health? [If the patient is transitioning from another drug therapy for weight loss, please provide their baseline BMI at the start of any drug therapy.]",doc:true},
+  31:{s:"Requesting > plan allowance?",f:"Does the patient require MORE than the plan allowance of 1 package/4 pens of any of the following per month: A) Wegovy 0.25 mg/0.5 mL, B) Wegovy 0.5 mg/0.5 mL, C) Wegovy 1 mg/0.5 mL, D) Wegovy 1.7 mg/0.75 mL, E) Wegovy 2.4 mg/0.75 mL injection?",auto:true,ev:"Test claim: no quantity reject. Within plan allowance."},
+  32:{s:"CV risk reduction indication?",f:"Will the requested drug be used to reduce the risk of major adverse cardiovascular events (cardiovascular death, non-fatal myocardial infarction, or non-fatal stroke) in an adult with established cardiovascular disease AND either obesity or overweight?"},
+  33:{s:"Used with diet + physical activity?",f:"Is the requested drug being used with a reduced-calorie diet AND increased physical activity?",att:"Attested by the prescriber on the ePA submission."},
+  34:{s:"Is this Wegovy HD 7.2 mg injection?",f:"Is this request for Wegovy (semaglutide) HD 7.2 mg injection?",auto:true,ev:"Drug confirmed as Wegovy 2.4 mg/0.75 mL — not HD 7.2 mg formulation."},
+  35:{s:"Established CV disease (specific history)?",f:"Does the patient have established cardiovascular disease with a history of ONE of the following: A) previous myocardial infarction (MI), B) previous stroke, C) symptomatic peripheral arterial disease (PAD), as evidenced by intermittent claudication with ankle-brachial index (ABI) less than 0.85 (at rest), peripheral arterial revascularization procedure, or amputation due to atherosclerotic disease, D) prior history of revascularization (coronary artery bypass grafting [CABG], percutaneous coronary intervention [PCI], or angioplasty)?",doc:true,act:"ACTION REQUIRED: If yes, then prescriber MUST submit chart notes supporting the patient's diagnosis, including diagnostic evidence, of at least one of the above conditions."},
+  36:{s:"CV disease chart notes submitted?",f:"Have chart notes supporting the patient's diagnosis, including diagnostic evidence, of ONE of the following: A) previous myocardial infarction (MI), B) previous stroke, C) symptomatic peripheral arterial disease (PAD), D) prior history of revascularization (CABG, PCI, or angioplasty), been submitted to CVS Health?",doc:true},
+  37:{s:"Continuation of therapy?",f:"Is this request for continuation of therapy?"},
+  38:{s:"On maintenance dosage?",f:"Is the patient being treated with a maintenance dosage of the requested drug which is based on individual treatment response and tolerability?"},
+  39:{s:"Requesting > plan allowance?",f:"Does the patient require MORE than the plan allowance per month of any of the following: A) 1 package/4 pens Wegovy 0.25 mg/0.5 mL, B) 0.5 mg/0.5 mL, C) 1 mg/0.5 mL, D) 1.7 mg/0.75 mL, E) 2.4 mg/0.75 mL injection, F) 30 tablets Wegovy?",auto:true,ev:"Test claim: no quantity reject. Within plan allowance."},
+  40:{s:"Baseline BMI ≥27 kg/m²?",f:"Does the patient have a baseline body mass index (BMI) greater than or equal to 27 kg/m²? [If the patient is transitioning from another drug therapy for weight loss, please consider their baseline BMI at the start of any drug therapy when answering this question.]",doc:true,act:"ACTION REQUIRED: If yes, then prescriber MUST submit chart notes that show the patient's baseline BMI."},
+  41:{s:"BMI chart notes submitted?",f:"Have chart notes showing the patient's baseline body mass index (BMI) been submitted to CVS Health? [If the patient is transitioning from another drug therapy for weight loss, please provide their baseline BMI at the start of any drug therapy.]",doc:true},
+  42:{s:"Patient has type 2 diabetes?",f:"Does the patient have type 2 diabetes? [Ozempic is indicated to reduce the risk of major cardiovascular events in adults with type 2 diabetes mellitus and established cardiovascular disease. If the patient may be treated with Ozempic, please provide the patient with a new prescription for Ozempic.]"},
+  43:{s:"On GDMT for CV disease?",f:"Is the patient currently receiving guideline-directed management and therapy (GDMT) for cardiovascular disease (e.g., lipid-lowering agent, antiplatelet, beta-blocker, renin-angiotensin inhibitor, etc.) OR does the patient have a clinical reason not to be treated with GDMT for cardiovascular disease?",doc:true,act:"ACTION REQUIRED: If yes, then prescriber MUST submit chart notes showing that the patient is currently receiving GDMT for cardiovascular disease or showing the clinical reason why the patient cannot be treated with GDMT (e.g., intolerance, contraindication, allergy)."},
+  44:{s:"GDMT chart notes submitted?",f:"Have chart notes showing that the patient is currently receiving guideline-directed management and therapy (GDMT) for cardiovascular disease or showing the clinical reason why the patient cannot be treated with GDMT (e.g., intolerance, contraindication, allergy) been submitted to CVS Health?",doc:true},
+  45:{s:"Requesting > plan allowance?",f:"Does the patient require MORE than the plan allowance per month of any of the following: A) 1 package/4 pens Wegovy 0.25 mg/0.5 mL, B) 0.5 mg/0.5 mL, C) 1 mg/0.5 mL, D) 1.7 mg/0.75 mL, E) 2.4 mg/0.75 mL injection, F) 30 tablets Wegovy?",auto:true,ev:"Test claim: no quantity reject. Within plan allowance."},
+  46:{s:"MASH / liver fibrosis indication?",f:"Is the requested drug being prescribed for the treatment of noncirrhotic metabolic dysfunction-associated steatohepatitis (MASH), formerly known as nonalcoholic steatohepatitis (NASH), with moderate to advanced liver fibrosis (consistent with stages F2 to F3 fibrosis) in an adult?"},
+  47:{s:"Used with diet + physical activity?",f:"Is the requested drug being used with a reduced-calorie diet AND increased physical activity?",att:"Attested by the prescriber on the ePA submission."},
+  48:{s:"HD 7.2 mg or tablet form?",f:"Is this request for ANY of the following: A) Wegovy (semaglutide) HD 7.2 mg injection, B) Wegovy (semaglutide) tablets?",auto:true,ev:"Drug confirmed as Wegovy 2.4 mg injection — not HD 7.2 mg or tablet formulation."},
+  49:{s:"Continuation of therapy?",f:"Is this request for continuation of therapy?"},
+  50:{s:"Positive clinical response?",f:"Has the patient achieved or maintained a positive clinical response to the requested drug (e.g., improvement in liver function such as reduction in alanine aminotransferase [ALT], improvement in Enhanced Liver Fibrosis [ELF] score, improvement in liver stiffness measurement [LSM] by ultrasound-based elastography, magnetic resonance elastography [MRE])?",doc:true,act:"ACTION REQUIRED: If yes, then prescriber MUST submit chart notes or other documentation supporting that the patient achieved or maintained a positive clinical response to the requested drug."},
+  51:{s:"Clinical response documentation submitted?",f:"Have chart notes or other documentation supporting that the patient has achieved or maintained a positive clinical response to the requested drug (e.g., improvement in ALT, ELF score, LSM by elastography or MRE) been submitted to CVS Health?",doc:true},
+  52:{s:"On maintenance dosage?",f:"Is the patient being treated with a maintenance dosage of the requested drug which is based on individual treatment response and tolerability?"},
+  53:{s:"Requesting > plan allowance?",f:"Does the patient require MORE than the plan allowance of 1 package/4 pens of any of the following per month: A) Wegovy 0.25 mg/0.5 mL, B) Wegovy 0.5 mg/0.5 mL, C) Wegovy 1 mg/0.5 mL, D) Wegovy 1.7 mg/0.75 mL, E) Wegovy 2.4 mg/0.75 mL injection?",auto:true,ev:"Test claim: no quantity reject. Within plan allowance."},
+  54:{s:"Prescribed by GI/hepatologist?",f:"Is the requested drug being prescribed by, or in consultation with, a gastroenterologist or hepatologist?",doc:true},
+  55:{s:"Liver fibrosis confirmed at baseline?",f:"Has the patient's moderate to advanced liver fibrosis (consistent with stages F2 to F3 fibrosis) at baseline been confirmed by ONE of the following: non-invasive liver disease assessment (e.g., ultrasound-based elastography, magnetic resonance elastography [MRE]) OR historical liver biopsy?",doc:true,act:"ACTION REQUIRED: If yes, then prescriber MUST submit chart notes or other documentation supporting that the patient's moderate to advanced liver fibrosis (consistent with stages F2 to F3 fibrosis) at baseline has been confirmed by non-invasive liver disease assessment (ultrasound-based elastography or MRE) OR historical liver biopsy."},
+  56:{s:"Liver fibrosis documentation submitted?",f:"Have chart notes or other documentation supporting that the patient's moderate to advanced liver fibrosis (consistent with stages F2 to F3 fibrosis) at baseline has been confirmed by non-invasive liver disease assessment (e.g., ultrasound-based elastography or MRE) OR historical liver biopsy been submitted to CVS Health?",doc:true},
+  57:{s:"Requesting > plan allowance?",f:"Does the patient require MORE than the plan allowance of 1 package/4 pens of any of the following per month: A) Wegovy 0.25 mg/0.5 mL, B) Wegovy 0.5 mg/0.5 mL, C) Wegovy 1 mg/0.5 mL, D) Wegovy 1.7 mg/0.75 mL, E) Wegovy 2.4 mg/0.75 mL injection?",auto:true,ev:"Test claim: no quantity reject. Within plan allowance."}
+};
+
+// Only Q4 asks the reviewer to act. Every other answer is taken at the prescriber's word.
+Object.keys(QM).forEach(k=>{if(Number(k)!==4)delete QM[k].act;});
+
+// ── CLINICAL DOCUMENT TEMPLATES ───────────────────────────────────────────────
+const DOC_RH_Q3 = `CLINICAL PROGRESS NOTE — STABLE DOSE DOCUMENTATION
+SOURCE: ePA Attachment (1 of 1), page 1
+════════════════════════════════════════════════════════════
+PATIENT:   Robert Hensley             MRN:     AET-6120485
+DOB:       03/02/1971  (Age: 55)      SEX:     Male
+PROVIDER:  Dr. M. Okafor, MD          DATE:    2026-07-14
+FACILITY:  Aetna Chart ASP — Internal Medicine
+════════════════════════════════════════════════════════════
+VISIT TYPE:  Wegovy Continuation — Stable Dose Verification
+
+WEGOVY THERAPY HISTORY:
+
+  Wegovy injection (weight management):   Feb 2024 – Dec 2025
+  Wegovy tablet (semaglutide):            started Jan 2026
+
+CURRENT THERAPY:
+  Wegovy (semaglutide) 25 mg tablet, once daily
+  No dose change since 2026-04-15  (3+ months as of July 2026)
+
+CLINICAL NOTE: Patient has completed more than 3 months of therapy
+with Wegovy tablets at a stable maintenance dose and is tolerating
+treatment. Continuation requested.
+
+Dr. M. Okafor, MD — Internal Medicine | NPI: 5551234567
+Signed: 2026-07-14 11:20 EST`;
+
+const DOC_RH_Q4 = `CLINICAL WEIGHT ASSESSMENT — PA DOCUMENTATION
+SOURCE: ePA Attachment (1 of 1), page 2
+════════════════════════════════════════════════════════════
+PATIENT:   Robert Hensley             MRN:     AET-6120485
+DOB:       03/02/1971  (Age: 55)      SEX:     Male
+PROVIDER:  Dr. M. Okafor, MD          DATE:    2026-07-20
+FACILITY:  Aetna Chart ASP — Internal Medicine
+════════════════════════════════════════════════════════════
+WEIGHT MEASUREMENTS:
+
+  BASELINE (prior to drug therapy):
+    Date:    January 26, 2024
+    Weight:  174.0 lbs  (78.9 kg)
+
+  CURRENT:
+    Date:    July 20, 2026
+    Weight:  128.0 lbs  (58.1 kg)
+
+Both weights measured in office on a calibrated scale.
+
+Dr. M. Okafor, MD — NPI: 5551234567
+Signed: 2026-07-20 09:40 EST`;
+
+const DOC_RH_Q5 = `DOCUMENTATION SUBMISSION CONFIRMATION
+════════════════════════════════════════════════════════════
+PATIENT:   Robert Hensley             MRN:     AET-6120485
+DATE:      2026-07-23
+SUBMITTED BY: Dr. M. Okafor, MD (via ePA portal)
+════════════════════════════════════════════════════════════
+
+ATTACHMENTS RECEIVED WITH THE ePA REQUEST:   1
+
+  [1] ePA Attachment
+      Document type: ePA Attachment
+      Created by:    SYSTEM SERVICES
+      Created:       07/23/2026 11:23 AM
+      Content:       Progress note (stable dose) and weight record with
+                     the date of each weight: baseline 2024-01-26,
+                     current 2026-07-20.
+
+STATUS: Weights and the dates they were taken are included.
+Reference: EPA-2026-0723-AET6120485-WEGOVY`;
+
+// ── CASE DATA ─────────────────────────────────────────────────────────────────
+// Single Wegovy case: ePA Loop-2 fallout (step 1150), approved by a Technician
+// on the initial (and only) touch.
+const CASES=[
+{
+  id:"26-123456",
+  meta:{drug:"Wegovy Tablet (semaglutide)",submittedDrug:"Wegovy 25MG OR TABS",requestedDrug:"Wegovy Tablet (semaglutide)",
+        cls:"PAC131011 — Weight Loss Wegovy PA with Limit",
+        dx:"Weight management, Adult",lob:"Commercial",origin:"ePA",
+        ref:"4774-C",name:"Weight Loss Wegovy PA with Limit CMK STD 06-2026",
+        client:"Aetna — CHART ASP — SI",qset:"255357",ndc:"00169442531",gpi:"612520700003**",urgent:true},
+  member:{id:"AET-6120485",name:"Robert Hensley",dob:"03/02/1971",sex:"Male",
+          pag:"AETNA — CHART ASP — SI"},
+  claim:{code:"75",msg:"Prior Authorization Required",dt:"2026-07-23",
+         drug:"WEGOVY 25MG OR TABS",qty:"30 tablets",days:"30"},
+  phNote:"✓ No active approved PA found for this member and drug. 1 prior PA on this criteria (01/19/26); 11 prior PAs in the last 24 months across all criteria.",
+  legs:[{
+    role:"Technician",rev:"C123456",aht:"2:16",ahtS:136,queue:"Pending Approval",isAgent:false,
+    fallout:"Automated ePA review stopped at step 1150 — could not validate the outcome code from the criteria form. Case routed to Pending Approval for a manual Verify Criteria Form check.",
+    initAns:{1:'T',2:'T',3:'T',4:'T',5:'T',6:'F'},
+    comments:{4:"1/26/24 174lbs now 128lbs"},
+    notes:{
+      2:"DOB: 03/02/1971. Age: 55 years. Meets 18+ threshold.",
+      3:"Claims history: 4 consecutive paid fills of Wegovy 25 mg tablets (2026-03-30 to 2026-06-25), 30 tablets each; 11 paid fills of Wegovy in the last 24 months.",
+      5:"1 ePA attachment on file, received 07/23/2026 11:23 AM."
+    },
+    docs:{3:DOC_RH_Q3,4:DOC_RH_Q4,5:DOC_RH_Q5}
+  }]
+}];
+
+const DRUG_LIST=[
+  {label:"Wegovy HD Injection (semaglutide)"},
+  {label:"Wegovy Injection (semaglutide)"},
+  {label:"Wegovy Tablet (semaglutide)", ndc:"00169442531"},
+  {label:"Wegovy 25MG OR TABS",         ndc:"00169442531"},
+];
+
+const MOCK_CLAIM_DEFS={
+  '26-123456':{qty:'30',days:'30',pharmacyId:'2221113',fillDate:'07/23/2026',physicianId:'',psc:'0',
+                  drugName:'WEGOVY 25MG OR TABS',ndc:'00169442531'},
+};
+
+const MC_RESULTS={
+  '26-123456':{
+    msg:{result:'Prior Auth Req - Drug Requires Prior Authorization 75 - Prior Authorization Required 75 8002945979\nFrozen Reset Date - , PlanDrugOptout -',settlement:'00058',code:'75',label:'PA Required'},
+    d30:{result:'Prior Auth Req - Drug Requires Prior Authorization 75 - Prior Authorization Required 75 8002945979\nFrozen Reset Date - , PlanDrugOptout -',settlement:'00058',code:'75',label:'PA Required'},
+    d60:{result:'Prior Auth Req - Drug Requires Prior Authorization 75 - Prior Authorization Required 75 8002945979\nFrozen Reset Date - , PlanDrugOptout -',settlement:'00058',code:'75',label:'PA Required'},
+    d90:{result:'Prior Auth Req - Drug Requires Prior Authorization 75 - Prior Authorization Required 75 8002945979\nQty Limit 76 - Quantity exceeds plan limit (max 30 tablets per 30 days). Quantity reject returned in addition to PA.',settlement:'00058',code:'75, 76',label:'PA Req + QTY Limit'},
+  },
+};
+
+const CASE_NOTES={
+  '26-123456':
+`Drug: Wegovy Tablet (semaglutide) 25 mg
+Diagnosis: Weight management, Adult
+Clinical Info: ePA Loop-2 fallout (step 1150). Verified Q3, Q4 and Q5 - stable maintenance dose confirmed, patient lost >5% baseline body weight (26.4%), weight documentation on file. Q6 within plan allowance.
+Outcome: Approve for 12 months
+Initials/Date: C123456 Tech 7/23/26`,
+};
+
+</script>
+<script>
+// ── STATE ─────────────────────────────────────────────────────────────────────
+let curCase=0, curLeg=0;
+let sa=CASES.map(c=>c.legs.map(l=>Object.assign({},l.initAns||{})));
+
+function mkWfSt(){
+  return{
+    s1Open:false, s1Edit:false,
+    s2Card:false, s2Open:false, s2Ran:false, s2Tab:'msg',
+    s3Open:false, s3Exp:false,
+    s4Open:false, s4Edit:false, calc:{w0:'',w1:''}, qOpen:{}, verified:{},
+    s5Open:false, s5Gen:false, s5Text:'',
+    s6Open:false, s6State:'idle', s6AltOpt:null,
+  };
+}
+let wfSt=CASES.map(c=>c.legs.map(()=>mkWfSt()));
+
+// ── PATH / SKIP ───────────────────────────────────────────────────────────────
+function path(ans){
+  const steps=[]; let q=1;
+  while(q!=='A'&&q!=='D'){
+    steps.push(q);
+    const a=ans[q];
+    if(a===undefined)return{steps,terminal:null};
+    const nxt=SK[q]?.[a==='T'?'T':'F'];
+    if(!nxt)return{steps,terminal:null};
+    q=nxt;
+  }
+  return{steps,terminal:q};
+}
+function prune(ans){
+  const{steps}=path(ans), keep=new Set(steps), out={};
+  Object.keys(ans).forEach(k=>{if(keep.has(Number(k)))out[k]=ans[k];});
+  return out;
+}
+function score(ans){return path(ans).terminal;}
+
+// ── HELPERS ───────────────────────────────────────────────────────────────────
+function el(id){return document.getElementById(id);}
+function getCase(){return CASES[curCase];}
+function getLeg(){return CASES[curCase].legs[curLeg];}
+function getWf(){return wfSt[curCase][curLeg];}
+
+// ── LAYOUT ────────────────────────────────────────────────────────────────────
+function updateTop(){
+  const hasLegs=getCase().legs.length>1;
+  document.documentElement.style.setProperty('--layout-top',(46+52+(hasLegs?36:0))+'px');
+}
+function renderBarRole(){
+  const leg=getLeg();
+  const b=el('bar-role');
+  if(b)b.textContent=`Role: ${leg.role||'Pharmacist'}  |  Queue: ${leg.queue||'Work Queue'}`;
+}
+function syncDemoSel(){const s=el('demo-sel');if(s)s.value=String(curCase);}
+function renderStrip(){
+  const c=getCase();
+  el('strip').innerHTML=`
+    <div class="sf"><span class="sf-lbl">PA #</span><span class="sf-val b">${c.id}</span></div>
+    <div class="strip-div"></div>
+    <div class="sf"><span class="sf-lbl">Drug</span><span class="sf-val b">${c.meta.requestedDrug||c.meta.drug}</span></div>
+    <div class="strip-div"></div>
+    <div class="sf"><span class="sf-lbl">Line of Business</span><span class="sf-val">${c.meta.lob}</span></div>
+    <div class="strip-div"></div>
+    <div class="sf"><span class="sf-lbl">Origin</span><span class="sf-val">${c.meta.origin}</span></div>`;
+}
+function renderLegBar(){
+  const c=getCase(), bar=el('leg-bar');
+  if(c.legs.length<=1){bar.style.display='none';return;}
+  bar.style.display='flex';
+  bar.innerHTML=c.legs.map((l,i)=>`
+    <button class="ltab${i===curLeg?' act':''}" onclick="selectLeg(${i})">
+      ${l.isAgent?'<span class="ai-dot">AI</span>':''}Leg ${i+1}: ${l.role}
+    </button>`).join('');
+}
+
+// ── LEFT PANEL ────────────────────────────────────────────────────────────────
+function renderMember(){
+  const m=getCase().member;
+  el('mbr-body').innerHTML=`
+    <div class="mgrid">
+      <div class="mr"><span class="ml">Member ID</span><span class="mv">${m.id}</span></div>
+      <div class="mr"><span class="ml">Name</span><span class="mv">${m.name}</span></div>
+      <div class="mr"><span class="ml">DOB</span><span class="mv">${m.dob}</span></div>
+      <div class="mr"><span class="ml">Sex</span><span class="mv">${m.sex}</span></div>
+    </div>`;
+}
+function renderPAInfo(){
+  const c=getCase();
+  const urgKey=`urgent-${c.id}`;
+  let isUrgent=!!c.meta.urgent;try{const sv=localStorage.getItem(urgKey);if(sv!==null)isUrgent=(sv==='true');}catch(e){}
+  el('pai-body').innerHTML=`
+    <div class="pai-grid">
+      <div class="pairow"><span class="pail">PAC</span><span class="paiv">${c.meta.cls}</span></div>
+      <div class="pairow"><span class="pail">PAG</span><span class="paiv">${c.member.pag}</span></div>
+      <label class="urgent-row${isUrgent?' is-urgent':''}" id="urgent-row">
+        <input type="checkbox" class="urgent-cb" id="urgent-cb" ${isUrgent?'checked':''} onchange="toggleUrgent(this)">
+        <span class="urgent-lbl">${isUrgent?'Urgent ⚑':'Urgent'}</span>
+      </label>
+    </div>`;
+}
+function toggleUrgent(cb){
+  const c=getCase();
+  try{localStorage.setItem(`urgent-${c.id}`,String(cb.checked));}catch(e){}
+  const row=el('urgent-row');
+  if(row){
+    row.classList.toggle('is-urgent',cb.checked);
+    row.querySelector('.urgent-lbl').textContent=cb.checked?'Urgent ⚑':'Urgent';
+  }
+}
+function toggleSec(id){
+  const b=el(id+'-body'), ic=el(id+'-icon'); if(!b)return;
+  const open=b.style.display!=='none';
+  b.style.display=open?'none':'block';
+  if(ic)ic.textContent=open?'▼':'▲';
+}
+function renderMemberCenter(){
+  el('mc-body').innerHTML=`
+    <div class="mc-btns">
+      <button class="mc-btn" onclick="openTool('member-search')"><span class="mc-ico">🔍</span><span class="mc-lbl">Member Search</span><span class="mc-arr">↗</span></button>
+      <button class="mc-btn" onclick="openTool('pa-history')"><span class="mc-ico">📋</span><span class="mc-lbl">PA History</span><span class="mc-arr">↗</span></button>
+      <button class="mc-btn" onclick="openTool('claim-history')"><span class="mc-ico">💊</span><span class="mc-lbl">Claim History</span><span class="mc-arr">↗</span></button>
+    </div>`;
+}
+
+// ── TOOL DATA ─────────────────────────────────────────────────────────────────
+const TOOL_DATA={
+  '26-123456':{
+    paHistory:[
+      {pa:'26-123456',drug:'WEGOVY 25mg tab',date:'07/23/26',outcome:null},
+      {pa:'26-106481935',drug:'WEGOVY tab',date:'01/19/26',outcome:'D'},
+    ],
+    claimHistory:[
+      {dt:'07/23/26',drug:'WEGOVY 25MG TABS',qty:'30 tabs',days:30,status:'Rejected'},
+      {dt:'06/25/26',drug:'WEGOVY 25MG TABS',qty:'30 tabs',days:30,status:'Paid'},
+      {dt:'05/27/26',drug:'WEGOVY 25MG TABS',qty:'30 tabs',days:30,status:'Paid'},
+      {dt:'04/28/26',drug:'WEGOVY 25MG TABS',qty:'30 tabs',days:30,status:'Paid'},
+      {dt:'03/30/26',drug:'WEGOVY 25MG TABS',qty:'30 tabs',days:30,status:'Paid'},
+    ]
+  }
+};
+function openTool(name){
+  const c=getCase(), m=c.member, td=TOOL_DATA[c.id];
+  const modal=el('tool-modal'), body=el('tool-body');
+  if(!modal||!body)return;
+  if(name==='member-search'){
+    el('tool-ttl').textContent='Member Search'; el('tool-sub').textContent='CVS Caremark Member Portal';
+    body.innerHTML=`<div class="tool-search-bar"><input class="tool-input" type="text" value="${m.id}"><button class="tool-srch-btn">Search</button></div>
+      <div class="tool-result-card">
+        <div class="trcard-hdr"><span class="trcard-ttl">${m.name}</span><span class="trcard-badge tc-active">● Active</span></div>
+        <div class="trow"><span class="trl">Member ID</span><span class="trv">${m.id}</span></div>
+        <div class="trow"><span class="trl">Date of Birth</span><span class="trv">${m.dob}</span></div>
+        <div class="trow"><span class="trl">Sex</span><span class="trv">${m.sex}</span></div>
+        <div class="trow"><span class="trl">Plan / PAG</span><span class="trv">${m.pag}</span></div>
+        <div class="trow"><span class="trl">Eligibility</span><span class="trv">01/01/2026 – 12/31/2026</span></div>
+        <div class="trow"><span class="trl">Line of Business</span><span class="trv">${c.meta.lob}</span></div>
+        <div class="trow"><span class="trl">Client</span><span class="trv">${c.meta.client}</span></div>
+      </div>`;
+  }else if(name==='pa-history'){
+    el('tool-ttl').textContent='PA History'; el('tool-sub').textContent=`${m.name}  ·  ${m.id}`;
+    body.innerHTML=buildPAHistoryTbl(td.paHistory,c.id);
+  }else if(name==='claim-history'){
+    el('tool-ttl').textContent='Claim History'; el('tool-sub').textContent=`${m.name}  ·  ${m.id}`;
+    body.innerHTML=buildClaimHistoryTbl(td.claimHistory);
+  }
+  modal.style.display='flex'; document.body.style.overflow='hidden';
+}
+function buildPAHistoryTbl(history,currentId){
+  const rows=history.map(h=>{
+    const cur=h.pa===currentId;
+    const badge=h.outcome==='A'?'<span class="tb-a">✓ Approved</span>':h.outcome==='D'?'<span class="tb-d">✗ Denied</span>':'<span class="tb-r">● In Review</span>';
+    return`<tr class="${cur?'tr-cur':''}"><td>${h.pa}${cur?' <span class="tr-cur-chip">current</span>':''}</td><td>${h.drug}</td><td>${h.date}</td><td>${badge}</td></tr>`;
+  }).join('');
+  return`<table class="tool-table"><thead><tr><th>PA Number</th><th>Drug</th><th>Date</th><th>Status</th></tr></thead><tbody>${rows}</tbody></table>`;
+}
+function buildClaimHistoryTbl(history){
+  const rows=history.map(h=>{
+    const badge=h.status==='Paid'?'<span class="tb-a">✓ Paid</span>':'<span class="tb-d">✗ Rejected</span>';
+    return`<tr><td>${h.dt}</td><td>${h.drug}</td><td>${h.qty}</td><td>${h.days}d</td><td>${badge}</td></tr>`;
+  }).join('');
+  return`<table class="tool-table"><thead><tr><th>Date</th><th>Drug</th><th>Qty</th><th>Days</th><th>Status</th></tr></thead><tbody>${rows}</tbody></table>`;
+}
+function closeTool(){const m=el('tool-modal');if(m){m.style.display='none';document.body.style.overflow='';}}
+function closeToolOverlay(e){if(e.target===el('tool-modal'))closeTool();}
+
+// ── DOCUMENT MODAL ────────────────────────────────────────────────────────────
+function openDoc(qno){
+  const leg=getLeg(), content=leg.docs&&leg.docs[qno];
+  if(!content)return;
+  const q=QM[qno];
+  el('doc-ttl').textContent=q?`Q${qno} — ${q.s}`:`Q${qno} Chart Note`;
+  el('doc-body').textContent=content;
+  const modal=el('doc-modal');
+  if(modal){modal.style.display='flex';document.body.style.overflow='hidden';}
+}
+function closeDoc(){const m=el('doc-modal');if(m){m.style.display='none';document.body.style.overflow='';}}
+function closeDocOverlay(e){if(e.target===el('doc-modal'))closeDoc();}
+
+// ── CRITERIA HELPERS ──────────────────────────────────────────────────────────
+function calcPct(){
+  const c=getWf().calc, w0=parseFloat(c.w0), w1=parseFloat(c.w1);
+  return (w0>0&&w1>0)?(1-w1/w0)*100:null;
+}
+function renderCalc(qno){
+  const wf=getWf(), c=wf.calc, pct=calcPct();
+  const answered=!!wf.verified[qno];
+  const pctTxt=pct!==null?pct.toFixed(1)+'%':'—';
+  const pctCls=pct!==null?(pct>=5?'cpass':'cfail'):'';
+  const rec=answered?`<div class="calc-rec">Recorded: ${sa[curCase][curLeg][qno]==='T'?'Yes':'No'}</div>`:'';
+  return`<div class="calc">
+    <div class="calc-hint">Enter the two weights to check the 5% threshold.</div>
+    <div class="calc-fields">
+      <div class="cf"><span class="clbl">Baseline (lbs)</span>
+        <input class="cinp" id="cw0-${qno}" type="number" step="0.1" value="${c.w0}" oninput="updCalc(${qno})">
+      </div>
+      <div class="cf"><span class="clbl">Current (lbs)</span>
+        <input class="cinp" id="cw1-${qno}" type="number" step="0.1" value="${c.w1}" oninput="updCalc(${qno})">
+      </div>
+      <div class="cf"><span class="clbl">% Loss</span>
+        <div class="cres"><span id="cpct-${qno}" class="${pctCls}">${pctTxt}</span><span class="csub">≥5% required</span></div>
+      </div>
+      <button class="calc-confirm" id="cconf-${qno}" onclick="confirmCalc(${qno})" ${pct===null?'disabled':''}>${answered?'Update answer':'Use result'}</button>
+    </div>${rec}
+  </div>`;
+}
+function updCalc(qno){
+  const wf=getWf();
+  wf.calc.w0=el(`cw0-${qno}`)?.value||''; wf.calc.w1=el(`cw1-${qno}`)?.value||'';
+  const pct=calcPct(), s=el(`cpct-${qno}`), btn=el(`cconf-${qno}`);
+  if(s){s.textContent=pct!==null?pct.toFixed(1)+'%':'—'; s.className=pct!==null?(pct>=5?'cpass':'cfail'):'';}
+  if(btn)btn.disabled=(pct===null);
+}
+// Questions on the current path that ask the reviewer to verify the prescriber's answer
+// (QM[q].act) and have not been verified yet.
+function pendingVerify(){
+  const wf=getWf(), {steps}=path(sa[curCase][curLeg]);
+  return steps.filter(q=>QM[q]&&QM[q].act&&!wf.verified[q]);
+}
+// After an answer changes, bring back the prescriber's answers for any question that is on the
+// new path but was dropped when the path was shorter (for example Q5 and Q6 after a No on Q4).
+function restoreInit(ans){
+  const init=getLeg().initAns||{};
+  for(let i=0;i<60;i++){
+    const {steps}=path(ans); let changed=false;
+    steps.forEach(q=>{if(ans[q]===undefined&&init[q]!==undefined){ans[q]=init[q];changed=true;}});
+    if(!changed)break;
+  }
+  return ans;
+}
+function confirmCalc(qno){
+  const pct=calcPct(); if(pct===null)return;
+  const val=pct>=5?'T':'F';
+  let ans=Object.assign({},sa[curCase][curLeg]);
+  ans[qno]=val; ans=prune(ans); ans[qno]=val; ans=restoreInit(ans);
+  sa[curCase][curLeg]=ans; getWf().verified[qno]=true;
+  renderWorkflow();
+}
+function toggleQ(qno){
+  // Open state lives in the workflow state, so it survives re-renders (e.g. after "Use result").
+  // The DOM is toggled directly rather than re-rendering, which would drop focus from an input.
+  const b=el(`qb-${qno}`), ch=el(`chev-${qno}`); if(!b)return;
+  const open=!getWf().qOpen[qno];
+  getWf().qOpen[qno]=open;
+  b.style.display=open?'block':'none';
+  if(ch)ch.textContent=open?'▲':'▼';
+}
+
+function renderQCard(qno,ans,leg,isEdit){
+  const q=QM[qno]; if(!q)return'';
+  const a=ans[qno];
+  const attnQs=leg.attnQs||[];
+  const isAttn=attnQs.includes(qno);
+  // badge: attnQs → "NEEDS ATTN." (amber), doc/act → "CHART REQ." (amber), auto → "Auto Verified" (green)
+  let badge='';
+  if(isAttn) badge='<span class="dbadge">NEEDS ATTN.</span>';
+  else if(q.act) badge=getWf().verified[qno]?'<span class="abadge">Verified</span>':'<span class="dbadge">NEEDS VERIFICATION</span>';
+  else if(q.att) badge='<span class="crbadge">Per submission</span>';
+  else if((leg.notes&&leg.notes[qno])||(q.auto&&q.ev)) badge='<span class="abadge">Verified</span>';
+  else badge='<span class="crbadge">Per submission</span>';
+
+  const chip=(a!==undefined)?`<span class="achip ${a==='T'?'cy':'cn'}">${a==='T'?'Yes':'No'}</span>`:'';
+  const calcHtml=(q.calc&&qno===4)?renderCalc(qno):'';
+  const note=leg.notes&&leg.notes[qno];
+  const hasDocFile=leg.docs&&leg.docs[qno];
+  // attnQs: no "View Chart Note" button; regular doc questions: show it
+  const docBtn=(!isAttn&&hasDocFile)?`<button class="doc-view-btn" onclick="openDoc(${qno})">📄 View Document</button>`:'';
+
+  const aHtml=isEdit?`<div class="ansrow">
+    <button class="abtn${a==='T'?' ay':''}" onclick="setAnsV3(${qno},'T')">Yes</button>
+    <button class="abtn${a==='F'?' an':''}" onclick="setAnsV3(${qno},'F')">No</button>
+  </div>`:'';
+
+  // every question starts collapsed; the header badge shows where input is needed
+  const qOpen=!!getWf().qOpen[qno];
+  let bodyContent=`<p class="qfull">${q.f}</p>`;
+  if(q.act) bodyContent+=`<p class="qfull" style="margin-top:2px">${q.act}</p>`;
+  const cmt=leg.comments&&leg.comments[qno];
+  if(cmt) bodyContent+=`<div class="qcomment">${cmt}</div>`;
+  if(qno===4)bodyContent+=docBtn;
+  bodyContent+=calcHtml;
+  if(isEdit) bodyContent+=aHtml;
+  const evCls=a==='T'?'qev-green':'qev-amber';
+  if(isAttn&&note) bodyContent+=`<div class="qnote"><span class="nlbl">Note:</span> ${note}</div>`;
+  else if(note&&!(q.auto&&q.ev)) bodyContent+=`<div class="${evCls}"><span class="evlbl">Evidence:</span> ${note}</div>`;
+  if(q.auto&&q.ev) bodyContent+=`<div class="qev"><span class="evlbl">Evidence:</span> ${q.ev}</div>`;
+  if(q.att) bodyContent+=`<div class="qnote"><span class="nlbl">Prescriber's answer:</span> ${q.att}</div>`;
+  if(qno!==4)bodyContent+=docBtn;
+
+  const hasDocStyle=(q.act||isAttn)?'qdoc':'';
+  return`<div class="qcard ${hasDocStyle}" data-qno="${qno}">
+    <div class="qhdr" onclick="toggleQ(${qno})">
+      <span class="qn">Q${qno}</span><span class="qs">${q.s}</span>
+      ${chip}${badge}<span class="qchev" id="chev-${qno}">${qOpen?'▲':'▼'}</span>
+    </div>
+    <div class="qbody" id="qb-${qno}" style="${qOpen?'':'display:none'}">${bodyContent}</div>
+  </div>`;
+}
+
+function setAnsV3(qno,val){
+  let ans=Object.assign({},sa[curCase][curLeg]);
+  ans[qno]=val; ans=prune(ans); ans[qno]=val; ans=restoreInit(ans);
+  sa[curCase][curLeg]=ans; if(QM[qno]&&QM[qno].act)getWf().verified[qno]=true;
+  renderWorkflow();
+}
+function cancelAllV3(){
+  sa[curCase][curLeg]=Object.assign({},getLeg().initAns||{});
+  getWf().calc={w0:'',w1:''}; getWf().verified={};
+  renderWorkflow();
+}
+function s4ToggleEdit(){
+  getWf().s4Edit=!getWf().s4Edit;
+  renderWorkflow();
+}
+
+// ── STEP 1: Drug Verification ─────────────────────────────────────────────────
+function renderStep1(c){
+  const wf=getWf(), m=c.meta;
+  const editHtml=wf.s1Edit?`
+    <div class="wf-sub-section">
+      <div class="wf-sub-ttl">Edit Drug</div>
+      <div class="de-row"><div class="de-lbl">Drug name (as submitted)</div><div class="de-val">${m.submittedDrug}</div></div>
+      <div class="de-row">
+        <div class="de-lbl">Requested drug</div>
+        <select class="de-sel" id="drug-sel">
+          ${DRUG_LIST.map((d,i)=>`<option value="${i}"${d.label===m.requestedDrug?' selected':''}>${d.label}</option>`).join('')}
+        </select>
+      </div>
+      <div style="margin-top:8px;display:flex;gap:7px">
+        <button style="padding:5px 14px;background:var(--blue);color:#fff;border:none;border-radius:5px;font-size:11px;font-weight:600;cursor:pointer" onclick="s1SaveDrug()">Save</button>
+        <button class="wf-toggle-btn" onclick="s1ToggleEdit()">Cancel</button>
+      </div>
+    </div>`:
+    `<button class="wf-toggle-btn" style="margin-top:4px" onclick="s1ToggleEdit()">▾ Edit Drug</button>`;
+  const same=m.requestedDrug===m.submittedDrug;
+  const bodyHtml=`
+    <div class="wf-insight" style="padding-top:12px">
+      <div class="wf-insight-icon">✅</div>
+      <div class="wf-insight-txt">${same?'Requested drug matches the submitted product.':`Requested drug <strong>set automatically</strong> to match the submitted product (<em>${m.submittedDrug}</em>).`}</div>
+    </div>
+    <div class="wf-badges">
+      <span class="wf-badge wb-drug">Drug name: ${m.submittedDrug}</span>
+      <span class="wf-badge wb-drug">Requested drug: ${m.requestedDrug}</span>
+      <span class="wf-badge wb-ndc">NDC ${m.ndc||'—'}</span>
+      <span class="wf-badge wb-ndc">GPI/GCN ${m.gpi||'—'}</span>
+    </div>
+    ${editHtml}`;
+  return buildStepCard({
+    n:1, title:'Drug Verification', sub:'',
+    status:'✓ Verified', statusCls:'st-verified',
+    open:wf.s1Open, doneCls:'wf-done', body:bodyHtml,
+    toggleFn:'toggleStep(1)',
+  });
+}
+function s1ToggleEdit(){getWf().s1Edit=!getWf().s1Edit;renderWorkflow();}
+function s1SaveDrug(){
+  const sel=el('drug-sel'), d=sel?DRUG_LIST[parseInt(sel.value)]:null;
+  if(d){const m=getCase().meta; m.requestedDrug=d.label; m.drug=d.label; m.ndc=d.ndc||null;}
+  getWf().s1Edit=false; renderAll();
+}
+
+// ── STEP 2: Mock Claim Review ─────────────────────────────────────────────────
+function renderMCOutcome(c){
+  const cl=c.claim;
+  const isBad=false; // reject code 75 (PA Required) = valid expected outcome — green
+  const cls=isBad?'mc-outcome-reject':'mc-outcome-clear';
+  const codeCls=isBad?'mc-code-reject':'mc-code-clear';
+  const icon=isBad?'✗':'✓';
+  return`<div class="mc-outcome ${cls}">
+    <div class="mc-outcome-code ${codeCls}">${icon} Reject Code ${cl.code} — ${cl.msg}</div>
+    <div class="mc-outcome-detail">${cl.drug}  ·  ${cl.qty}  ·  ${cl.days}-day supply  ·  Filled ${cl.dt}</div>
+    <div class="mc-interp">PA is required. Continue working — do not turn away the member.</div>
+  </div>`;
+}
+function renderStep2(c){
+  const wf=getWf(), cl=c.claim, mcDef=MOCK_CLAIM_DEFS[c.id]||{};
+  const sub='';
+  const outcomeHtml=renderMCOutcome(c);
+  const mcExpandBtn=`<button class="wf-toggle-btn" onclick="s2Toggle()">${wf.s2Open?'▴ Hide Manual Mock Claim':'▾ Run Manual Mock Claim'}</button>`;
+
+  let mcFormHtml='';
+  if(wf.s2Open){
+    const resultHtml=wf.s2Ran?buildMCResult(c):'';
+    mcFormHtml=`<div class="wf-sub-section">
+      <div class="wf-sub-ttl">Manual Mock Claim</div>
+      <div class="mc-form">
+        <div class="mc-form-row">
+          <div class="mcf mcf-wide"><div class="mcf-lbl">Drug Name</div><input class="mcf-inp" type="text" value="${c.meta.drug}" readonly style="background:var(--g50);color:var(--g600)"></div>
+          <div class="mcf"><div class="mcf-lbl">NDC</div><input class="mcf-inp" type="text" value="${c.meta.ndc||''}" readonly style="background:var(--g50);color:var(--g600)"></div>
+        </div>
+        <div class="mc-form-row">
+          <div class="mcf"><div class="mcf-lbl">Quantity</div><input class="mcf-inp" id="mc-qty" type="text" value="${mcDef.qty||'4'}"></div>
+          <div class="mcf"><div class="mcf-lbl">Days Supply</div><input class="mcf-inp" id="mc-days" type="text" value="${mcDef.days||'28'}"></div>
+          <div class="mcf"><div class="mcf-lbl">Pharmacy ID</div><input class="mcf-inp" id="mc-pharm" type="text" value="${mcDef.pharmacyId||'2221113'}"></div>
+        </div>
+        <div class="mc-form-row">
+          <div class="mcf"><div class="mcf-lbl">Fill Date</div><input class="mcf-inp" id="mc-fill" type="text" value="${mcDef.fillDate||''}"></div>
+          <div class="mcf"><div class="mcf-lbl">Physician ID</div><input class="mcf-inp" id="mc-phys" type="text" value="${mcDef.physicianId||''}"></div>
+          <div class="mcf"><div class="mcf-lbl">Product Selection Code</div>
+            <select class="mcf-sel" id="mc-psc">
+              <option value="0" ${(mcDef.psc||'0')==='0'?'selected':''}>0 — Not Specified</option>
+              <option value="1">1 — Substitution Allowed</option>
+              <option value="2">2 — Substitution Not Allowed</option>
+              <option value="3">3 — Substitution Allowed — Brand Dispensed</option>
+            </select>
+          </div>
+        </div>
+        <button class="mc-run-btn" onclick="runMockClaim()">Run Mock Claim</button>
+      </div>
+      ${resultHtml}
+    </div>`;
+  }
+
+  const statusTxt=wf.s2Ran?'✓ Mock Ran':'✓ PA Required';
+  const statusCls=wf.s2Ran?'st-complete':'st-verified';
+  const bodyHtml=`<div style="padding-top:12px">${outcomeHtml}</div>${mcExpandBtn}${mcFormHtml}`;
+
+  return buildStepCard({
+    n:3, title:'Mock Claim Review', sub,
+    status:statusTxt, statusCls,
+    open:wf.s2Card, doneCls:'wf-done', body:bodyHtml,
+    toggleFn:'toggleStep(2)',
+  });
+}
+function buildMCResult(c){
+  const wf=getWf(), res=MC_RESULTS[c.id];
+  if(!res)return'';
+  const tabs=['msg','d30','d60','d90'];
+  const tabLabels={msg:'Message',d30:'30 days',d60:'60 days',d90:'90 days'};
+  const activeRes=res[wf.s2Tab]||res.msg;
+  const tabHtml=tabs.map(t=>`<button class="mc-tab${wf.s2Tab===t?' act':''}" onclick="setMcTab('${t}')">${tabLabels[t]}</button>`).join('');
+  return`<div class="mc-result-area" style="margin-top:10px">
+    <div class="mc-tabs">${tabHtml}</div>
+    <div class="mc-res-body">
+      <div class="mc-res-lbl">Mock claim results — ${tabLabels[wf.s2Tab]} (reject code: ${activeRes.code})</div>
+      <div class="mc-res-txt">${activeRes.result}</div>
+      <div><div class="mc-settle-lbl">Settlement codes</div><div class="mc-settle">${activeRes.settlement}</div></div>
+    </div>
+  </div>`;
+}
+function s2Toggle(){getWf().s2Open=!getWf().s2Open;renderWorkflow();}
+function runMockClaim(){getWf().s2Ran=true;getWf().s2Open=true;renderWorkflow();}
+function setMcTab(t){getWf().s2Tab=t;renderWorkflow();}
+
+// ── STEP 3: PA History ────────────────────────────────────────────────────────
+function renderStep3(c){
+  const wf=getWf(), td=TOOL_DATA[c.id];
+  const hasDup=false;
+  const dupPa='';
+  let status, statusCls, alertHtml;
+  if(hasDup){
+    status='⚠ Duplicate Found'; statusCls='st-warning';
+    alertHtml=`<div class="dup-alert" style="margin-top:12px">
+      <div class="dup-ico">⚠️</div>
+      <div>
+        <div class="dup-ttl">Potential Duplicate PA: ${dupPa}</div>
+        <div class="dup-detail">Prior approved PA for this member/drug/PAG is on file (approved 01/22/26). Verify this PA covers a new authorization period before proceeding.</div>
+      </div>
+    </div>`;
+  }else{
+    status='✓ Clear'; statusCls='st-verified';
+    alertHtml=`<div class="ph-clear" style="padding-top:12px">${c.phNote||'✓ No relevant prior PA history identified for this member and drug combination.'}</div>`;
+  }
+  const histTableHtml=wf.s3Exp?`<div style="overflow-x:auto;margin-top:8px">${buildPAHistStep(td.paHistory,c.id)}</div>`:'';
+  const expBtn=`<div style="margin-top:8px"><button class="wf-toggle-btn" onclick="s3ToggleExp()">${wf.s3Exp?'▴ Hide PA History':'▾ View Full PA History'}</button></div>`;
+  const bodyHtml=alertHtml+expBtn+histTableHtml;
+
+  return buildStepCard({
+    n:2, title:'PA History', sub:'',
+    status, statusCls,
+    open:wf.s3Open, doneCls:(hasDup?'':'wf-done'), body:bodyHtml,
+    toggleFn:'toggleStep(3)',
+  });
+}
+function buildPAHistStep(history,currentId){
+  const rows=history.map(h=>{
+    const cur=h.pa===currentId;
+    const badge=h.outcome==='A'?'<span class="ph-a">✓ Approved</span>':h.outcome==='D'?'<span class="ph-d">✗ Denied</span>':'<span class="ph-r">● In Review</span>';
+    return`<tr class="${cur?'ph-cur':''}"><td>${h.pa}${cur?' <span class="ph-cur-chip">current</span>':''}</td><td>${h.drug}</td><td>${h.date}</td><td>${badge}</td></tr>`;
+  }).join('');
+  return`<table class="ph-table"><thead><tr><th>PA Number</th><th>Drug</th><th>Date</th><th>Status</th></tr></thead><tbody>${rows}</tbody></table>`;
+}
+function s3ToggleExp(){getWf().s3Exp=!getWf().s3Exp;renderWorkflow();}
+
+// ── STEP 4: Criteria Review ───────────────────────────────────────────────────
+function renderStep4(c){
+  const wf=getWf(), leg=getLeg();
+  const ans=sa[curCase][curLeg];
+  const sc=score(ans);
+  const isEdit=wf.s4Edit;
+
+  // Status: Scored Approval / Scored Denial / Unscored
+  let status, statusCls;
+  const pend=pendingVerify();
+  if(sc==='A'&&pend.length){status='Scored Approval · needs verification'; statusCls='st-warning';}
+  else if(sc==='A'){status='Scored Approval'; statusCls='st-complete';}
+  else if(sc==='D'){status='Scored Denial'; statusCls='st-denied';}
+  else{status='Input required'; statusCls='st-warning';}
+
+  const{steps}=path(ans);
+  let notices='';
+  if(leg.fallout)notices+=`<div class="notice n-fallout"><span class="n-icon">⚡</span><span><strong>ePA Loop-2 Fallout:</strong> ${leg.fallout}</span></div>`;
+  if(sc==='A'&&pend.length)notices+=`<div class="notice n-fallout"><span class="n-icon">⚠</span><span>Scores to <strong>Approval</strong> on the prescriber's answers. ${pend.map(q=>'Q'+q).join(', ')} still ${pend.length>1?'need':'needs'} your verification before you approve.</span></div>`;
+  if(leg.dupNote)notices+=`<div class="notice n-dup"><span class="n-icon">ℹ</span><span>${leg.dupNote}</span></div>`;
+
+  const qHtml=steps.length?steps.map(qno=>renderQCard(qno,ans,leg,isEdit)).join(''):`<p style="font-size:12px;color:var(--g400);font-style:italic;padding:6px 0">No criteria path available.</p>`;
+
+  // Footer
+  let footerHtml;
+  if(isEdit){
+    const scoreHtml=sc?`<hr class="score-sep"><div class="score-row"><span class="score-chip ${sc==='A'?'sc-a':'sc-d'}">${sc==='A'?'✓ Approval':'✗ Denial'}</span></div>`:'';
+    footerHtml=`<div class="crit-foot">
+      <div class="foot-btns">
+        <button class="btn-c" onclick="cancelAllV3()">Cancel All</button>
+        <button style="padding:7px 14px;background:var(--white);color:var(--blue);border:1.5px solid var(--blue);border-radius:6px;font-size:12px;font-weight:600;cursor:pointer" onclick="s4ToggleEdit()">Exit Edit</button>
+      </div>
+      ${scoreHtml}
+    </div>`;
+  }else{
+    const scoreHtml=sc?`<hr class="score-sep"><div class="score-row"><span class="score-chip ${sc==='A'?'sc-a':'sc-d'}">${sc==='A'?'✓ Approval':'✗ Denial'}</span></div>`:'';
+    footerHtml=`<div class="crit-foot">
+      <div class="foot-btns">
+        <button style="padding:7px 14px;background:var(--blue);color:#fff;border:none;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer" onclick="s4ToggleEdit()">Edit</button>
+      </div>
+      ${scoreHtml}
+    </div>`;
+  }
+
+  const bodyHtml=`<div style="padding-top:4px"><span class="crit-nm">${c.meta.name}</span></div>${notices}<div class="qlist">${qHtml}</div>${footerHtml}`;
+
+  return buildStepCard({
+    n:4, title:'Criteria Review', sub:'',
+    status, statusCls,
+    open:wf.s4Open, doneCls:(sc&&!pend.length)?'wf-done':'wf-input', body:bodyHtml,
+    toggleFn:'toggleStep(4)',
+  });
+}
+
+// ── STEP 5: Notes ─────────────────────────────────────────────────────────────
+function renderStep5(c){
+  const wf=getWf();
+  let status, statusCls, sub;
+  if(wf.s5Gen){status='✓ Notes Generated';statusCls='st-complete';sub='';}
+  else{status='○ Not Started';statusCls='st-pending';sub='';}
+  const txt=wf.s5Text;
+  const bodyHtml=`<div style="padding-top:12px">
+    <div class="notes-wrap">
+      <textarea class="notes-ta" id="notes-ta" maxlength="3000" placeholder="Enter or generate notes..." oninput="onNoteChange()">${txt}</textarea>
+      <button class="gen-btn" onclick="genNoteV3()">Generate<br>Notes</button>
+    </div>
+    <div class="ncount" id="ncount">Characters remaining: ${3000-txt.length}</div>
+  </div>`;
+
+  return buildStepCard({
+    n:5, title:'Notes', sub,
+    status, statusCls,
+    open:wf.s5Open, doneCls:wf.s5Gen?'wf-done':'', body:bodyHtml,
+    toggleFn:'toggleStep(5)',
+  });
+}
+function genNoteV3(){
+  const c=getCase(), wf=getWf();
+  let note;
+  if(CASE_NOTES[c.id]&&score(sa[curCase][curLeg])==='A'&&!pendingVerify().length){
+    note=CASE_NOTES[c.id];
+  }else{
+    const ans=sa[curCase][curLeg], sc=score(ans), {steps}=path(ans);
+    const outcome=(sc==='A'&&pendingVerify().length)?'Pending verification':sc==='A'?'Approve for 12 months':sc==='D'?'Deny — criteria not met':'Pending review';
+    const leg=getLeg();
+    const today=new Date().toLocaleDateString('en-US',{month:'numeric',day:'numeric',year:'2-digit'});
+    const answered=steps.filter(q=>ans[q]!==undefined);
+    note=`Drug: ${c.meta.drug}\nDiagnosis: ${c.meta.dx}\nClinical Info: Reviewed Q${answered.join(', Q')}, documentation verified\nOutcome: ${outcome}\nInitials/Date: ${leg.rev} ${leg.role.split(' ')[0]} ${today}`;
+  }
+  wf.s5Text=note; wf.s5Gen=true; wf.s5Open=true;
+  renderWorkflow();
+}
+function onNoteChange(){
+  const ta=el('notes-ta'); if(!ta)return;
+  getWf().s5Text=ta.value;
+  const cc=el('ncount'); if(cc)cc.textContent=`Characters remaining: ${3000-ta.value.length}`;
+}
+
+// ── STEP 6: Case Decision ─────────────────────────────────────────────────────
+function renderStep6(c){
+  const wf=getWf(), sc=score(sa[curCase][curLeg]);
+  const recApprove=sc==='A'||sc===null;
+  let status, statusCls, sub, bodyHtml;
+  const pendQ=pendingVerify();
+  if((sc===null||pendQ.length)&&wf.s6State==='idle'){
+    return buildStepCard({
+      n:6, title:'Case Decision', sub:'',
+      status:'○ Waiting on verification', statusCls:'st-pending',
+      open:wf.s6Open, doneCls:'', toggleFn:'toggleStep(6)',
+      body:`<div class="ph-clear" style="padding-top:12px">${pendQ.length?`The criteria score to Approval on the prescriber's answers. Verify ${pendQ.map(q=>'Q'+q).join(', ')} in the Criteria Review first.`:'Finish the Criteria Review first. At least one question is still waiting on your input.'}</div>`,
+    });
+  }
+
+  if(wf.s6State==='done'){
+    status='✓ Approved'; statusCls='st-approved'; sub='';
+    bodyHtml=`<div class="dec-success">
+      <div class="dec-success-ico">✅</div>
+      <div class="dec-success-ttl">PA Approved and Closed</div>
+      <div class="dec-success-sub">Case ${c.id} has been approved.<br>The approval has been recorded and the case is now closed.</div>
+    </div>`;
+  }else if(wf.s6State==='alt-done'){
+    const labels={deny:'Denied',pending:'Set to Pending',rfi:'RFI Requested',internal:'Internal Denial',abort:'Aborted'};
+    status=`✓ ${labels[wf.s6AltOpt]||'Closed'}`; statusCls='st-pending'; sub='';
+    bodyHtml=`<div class="dec-alt-done">
+      <div class="dec-alt-done-ttl">Case action completed: ${labels[wf.s6AltOpt]||wf.s6AltOpt}</div>
+      <div class="dec-alt-done-sub">Case ${c.id} has been closed with the selected action.</div>
+    </div>`;
+  }else if(wf.s6State==='confirm'){
+    status='● Pending Confirmation'; statusCls='st-active'; sub='';
+    bodyHtml=`<div style="padding-top:12px"><div class="dec-rec ${recApprove?'':'dec-deny-rec'}">
+      <div class="dec-rec-ico">${recApprove?'✅':'ℹ'}</div>
+      <div class="dec-rec-body">
+        <div class="dec-rec-ttl">Recommended: ${recApprove?'Approve':'Deny'}</div>
+        <div class="dec-rec-sub">${recApprove?'All criteria verified.':'Criteria not fully met.'}</div>
+      </div>
+    </div>
+    <div class="dec-confirm-box">
+      <div class="dec-confirm-ttl">Please confirm that you intend to approve this PA.</div>
+      <div class="dec-confirm-btns">
+        <button class="dec-confirm-btn" onclick="decConfirmApprove()">Confirm Approval</button>
+        <button class="dec-back-btn" onclick="decGoBack()">Go Back</button>
+      </div>
+    </div></div>`;
+  }else if(wf.s6State==='alt'){
+    status='● Select Action'; statusCls='st-active'; sub='';
+    const opts=[
+      {k:'internal',lbl:'Internal Denial'},
+      {k:'pending', lbl:'Set to Pending'},
+      {k:'rfi',     lbl:'RFI'},
+      {k:'deny',    lbl:'Deny'},
+      {k:'abort',   lbl:'Abort'},
+    ];
+    const altBtns=opts.map(o=>`<button class="dec-alt-btn${wf.s6AltOpt===o.k?' selected':''}" onclick="decSelectAlt('${o.k}')">${o.lbl}</button>`).join('');
+    const confirmBox=wf.s6AltOpt?`<div class="dec-alt-confirm-box">
+      <div class="dec-alt-confirm-ttl">Confirm action: ${opts.find(o=>o.k===wf.s6AltOpt)?.lbl}</div>
+      <div style="display:flex;gap:7px">
+        <button class="dec-confirm-btn" style="background:var(--red)" onclick="decConfirmAlt()">Confirm</button>
+        <button class="dec-back-btn" onclick="decGoBack()">Go Back</button>
+      </div>
+    </div>`:'';
+    bodyHtml=`<div style="padding-top:12px"><div class="dec-rec ${recApprove?'':'dec-deny-rec'}">
+      <div class="dec-rec-ico">${recApprove?'✅':'⚠️'}</div>
+      <div class="dec-rec-body"><div class="dec-rec-ttl">Recommended: ${recApprove?'Approve':'Deny'}</div></div>
+    </div>
+    <div class="dec-q">Select an alternative close option:</div>
+    <div class="dec-alt-list">${altBtns}</div>${confirmBox}</div>`;
+  }else{
+    // idle
+    status='● Active'; statusCls='st-active'; sub='';
+    bodyHtml=`<div style="padding-top:12px"><div class="dec-rec ${recApprove?'':'dec-deny-rec'}">
+      <div class="dec-rec-ico">${recApprove?'✅':'⚠️'}</div>
+      <div class="dec-rec-body">
+        <div class="dec-rec-ttl">Recommended decision: ${recApprove?'Approve':'Deny'}</div>
+        <div class="dec-rec-sub">${recApprove?'All criteria verified. Documentation complete. Approval is supported.':'Criteria not fully met per documentation on file.'}</div>
+      </div>
+    </div>
+    <div class="dec-q">Would you like to ${recApprove?'approve':'deny'} this PA?</div>
+    <div class="dec-btns">
+      <button class="dec-yes" onclick="decYes()">Yes</button>
+      <button class="dec-no" onclick="decNo()">No — Other Options</button>
+    </div></div>`;
+  }
+
+  return buildStepCard({
+    n:6, title:'Case Decision', sub,
+    status, statusCls,
+    open:wf.s6Open,
+    doneCls:(wf.s6State==='done'||wf.s6State==='alt-done')?'wf-done':'wf-active',
+    body:bodyHtml, toggleFn:'toggleStep(6)',
+  });
+}
+function decYes(){getWf().s6State='confirm';renderWorkflow();}
+function decNo(){getWf().s6State='alt';getWf().s6AltOpt=null;renderWorkflow();}
+function decConfirmApprove(){getWf().s6State='done';renderWorkflow();}
+function decGoBack(){getWf().s6State='idle';getWf().s6AltOpt=null;renderWorkflow();}
+function decSelectAlt(opt){getWf().s6AltOpt=opt;renderWorkflow();}
+function decConfirmAlt(){getWf().s6State='alt-done';renderWorkflow();}
+
+// ── BUILD STEP CARD ───────────────────────────────────────────────────────────
+function buildStepCard({n,title,sub,status,statusCls,open,doneCls,body,toggleFn}){
+  const openBody=open!==false;
+  return`<div class="wf-step ${doneCls||''}" id="step-${n}">
+    <div class="wf-step-hdr" onclick="${toggleFn}">
+      <div class="wf-step-left">
+        <div class="wf-step-num">${n}</div>
+        <div class="wf-step-meta">
+          <div class="wf-step-title">${title}</div>
+          ${sub?`<div class="wf-step-sub">${sub}</div>`:''}
+        </div>
+      </div>
+      <div class="wf-step-right">
+        <span class="wf-status ${statusCls}">${status}</span>
+        <span class="wf-chev">${openBody?'▲':'▼'}</span>
+      </div>
+    </div>
+    <div class="wf-step-body" id="step-${n}-body" style="${openBody?'':'display:none'}">${body}</div>
+  </div>`;
+}
+
+// ── STEP TOGGLE ───────────────────────────────────────────────────────────────
+function toggleStep(n){
+  const wf=getWf();
+  const keys={1:'s1Open',2:'s2Card',3:'s3Open',4:'s4Open',5:'s5Open',6:'s6Open'};
+  const k=keys[n]; if(!k)return;
+  wf[k]=!wf[k];
+  renderWorkflow();
+}
+
+// ── RENDER WORKFLOW ───────────────────────────────────────────────────────────
+function renderWorkflow(){
+  const c=getCase();
+  const container=el('wf-steps'); if(!container)return;
+  container.innerHTML=
+    renderStep1(c)+
+    renderStep3(c)+
+    renderStep2(c)+
+    renderStep4(c)+
+    renderStep5(c)+
+    renderStep6(c);
+}
+
+// ── NAVIGATION ────────────────────────────────────────────────────────────────
+function selectCase(idx){
+  curCase=parseInt(idx); curLeg=0;
+  renderAll();
+}
+function selectLeg(idx){
+  curLeg=idx;
+  renderAll();
+}
+
+// ── RENDER ALL ────────────────────────────────────────────────────────────────
+function renderAll(){
+  updateTop(); syncDemoSel(); renderBarRole(); renderStrip(); renderLegBar();
+  renderMember(); renderPAInfo(); renderMemberCenter();
+  renderWorkflow();
+}
+document.addEventListener('DOMContentLoaded',()=>renderAll());
+
+</script>
+</body>
+</html>
