@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PA Caddie — Guided Review</title>
+  <link rel="stylesheet" href="/static/styles.css">
+  <script src="/static/app.js" defer></script>
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <div class="brand">CAREMARK</div>
+      <h1>PA Caddie <span>— Guided Review</span></h1>
+      <p class="role" id="role"></p>
+    </header>
+    <div id="error" role="alert" hidden></div>
+    <section class="case-summary" aria-label="Case summary" id="summary"></section>
+    <div class="workspace" id="workspace" hidden>
+      <aside class="sidebar">
+        <details class="side-section" id="member-section">
+          <summary>Member Info</summary>
+          <dl id="member-info"></dl>
+        </details>
+        <details class="side-section pa-section" open>
+          <summary>PA Info</summary>
+          <dl>
+            <dt>PAC</dt><dd id="pac"></dd>
+            <dt>PSG</dt><dd id="psg"></dd>
+          </dl>
+          <label class="urgent"><input id="urgent" type="checkbox" disabled> Urgent</label>
+        </details>
+        <section class="member-center">
+          <h2>Member Center</h2>
+          <button type="button" disabled><span aria-hidden="true">⌕</span> Member Search <span class="external" aria-hidden="true">↗</span></button>
+          <button type="button" disabled><span aria-hidden="true">▤</span> PA History <span class="external" aria-hidden="true">↗</span></button>
+          <button type="button" disabled><span aria-hidden="true">◷</span> Claim History <span class="external" aria-hidden="true">↗</span></button>
+          <p class="side-hint">Member Center links are not configured.</p>
+        </section>
+      </aside>
+      <section class="review" aria-label="Guided review steps" id="steps"></section>
+    </div>
+    <footer>PA Caddie <span>Guided Review</span><span class="demo">Local preview · sample data</span></footer>
+  </main>
+</body>
+</html>

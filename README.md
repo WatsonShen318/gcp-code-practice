@@ -1,51 +1,43 @@
-# Cloud Run Hello World
+# PA Caddie — Guided Review
 
-一个零依赖的 Python HTTP 服务，可直接部署到 Google Cloud Run。
-
-## 接口
-
-- `GET /` → `{"message": "Hello World from Cloud Run!"}`
-- `GET /healthz` → `{"status": "ok"}`
+FastAPI 读取本地 JSON，前端按参考截图展示审核页面。不需要 Node.js 或前端构建步骤。
 
 ## 本地运行
 
-```bash
-python app.py
+```powershell
+python -m pip install -r requirements.txt
+python -m uvicorn app:app --reload --port 8080
 ```
 
-访问 <http://localhost:8080>。
+打开 <http://localhost:8080>。
 
-运行测试：
+## 数据与页面
 
-```bash
+- `data/case.json`：示例数据。修改并保存后刷新页面即可，不需要重启服务。
+- `app.py`：`GET /` 返回页面，`GET /api/case` 每次读取 JSON。
+- `static/index.html`：页面结构。
+- `static/styles.css`：布局、状态颜色和移动端适配。
+- `static/app.js`：获取 JSON，调用 `renderCase(data)` 渲染，通过文本节点展示数据。
+
+JSON 字段：
+
+| 字段 | 用途 |
+| --- | --- |
+| `paNumber`, `drug`, `lineOfBusiness`, `origin` | 顶部案件摘要 |
+| `role`, `queue` | 标题栏 |
+| `member` | 会员信息对象，键作为标签、值作为文字 |
+| `pa.pac`, `pa.psg`, `pa.urgent` | 左侧 PA 信息，紧急状态只读 |
+| `steps` | 按数组顺序生成审核卡片 |
+| `steps[].title`, `status` | 步骤标题、状态文字 |
+| `steps[].state` | `complete` 绿色、`review` 黄色、`pending` 灰色 |
+| `steps[].content` | 可选的展开说明文字 |
+
+目前步骤支持展开/收起，具体下拉选项尚待提供。Member Center 按钮暂未接入功能。页面中的案件和状态均为示例，不执行审核或保存操作。
+
+## 验证
+
+```powershell
 python -m unittest -v
 ```
 
-## 修改并部署到 Cloud Run
-
-先安装并登录 [Google Cloud CLI](https://cloud.google.com/sdk/docs/install)：
-
-```powershell
-gcloud auth login
-```
-
-修改 `app.py` 后，提交代码并在仓库根目录运行：
-
-```powershell
-git add .
-git commit -m "Update greeting"
-git push
-./deploy.ps1
-```
-
-`deploy.ps1` 会把当前仓库内容上传到项目 `triple-brook-472818-u8`，构建容器，并更新
-`us-central1` 中的 `hello-world` 服务。每次部署会创建一个新的 Cloud Run revision，
-服务 URL 保持不变：
-
-<https://hello-world-489762766956.us-central1.run.app>
-
-例如，把 `app.py` 中的 `Hello World from Cloud Run!` 改成 `Hello WS`，提交并重新运行
-`./deploy.ps1` 后，网页就会显示新的内容。
-
-> `git commit` 和 `git push` 用来保存代码历史；真正触发 Cloud Run 更新的是
-> `./deploy.ps1`。如果希望 `git push` 后自动部署，可以进一步配置 GitHub Actions。
+Dockerfile 已包含页面资源和 JSON 文件。现有 `deploy.ps1` 可用于后续部署，本次仅本地运行。

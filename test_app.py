@@ -1,48 +1,49 @@
 import json
-import threading
+import tempfile
 import unittest
-from http.client import HTTPConnection
-from http.server import ThreadingHTTPServer
-
-from app import Handler
+from pathlib import Path
+from unittest.mock import patch
+from fastapi.testclient import TestClient
+from app import app
 
 
 class AppTest(unittest.TestCase):
-    @classmethod
-    def setUpClass(cls):
-        cls.server = ThreadingHTTPServer(("127.0.0.1", 0), Handler)
-        cls.thread = threading.Thread(target=cls.server.serve_forever, daemon=True)
-        cls.thread.start()
+    def setUp(self):
+        self.client = TestClient(app)
 
-    @classmethod
-    def tearDownClass(cls):
-        cls.server.shutdown()
-        cls.server.server_close()
-        cls.thread.join()
+    def test_home_and_assets(self):
+        response = self.client.get('/')
+        self.assertEqual(response.status_code, 200)
+        self.assertIn('text/html', response.headers['content-type'])
+        self.assertIn('PA Caddie', response.text)
+        for asset in ('app.js', 'styles.css'):
+            self.assertEqual(self.client.get(f'/static/{asset}').status_code, 200)
 
-    def request(self, path):
-        connection = HTTPConnection("127.0.0.1", self.server.server_port)
-        connection.request("GET", path)
-        response = connection.getresponse()
-        payload = json.loads(response.read())
-        connection.close()
-        return response.status, payload
+    def test_sample_case(self):
+        response = self.client.get('/api/case')
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json()['paNumber'], '26-123456')
+        self.assertEqual(len(response.json()['steps']), 6)
 
-    def test_home(self):
-        status, payload = self.request("/")
-        self.assertEqual(status, 200)
-        self.assertEqual(payload, {"message": "Hello World from Cloud Run!"})
+    def test_json_edits_are_read_on_next_request(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / 'case.json'
+            with patch('app.DATA_FILE', path):
+                for number in ('first', 'updated'):
+                    path.write_text(json.dumps({'paNumber': number}), encoding='utf-8')
+                    self.assertEqual(self.client.get('/api/case').json()['paNumber'], number)
 
-    def test_health(self):
-        status, payload = self.request("/healthz")
-        self.assertEqual(status, 200)
-        self.assertEqual(payload, {"status": "ok"})
+    def test_unreadable_or_invalid_json(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / 'case.json'
+            with patch('app.DATA_FILE', path):
+                self.assertEqual(self.client.get('/api/case').status_code, 500)
+                for invalid in ('not json', '[]'):
+                    path.write_text(invalid, encoding='utf-8')
+                    response = self.client.get('/api/case')
+                    self.assertEqual(response.status_code, 500)
+                    self.assertIn('detail', response.json())
 
-    def test_not_found(self):
-        status, payload = self.request("/missing")
-        self.assertEqual(status, 404)
-        self.assertEqual(payload, {"error": "not found"})
 
-
-if __name__ == "__main__":
+if __name__ == '__main__':
     unittest.main()

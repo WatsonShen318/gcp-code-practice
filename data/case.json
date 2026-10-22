@@ -1,0 +1,22 @@
+{
+  "paNumber": "26-123456",
+  "drug": "Wegovy Tablet (semaglutide)",
+  "lineOfBusiness": "Commercial",
+  "origin": "ePA",
+  "role": "Technician",
+  "queue": "Pending Approval",
+  "member": {},
+  "pa": {
+    "pac": "PAC131011 — Weight Loss Wegovy PA with Limit",
+    "psg": "AETNA — CHART ASP — SI",
+    "urgent": false
+  },
+  "steps": [
+    { "title": "Drug Verification", "status": "Verified", "state": "complete" },
+    { "title": "PA History", "status": "Clear", "state": "complete" },
+    { "title": "Mock Claim Review", "status": "Mock Ran", "state": "complete" },
+    { "title": "Criteria Review", "status": "Scored Approval · needs verification", "state": "review" },
+    { "title": "Notes", "status": "Not Started", "state": "pending" },
+    { "title": "Case Decision", "status": "Waiting on verification", "state": "pending" }
+  ]
+}
