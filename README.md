@@ -32,7 +32,7 @@ JSON 字段：
 | `steps[].state` | `complete` 绿色、`review` 黄色、`pending` 灰色 |
 | `steps[].content` | 可选的展开说明文字 |
 
-目前步骤支持展开/收起，具体下拉选项尚待提供。Member Center 按钮暂未接入功能。页面中的案件和状态均为示例，不执行审核或保存操作。
+步骤支持展开/收起，展开区域和表单由 JSON 配置。Member Center 按钮暂未接入功能。页面中的案件和状态均为示例，不执行审核或保存操作。
 
 ## 验证
 
@@ -41,3 +41,16 @@ python -m unittest -v
 ```
 
 Dockerfile 已包含页面资源和 JSON 文件。现有 `deploy.ps1` 可用于后续部署，本次仅本地运行。
+
+## 展开区域（JSON 配置）
+
+`steps[].type` 决定渲染的区域，分别对应同名顶层对象：
+
+- `drugVerification`：提交药名、NDC、GPI、说明和 `requestedDrugOptions` 下拉选项。
+- `paHistory`：汇总说明、`records` 历史表格。
+- `mockClaim`：结果文案、表单默认值，以及 `productSelectionOptions`（value/label）。Run Mock Claim 仅展示 JSON 中的示例结果，不调用药房或理赔系统。
+- `criteriaReview`：标题、提示、`questions`（id/label/answer/status/state/detail）和 `result`。Edit 可临时修改答案，不计算审核结果，也不更改验证状态。
+- `notes`：默认 text、maxLength、placeholder、generatedText。Generate Notes 使用 JSON 中的预设文字。
+- `caseDecision`：等待验证的说明文字。
+
+所有表单改动只保留在当前页面内，刷新后重新读取 JSON，没有写回服务器。截图没有展示 Q3、完整 Q4 或下拉备选值，示例中已标注或仅保留截图中的选项，可直接在 JSON 中补齐。

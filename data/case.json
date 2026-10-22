@@ -12,11 +12,150 @@
     "urgent": false
   },
   "steps": [
-    { "title": "Drug Verification", "status": "Verified", "state": "complete" },
-    { "title": "PA History", "status": "Clear", "state": "complete" },
-    { "title": "Mock Claim Review", "status": "Mock Ran", "state": "complete" },
-    { "title": "Criteria Review", "status": "Scored Approval · needs verification", "state": "review" },
-    { "title": "Notes", "status": "Not Started", "state": "pending" },
-    { "title": "Case Decision", "status": "Waiting on verification", "state": "pending" }
-  ]
+    {
+      "title": "Drug Verification",
+      "status": "Verified",
+      "state": "complete",
+      "type": "drugVerification"
+    },
+    {
+      "title": "PA History",
+      "status": "Clear",
+      "state": "complete",
+      "type": "paHistory"
+    },
+    {
+      "title": "Mock Claim Review",
+      "status": "PA Required",
+      "state": "complete",
+      "type": "mockClaim"
+    },
+    {
+      "title": "Criteria Review",
+      "status": "Scored Approval · needs verification",
+      "state": "review",
+      "type": "criteriaReview"
+    },
+    {
+      "title": "Notes",
+      "status": "Not Started",
+      "state": "pending",
+      "type": "notes"
+    },
+    {
+      "title": "Case Decision",
+      "status": "Waiting on verification",
+      "state": "pending",
+      "type": "caseDecision"
+    }
+  ],
+  "drugVerification": {
+    "submittedName": "Wegovy 25MG OR TABS",
+    "ndc": "00169442531",
+    "gpi": "612520700003**",
+    "message": "Requested drug set automatically to match the submitted product (Wegovy 25MG OR TABS).",
+    "requestedDrugOptions": [
+      "Wegovy Tablet (semaglutide)"
+    ]
+  },
+  "paHistory": {
+    "summary": "No active approved PA found for this member and drug. 1 prior PA on this criteria (01/19/26); 11 prior PAs in the last 24 months across all criteria.",
+    "records": [
+      {
+        "number": "26-123456",
+        "drug": "WEGOVY 25mg tab",
+        "date": "07/23/26",
+        "status": "In Review",
+        "state": "review",
+        "current": true
+      },
+      {
+        "number": "26-106481935",
+        "drug": "WEGOVY tab",
+        "date": "01/19/26",
+        "status": "Denied",
+        "state": "denied"
+      }
+    ]
+  },
+  "mockClaim": {
+    "resultTitle": "Reject Code 75 — Prior Authorization Required",
+    "resultDetail": "WEGOVY 25MG OR TABS · 30 tablets · 30-day supply · Filled 2026-07-23",
+    "message": "PA is required. Continue working — do not turn away the member.",
+    "drugName": "Wegovy Tablet (semaglutide)",
+    "ndc": "00169442531",
+    "quantity": 30,
+    "daysSupply": 30,
+    "pharmacyId": "2221113",
+    "fillDate": "2026-07-23",
+    "physicianId": "",
+    "productSelectionCode": "0",
+    "productSelectionOptions": [
+      {
+        "value": "0",
+        "label": "0 — Not Specified"
+      }
+    ]
+  },
+  "criteriaReview": {
+    "title": "Weight Loss Wegovy PA with Limit CMK STD 06-2026",
+    "fallout": "ePA Loop-2 Fallout: Automated ePA review stopped at step 1150 — could not validate the outcome code from the criteria form. Case routed to Pending Approval for a manual Verify Criteria Form check.",
+    "notice": "Scores to Approval on the prescriber’s answers. Q4 still needs your verification before you approve.",
+    "result": "Approval",
+    "questions": [
+      {
+        "id": "Q1",
+        "label": "Diet + physical activity?",
+        "answer": "Yes",
+        "status": "Per submission",
+        "state": "submission"
+      },
+      {
+        "id": "Q2",
+        "label": "Patient age 18+?",
+        "answer": "Yes",
+        "status": "Verified",
+        "state": "complete"
+      },
+      {
+        "id": "Q3",
+        "label": "Additional criterion (not visible in reference)",
+        "answer": "",
+        "status": "Not provided",
+        "state": "pending",
+        "detail": "The reference images do not show Q3. Replace this entry with your JSON content."
+      },
+      {
+        "id": "Q4",
+        "label": "Loss ≥ 5% baseline body weight?",
+        "answer": "Yes",
+        "status": "Needs verification",
+        "state": "review",
+        "detail": "Verify against the submitted documentation. The reference image only partially shows this question."
+      },
+      {
+        "id": "Q5",
+        "label": "Weight documentation submitted?",
+        "answer": "Yes",
+        "status": "Verified",
+        "state": "complete"
+      },
+      {
+        "id": "Q6",
+        "label": "Requesting > plan allowance/month?",
+        "answer": "No",
+        "status": "Verified",
+        "state": "complete"
+      }
+    ]
+  },
+  "notes": {
+    "text": "",
+    "maxLength": 3000,
+    "placeholder": "Enter or generate notes...",
+    "generatedText": "LOCAL DEMO — PA 26-123456. Requested drug: Wegovy Tablet (semaglutide). PA history reviewed. Mock claim sample result: Reject Code 75 — Prior Authorization Required. Criteria sample score: Approval; Q4 requires manual verification. No case decision has been submitted."
+  },
+  "caseDecision": {
+    "message": "The criteria score to Approval on the prescriber’s answers. Verify Q4 in the Criteria Review first."
+  }
 }
