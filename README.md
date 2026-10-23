@@ -61,3 +61,11 @@ node --test tests/workflow.test.cjs
 前者验证 FastAPI 页面、资源和 JSON 接口，后者验证问题跳转、验证门槛、Approval/Denial、状态失效、输入快照和文本转义。Node.js 只在运行这些规则测试时需要。
 
 Dockerfile 已包含 static 和 data。本次只修改代码并推送，不自动部署 Cloud Run。
+
+## Shared GKE 镜像
+
+Dockerfile 使用组织的 builder 和 distroless 镜像，在 builder 的 `/build` 放应用文件、`/app/packages` 放 Python 依赖。最终阶段分别将应用、static、data 复制到 `/app`，并显式指定 `--app-dir /app`。构建阶段增加应用导入检查。
+
+镜像默认监听 `8000`；Deployment、Service 的 targetPort 和探针需要与此一致。共享集群若在 Deployment 中配置了 command/args，它们会覆盖镜像默认入口；请确认仍使用 `python -m uvicorn app:app --app-dir /app --host 0.0.0.0 --port 8000`，且 volumeMount 不覆盖 `/app`。
+
+修改 Dockerfile 后需要重新构建并发布新镜像，再更新 Deployment 使用的镜像版本。仅重启使用旧镜像的 Pod 不会包含修复。组织私有基础镜像和集群需要在具备访问权限的环境中验证；仓库的本地测试不能替代最终镜像运行测试。
