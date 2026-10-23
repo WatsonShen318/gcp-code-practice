@@ -1,161 +1,711 @@
 {
-  "paNumber": "26-123456",
-  "drug": "Wegovy Tablet (semaglutide)",
-  "lineOfBusiness": "Commercial",
-  "origin": "ePA",
-  "role": "Technician",
-  "queue": "Pending Approval",
-  "member": {},
-  "pa": {
-    "pac": "PAC131011 — Weight Loss Wegovy PA with Limit",
-    "psg": "AETNA — CHART ASP — SI",
-    "urgent": false
+  "schemaVersion": 2,
+  "skipLogic": {
+    "1": {
+      "T": 2,
+      "F": 32
+    },
+    "2": {
+      "T": 3,
+      "F": 22
+    },
+    "3": {
+      "T": 4,
+      "F": 7
+    },
+    "4": {
+      "T": 5,
+      "F": "D"
+    },
+    "5": {
+      "T": 6,
+      "F": "D"
+    },
+    "6": {
+      "T": "D",
+      "F": "A"
+    },
+    "7": {
+      "T": 8,
+      "F": "D"
+    },
+    "8": {
+      "T": "D",
+      "F": 9
+    },
+    "9": {
+      "T": 10,
+      "F": 13
+    },
+    "10": {
+      "T": 11,
+      "F": "D"
+    },
+    "11": {
+      "T": 12,
+      "F": "D"
+    },
+    "12": {
+      "T": 19,
+      "F": "D"
+    },
+    "13": {
+      "T": 14,
+      "F": 15
+    },
+    "14": {
+      "T": 19,
+      "F": "D"
+    },
+    "15": {
+      "T": 16,
+      "F": 17
+    },
+    "16": {
+      "T": 19,
+      "F": "D"
+    },
+    "17": {
+      "T": 18,
+      "F": "D"
+    },
+    "18": {
+      "T": 19,
+      "F": "D"
+    },
+    "19": {
+      "T": 20,
+      "F": 21
+    },
+    "20": {
+      "T": "D",
+      "F": "A"
+    },
+    "21": {
+      "T": "D",
+      "F": "A"
+    },
+    "22": {
+      "T": 23,
+      "F": "D"
+    },
+    "23": {
+      "T": "D",
+      "F": 24
+    },
+    "24": {
+      "T": 25,
+      "F": 28
+    },
+    "25": {
+      "T": 26,
+      "F": "D"
+    },
+    "26": {
+      "T": 27,
+      "F": "D"
+    },
+    "27": {
+      "T": "D",
+      "F": "A"
+    },
+    "28": {
+      "T": 29,
+      "F": "D"
+    },
+    "29": {
+      "T": 30,
+      "F": "D"
+    },
+    "30": {
+      "T": 31,
+      "F": "D"
+    },
+    "31": {
+      "T": "D",
+      "F": "A"
+    },
+    "32": {
+      "T": 33,
+      "F": 46
+    },
+    "33": {
+      "T": 34,
+      "F": "D"
+    },
+    "34": {
+      "T": "D",
+      "F": 35
+    },
+    "35": {
+      "T": 36,
+      "F": "D"
+    },
+    "36": {
+      "T": 37,
+      "F": "D"
+    },
+    "37": {
+      "T": 38,
+      "F": 40
+    },
+    "38": {
+      "T": 39,
+      "F": "D"
+    },
+    "39": {
+      "T": "D",
+      "F": "A"
+    },
+    "40": {
+      "T": 41,
+      "F": "D"
+    },
+    "41": {
+      "T": 42,
+      "F": "D"
+    },
+    "42": {
+      "T": "D",
+      "F": 43
+    },
+    "43": {
+      "T": 44,
+      "F": "D"
+    },
+    "44": {
+      "T": 45,
+      "F": "D"
+    },
+    "45": {
+      "T": "D",
+      "F": "A"
+    },
+    "46": {
+      "T": 47,
+      "F": "D"
+    },
+    "47": {
+      "T": 48,
+      "F": "D"
+    },
+    "48": {
+      "T": "D",
+      "F": 49
+    },
+    "49": {
+      "T": 50,
+      "F": 54
+    },
+    "50": {
+      "T": 51,
+      "F": "D"
+    },
+    "51": {
+      "T": 52,
+      "F": "D"
+    },
+    "52": {
+      "T": 53,
+      "F": "D"
+    },
+    "53": {
+      "T": "D",
+      "F": "A"
+    },
+    "54": {
+      "T": 55,
+      "F": "D"
+    },
+    "55": {
+      "T": 56,
+      "F": "D"
+    },
+    "56": {
+      "T": 57,
+      "F": "D"
+    },
+    "57": {
+      "T": "D",
+      "F": "A"
+    }
   },
-  "steps": [
-    {
-      "title": "Drug Verification",
-      "status": "Verified",
-      "state": "complete",
-      "type": "drugVerification"
+  "questionMetadata": {
+    "1": {
+      "s": "Diet + physical activity?",
+      "f": "Will the requested drug be used with a reduced-calorie diet AND increased physical activity to reduce excess body weight or maintain weight reduction long term?",
+      "att": "Attested by the prescriber on the ePA submission."
     },
-    {
-      "title": "PA History",
-      "status": "Clear",
-      "state": "complete",
-      "type": "paHistory"
+    "2": {
+      "s": "Patient age 18+?",
+      "f": "Is the patient 18 years of age or older?",
+      "auto": true
     },
-    {
-      "title": "Mock Claim Review",
-      "status": "PA Required",
-      "state": "complete",
-      "type": "mockClaim"
+    "3": {
+      "s": "Stable maintenance dose (≥3 months)?",
+      "f": "Has the patient completed at least 3 months of therapy with the requested drug at a stable maintenance dose? [If the patient is transitioning from another drug therapy for weight loss, please answer no and proceed.]",
+      "doc": true
     },
-    {
-      "title": "Criteria Review",
-      "status": "Scored Approval · needs verification",
-      "state": "review",
-      "type": "criteriaReview"
+    "4": {
+      "s": "Lost ≥5% baseline body weight?",
+      "f": "Has the patient lost at least 5 percent of baseline body weight OR has the patient continued to maintain their initial 5 percent weight loss?",
+      "doc": true,
+      "calc": true,
+      "act": "ACTION REQUIRED: If yes, then documentation is required for approval. Document the patient's weight prior to starting drug therapy for weight loss and the patient's current weight, including the dates the weights were taken:"
     },
-    {
-      "title": "Notes",
-      "status": "Not Started",
-      "state": "pending",
-      "type": "notes"
+    "5": {
+      "s": "Weight documentation submitted?",
+      "f": "Has documentation of the patient's weight prior to starting drug therapy for weight loss and the patient's current weight, including the dates the weights were taken, been submitted to CVS Health?",
+      "doc": true
     },
+    "6": {
+      "s": "Requesting > plan allowance/month?",
+      "f": "Does the patient require MORE than the plan allowance per month of any of the following: A) 1 package/4 pens of Wegovy (semaglutide) 0.25 mg/0.5 mL injection, B) 1 package/4 pens of Wegovy (semaglutide) 0.5 mg/0.5 mL injection, C) 1 package/4 pens of Wegovy (semaglutide) 1 mg/0.5 mL injection, D) 1 package/4 pens of Wegovy (semaglutide) 1.7 mg/0.75 mL injection, E) 1 package/4 pens of Wegovy (semaglutide) 2.4 mg/0.75 mL injection, F) 1 package/4 pens of Wegovy (semaglutide) HD 7.2 mg/0.75 mL, G) 30 tablets of Wegovy (semaglutide)?",
+      "auto": true,
+      "ev": "Test claim: no quantity reject returned. 30 tablets for 30 days is within the plan allowance of 30 tablets per month."
+    },
+    "7": {
+      "s": "Weight mgmt program ≥6 months prior?",
+      "f": "Has the patient participated in a comprehensive weight management program that encourages behavioral modification, reduced-calorie diet, AND increased physical activity with continuing follow-up for at least 6 months prior to using drug therapy?",
+      "doc": true
+    },
+    "8": {
+      "s": "Baseline BMI < 27 kg/m²?",
+      "f": "Does the patient have a baseline body mass index (BMI) of less than 27 kg/m²? [If the patient is transitioning from another drug therapy for weight loss, please consider their baseline BMI at the start of any drug therapy when answering this question.]",
+      "doc": true
+    },
+    "9": {
+      "s": "Baseline BMI 27–<30 kg/m²?",
+      "f": "Does the patient have a baseline body mass index (BMI) of 27 kg/m² to less than 30 kg/m²? [If the patient is transitioning from another drug therapy for weight loss, please consider their baseline BMI at the start of any drug therapy when answering this question.]",
+      "doc": true
+    },
+    "10": {
+      "s": "BMI chart notes submitted (27–<30)?",
+      "f": "Have chart notes showing the patient's baseline body mass index (BMI) been submitted to CVS Health? [If the patient is transitioning from another drug therapy for weight loss, please provide their baseline BMI at the start of any drug therapy.]",
+      "doc": true
+    },
+    "11": {
+      "s": "Weight-related comorbidity present?",
+      "f": "Does the patient have at least ONE weight-related comorbid condition (e.g., hypertension, type 2 diabetes mellitus, dyslipidemia)? [If the patient is transitioning from another drug therapy for weight loss, please consider their weight-related comorbid condition(s) at the start of any drug therapy when answering this question.]",
+      "doc": true
+    },
+    "12": {
+      "s": "Comorbidity chart notes submitted?",
+      "f": "Have chart notes indicating the patient's weight-related comorbid condition(s) been submitted to CVS Health? [If the patient is transitioning from another drug therapy for weight loss, please provide their weight-related comorbid condition(s) at the start of any drug therapy.]",
+      "doc": true
+    },
+    "13": {
+      "s": "Baseline BMI 30–<35 kg/m²?",
+      "f": "Does the patient have a baseline body mass index (BMI) of 30 kg/m² to less than 35 kg/m²? [If the patient is transitioning from another drug therapy for weight loss, please consider their baseline BMI at the start of any drug therapy when answering this question.]",
+      "doc": true
+    },
+    "14": {
+      "s": "BMI chart notes submitted (30–<35)?",
+      "f": "Have chart notes showing the patient's baseline body mass index (BMI) been submitted to CVS Health? [If the patient is transitioning from another drug therapy for weight loss, please provide their baseline BMI at the start of any drug therapy.]",
+      "doc": true
+    },
+    "15": {
+      "s": "Baseline BMI 35–<40 kg/m²?",
+      "f": "Does the patient have a baseline body mass index (BMI) of 35 kg/m² to less than 40 kg/m²? [If the patient is transitioning from another drug therapy for weight loss, please consider their baseline BMI at the start of any drug therapy when answering this question.]",
+      "doc": true
+    },
+    "16": {
+      "s": "BMI chart notes submitted (35–<40)?",
+      "f": "Have chart notes showing the patient's baseline body mass index (BMI) been submitted to CVS Health? [If the patient is transitioning from another drug therapy for weight loss, please provide their baseline BMI at the start of any drug therapy.]",
+      "doc": true
+    },
+    "17": {
+      "s": "Baseline BMI ≥40 kg/m²?",
+      "f": "Does the patient have a baseline body mass index (BMI) of 40 kg/m² or greater? [If the patient is transitioning from another drug therapy for weight loss, please consider their baseline BMI at the start of any drug therapy when answering this question.]",
+      "doc": true
+    },
+    "18": {
+      "s": "BMI chart notes submitted (≥40)?",
+      "f": "Have chart notes showing the patient's baseline body mass index (BMI) been submitted to CVS Health? [If the patient is transitioning from another drug therapy for weight loss, please provide their baseline BMI at the start of any drug therapy.]",
+      "doc": true
+    },
+    "19": {
+      "s": "Is this Wegovy injection?",
+      "f": "Is this request for Wegovy (semaglutide) injection?",
+      "auto": true,
+      "ev": "Drug confirmed as WEGOVY (semaglutide) injection per drug record and prescriber submission."
+    },
+    "20": {
+      "s": "Requesting > plan allowance (injection)?",
+      "f": "Does the patient require MORE than the plan allowance of 1 package/4 pens per month of any of the following: A) Wegovy 0.25 mg/0.5 mL injection, B) Wegovy 0.5 mg/0.5 mL injection, C) Wegovy 1 mg/0.5 mL injection, D) Wegovy 1.7 mg/0.75 mL injection, E) Wegovy 2.4 mg/0.75 mL injection, F) Wegovy HD 7.2 mg/0.75 mL injection?",
+      "auto": true,
+      "ev": "Test claim: no quantity reject. Plan allowance 1 pkg/4 pens per month — within limit."
+    },
+    "21": {
+      "s": "Requesting > plan allowance (tablet)?",
+      "f": "Does the patient require MORE than the plan allowance of 30 tablets per month of Wegovy (semaglutide)?",
+      "auto": true,
+      "ev": "Test claim: no quantity reject. Plan allowance 30 tablets per month — within limit."
+    },
+    "22": {
+      "s": "Patient age 12–17?",
+      "f": "Is the patient 12 to 17 years of age?",
+      "auto": true
+    },
+    "23": {
+      "s": "HD 7.2 mg or tablet form requested?",
+      "f": "Is this request for ANY of the following: A) Wegovy (semaglutide) HD 7.2 mg/0.75 mL injection, B) Wegovy (semaglutide) tablets?",
+      "auto": true,
+      "ev": "Drug confirmed as Wegovy 2.4 mg injection — not HD 7.2 mg or tablet formulation."
+    },
+    "24": {
+      "s": "Continuation of therapy?",
+      "f": "Is the request for continuation of therapy for a patient that has successfully titrated to a stable maintenance dose? [If the patient is transitioning from another drug therapy for weight loss, please answer no and proceed.]"
+    },
+    "25": {
+      "s": "BMI reduction from baseline?",
+      "f": "Has the patient had a reduction from their baseline body mass index (BMI) OR has the patient continued to maintain their initial BMI reduction?",
+      "doc": true,
+      "calc": true
+    },
+    "26": {
+      "s": "BMI documentation submitted?",
+      "f": "Has documentation of the patient's body mass index (BMI) prior to starting drug therapy for weight loss and the patient's current BMI, including the dates the BMIs were taken, been submitted to CVS Health?",
+      "doc": true
+    },
+    "27": {
+      "s": "Requesting > plan allowance?",
+      "f": "Does the patient require MORE than the plan allowance of 1 package/4 pens of any of the following per month: A) Wegovy 0.25 mg/0.5 mL, B) Wegovy 0.5 mg/0.5 mL, C) Wegovy 1 mg/0.5 mL, D) Wegovy 1.7 mg/0.75 mL, E) Wegovy 2.4 mg/0.75 mL injection?",
+      "auto": true,
+      "ev": "Test claim: no quantity reject. Within plan allowance."
+    },
+    "28": {
+      "s": "Weight mgmt program ≥6 months prior?",
+      "f": "Has the patient participated in a comprehensive weight management program that encourages behavioral modification, reduced-calorie diet, AND increased physical activity with continuing follow-up for at least 6 months prior to using drug therapy?",
+      "doc": true
+    },
+    "29": {
+      "s": "BMI ≥95th percentile (age/sex)?",
+      "f": "Does the patient have a baseline body mass index (BMI) in the 95th percentile or greater standardized for age and sex (obesity)? [If the patient is transitioning from another drug therapy for weight loss, please consider their baseline BMI at the start of any drug therapy when answering this question.]",
+      "doc": true
+    },
+    "30": {
+      "s": "BMI percentile chart notes submitted?",
+      "f": "Have chart notes showing the patient's baseline body mass index (BMI) percentile standardized for age and sex been submitted to CVS Health? [If the patient is transitioning from another drug therapy for weight loss, please provide their baseline BMI at the start of any drug therapy.]",
+      "doc": true
+    },
+    "31": {
+      "s": "Requesting > plan allowance?",
+      "f": "Does the patient require MORE than the plan allowance of 1 package/4 pens of any of the following per month: A) Wegovy 0.25 mg/0.5 mL, B) Wegovy 0.5 mg/0.5 mL, C) Wegovy 1 mg/0.5 mL, D) Wegovy 1.7 mg/0.75 mL, E) Wegovy 2.4 mg/0.75 mL injection?",
+      "auto": true,
+      "ev": "Test claim: no quantity reject. Within plan allowance."
+    },
+    "32": {
+      "s": "CV risk reduction indication?",
+      "f": "Will the requested drug be used to reduce the risk of major adverse cardiovascular events (cardiovascular death, non-fatal myocardial infarction, or non-fatal stroke) in an adult with established cardiovascular disease AND either obesity or overweight?"
+    },
+    "33": {
+      "s": "Used with diet + physical activity?",
+      "f": "Is the requested drug being used with a reduced-calorie diet AND increased physical activity?",
+      "att": "Attested by the prescriber on the ePA submission."
+    },
+    "34": {
+      "s": "Is this Wegovy HD 7.2 mg injection?",
+      "f": "Is this request for Wegovy (semaglutide) HD 7.2 mg injection?",
+      "auto": true,
+      "ev": "Drug confirmed as Wegovy 2.4 mg/0.75 mL — not HD 7.2 mg formulation."
+    },
+    "35": {
+      "s": "Established CV disease (specific history)?",
+      "f": "Does the patient have established cardiovascular disease with a history of ONE of the following: A) previous myocardial infarction (MI), B) previous stroke, C) symptomatic peripheral arterial disease (PAD), as evidenced by intermittent claudication with ankle-brachial index (ABI) less than 0.85 (at rest), peripheral arterial revascularization procedure, or amputation due to atherosclerotic disease, D) prior history of revascularization (coronary artery bypass grafting [CABG], percutaneous coronary intervention [PCI], or angioplasty)?",
+      "doc": true
+    },
+    "36": {
+      "s": "CV disease chart notes submitted?",
+      "f": "Have chart notes supporting the patient's diagnosis, including diagnostic evidence, of ONE of the following: A) previous myocardial infarction (MI), B) previous stroke, C) symptomatic peripheral arterial disease (PAD), D) prior history of revascularization (CABG, PCI, or angioplasty), been submitted to CVS Health?",
+      "doc": true
+    },
+    "37": {
+      "s": "Continuation of therapy?",
+      "f": "Is this request for continuation of therapy?"
+    },
+    "38": {
+      "s": "On maintenance dosage?",
+      "f": "Is the patient being treated with a maintenance dosage of the requested drug which is based on individual treatment response and tolerability?"
+    },
+    "39": {
+      "s": "Requesting > plan allowance?",
+      "f": "Does the patient require MORE than the plan allowance per month of any of the following: A) 1 package/4 pens Wegovy 0.25 mg/0.5 mL, B) 0.5 mg/0.5 mL, C) 1 mg/0.5 mL, D) 1.7 mg/0.75 mL, E) 2.4 mg/0.75 mL injection, F) 30 tablets Wegovy?",
+      "auto": true,
+      "ev": "Test claim: no quantity reject. Within plan allowance."
+    },
+    "40": {
+      "s": "Baseline BMI ≥27 kg/m²?",
+      "f": "Does the patient have a baseline body mass index (BMI) greater than or equal to 27 kg/m²? [If the patient is transitioning from another drug therapy for weight loss, please consider their baseline BMI at the start of any drug therapy when answering this question.]",
+      "doc": true
+    },
+    "41": {
+      "s": "BMI chart notes submitted?",
+      "f": "Have chart notes showing the patient's baseline body mass index (BMI) been submitted to CVS Health? [If the patient is transitioning from another drug therapy for weight loss, please provide their baseline BMI at the start of any drug therapy.]",
+      "doc": true
+    },
+    "42": {
+      "s": "Patient has type 2 diabetes?",
+      "f": "Does the patient have type 2 diabetes? [Ozempic is indicated to reduce the risk of major cardiovascular events in adults with type 2 diabetes mellitus and established cardiovascular disease. If the patient may be treated with Ozempic, please provide the patient with a new prescription for Ozempic.]"
+    },
+    "43": {
+      "s": "On GDMT for CV disease?",
+      "f": "Is the patient currently receiving guideline-directed management and therapy (GDMT) for cardiovascular disease (e.g., lipid-lowering agent, antiplatelet, beta-blocker, renin-angiotensin inhibitor, etc.) OR does the patient have a clinical reason not to be treated with GDMT for cardiovascular disease?",
+      "doc": true
+    },
+    "44": {
+      "s": "GDMT chart notes submitted?",
+      "f": "Have chart notes showing that the patient is currently receiving guideline-directed management and therapy (GDMT) for cardiovascular disease or showing the clinical reason why the patient cannot be treated with GDMT (e.g., intolerance, contraindication, allergy) been submitted to CVS Health?",
+      "doc": true
+    },
+    "45": {
+      "s": "Requesting > plan allowance?",
+      "f": "Does the patient require MORE than the plan allowance per month of any of the following: A) 1 package/4 pens Wegovy 0.25 mg/0.5 mL, B) 0.5 mg/0.5 mL, C) 1 mg/0.5 mL, D) 1.7 mg/0.75 mL, E) 2.4 mg/0.75 mL injection, F) 30 tablets Wegovy?",
+      "auto": true,
+      "ev": "Test claim: no quantity reject. Within plan allowance."
+    },
+    "46": {
+      "s": "MASH / liver fibrosis indication?",
+      "f": "Is the requested drug being prescribed for the treatment of noncirrhotic metabolic dysfunction-associated steatohepatitis (MASH), formerly known as nonalcoholic steatohepatitis (NASH), with moderate to advanced liver fibrosis (consistent with stages F2 to F3 fibrosis) in an adult?"
+    },
+    "47": {
+      "s": "Used with diet + physical activity?",
+      "f": "Is the requested drug being used with a reduced-calorie diet AND increased physical activity?",
+      "att": "Attested by the prescriber on the ePA submission."
+    },
+    "48": {
+      "s": "HD 7.2 mg or tablet form?",
+      "f": "Is this request for ANY of the following: A) Wegovy (semaglutide) HD 7.2 mg injection, B) Wegovy (semaglutide) tablets?",
+      "auto": true,
+      "ev": "Drug confirmed as Wegovy 2.4 mg injection — not HD 7.2 mg or tablet formulation."
+    },
+    "49": {
+      "s": "Continuation of therapy?",
+      "f": "Is this request for continuation of therapy?"
+    },
+    "50": {
+      "s": "Positive clinical response?",
+      "f": "Has the patient achieved or maintained a positive clinical response to the requested drug (e.g., improvement in liver function such as reduction in alanine aminotransferase [ALT], improvement in Enhanced Liver Fibrosis [ELF] score, improvement in liver stiffness measurement [LSM] by ultrasound-based elastography, magnetic resonance elastography [MRE])?",
+      "doc": true
+    },
+    "51": {
+      "s": "Clinical response documentation submitted?",
+      "f": "Have chart notes or other documentation supporting that the patient has achieved or maintained a positive clinical response to the requested drug (e.g., improvement in ALT, ELF score, LSM by elastography or MRE) been submitted to CVS Health?",
+      "doc": true
+    },
+    "52": {
+      "s": "On maintenance dosage?",
+      "f": "Is the patient being treated with a maintenance dosage of the requested drug which is based on individual treatment response and tolerability?"
+    },
+    "53": {
+      "s": "Requesting > plan allowance?",
+      "f": "Does the patient require MORE than the plan allowance of 1 package/4 pens of any of the following per month: A) Wegovy 0.25 mg/0.5 mL, B) Wegovy 0.5 mg/0.5 mL, C) Wegovy 1 mg/0.5 mL, D) Wegovy 1.7 mg/0.75 mL, E) Wegovy 2.4 mg/0.75 mL injection?",
+      "auto": true,
+      "ev": "Test claim: no quantity reject. Within plan allowance."
+    },
+    "54": {
+      "s": "Prescribed by GI/hepatologist?",
+      "f": "Is the requested drug being prescribed by, or in consultation with, a gastroenterologist or hepatologist?",
+      "doc": true
+    },
+    "55": {
+      "s": "Liver fibrosis confirmed at baseline?",
+      "f": "Has the patient's moderate to advanced liver fibrosis (consistent with stages F2 to F3 fibrosis) at baseline been confirmed by ONE of the following: non-invasive liver disease assessment (e.g., ultrasound-based elastography, magnetic resonance elastography [MRE]) OR historical liver biopsy?",
+      "doc": true
+    },
+    "56": {
+      "s": "Liver fibrosis documentation submitted?",
+      "f": "Have chart notes or other documentation supporting that the patient's moderate to advanced liver fibrosis (consistent with stages F2 to F3 fibrosis) at baseline has been confirmed by non-invasive liver disease assessment (e.g., ultrasound-based elastography or MRE) OR historical liver biopsy been submitted to CVS Health?",
+      "doc": true
+    },
+    "57": {
+      "s": "Requesting > plan allowance?",
+      "f": "Does the patient require MORE than the plan allowance of 1 package/4 pens of any of the following per month: A) Wegovy 0.25 mg/0.5 mL, B) Wegovy 0.5 mg/0.5 mL, C) Wegovy 1 mg/0.5 mL, D) Wegovy 1.7 mg/0.75 mL, E) Wegovy 2.4 mg/0.75 mL injection?",
+      "auto": true,
+      "ev": "Test claim: no quantity reject. Within plan allowance."
+    }
+  },
+  "cases": [
     {
-      "title": "Case Decision",
-      "status": "Waiting on verification",
-      "state": "pending",
-      "type": "caseDecision"
+      "id": "26-123456",
+      "meta": {
+        "drug": "Wegovy Tablet (semaglutide)",
+        "submittedDrug": "Wegovy 25MG OR TABS",
+        "requestedDrug": "Wegovy Tablet (semaglutide)",
+        "cls": "PAC131011 — Weight Loss Wegovy PA with Limit",
+        "dx": "Weight management, Adult",
+        "lob": "Commercial",
+        "origin": "ePA",
+        "ref": "4774-C",
+        "name": "Weight Loss Wegovy PA with Limit CMK STD 06-2026",
+        "client": "Aetna — CHART ASP — SI",
+        "qset": "255357",
+        "ndc": "00169442531",
+        "gpi": "612520700003**",
+        "urgent": true
+      },
+      "member": {
+        "id": "AET-6120485",
+        "name": "Robert Hensley",
+        "dob": "03/02/1971",
+        "sex": "Male",
+        "pag": "AETNA — CHART ASP — SI"
+      },
+      "claim": {
+        "code": "75",
+        "msg": "Prior Authorization Required",
+        "dt": "2026-07-23",
+        "drug": "WEGOVY 25MG OR TABS",
+        "qty": "30 tablets",
+        "days": "30"
+      },
+      "phNote": "✓ No active approved PA found for this member and drug. 1 prior PA on this criteria (01/19/26); 11 prior PAs in the last 24 months across all criteria.",
+      "legs": [
+        {
+          "role": "Technician",
+          "rev": "C123456",
+          "aht": "2:16",
+          "ahtS": 136,
+          "queue": "Pending Approval",
+          "isAgent": false,
+          "fallout": "Automated ePA review stopped at step 1150 — could not validate the outcome code from the criteria form. Case routed to Pending Approval for a manual Verify Criteria Form check.",
+          "initAns": {
+            "1": "T",
+            "2": "T",
+            "3": "T",
+            "4": "T",
+            "5": "T",
+            "6": "F"
+          },
+          "comments": {
+            "4": "1/26/24 174lbs now 128lbs"
+          },
+          "notes": {
+            "2": "DOB: 03/02/1971. Age: 55 years. Meets 18+ threshold.",
+            "3": "Claims history: 4 consecutive paid fills of Wegovy 25 mg tablets (2026-03-30 to 2026-06-25), 30 tablets each; 11 paid fills of Wegovy in the last 24 months.",
+            "5": "1 ePA attachment on file, received 07/23/2026 11:23 AM."
+          },
+          "docs": {
+            "3": "CLINICAL PROGRESS NOTE — STABLE DOSE DOCUMENTATION\nSOURCE: ePA Attachment (1 of 1), page 1\n════════════════════════════════════════════════════════════\nPATIENT:   Robert Hensley             MRN:     AET-6120485\nDOB:       03/02/1971  (Age: 55)      SEX:     Male\nPROVIDER:  Dr. M. Okafor, MD          DATE:    2026-07-14\nFACILITY:  Aetna Chart ASP — Internal Medicine\n════════════════════════════════════════════════════════════\nVISIT TYPE:  Wegovy Continuation — Stable Dose Verification\n\nWEGOVY THERAPY HISTORY:\n\n  Wegovy injection (weight management):   Feb 2024 – Dec 2025\n  Wegovy tablet (semaglutide):            started Jan 2026\n\nCURRENT THERAPY:\n  Wegovy (semaglutide) 25 mg tablet, once daily\n  No dose change since 2026-04-15  (3+ months as of July 2026)\n\nCLINICAL NOTE: Patient has completed more than 3 months of therapy\nwith Wegovy tablets at a stable maintenance dose and is tolerating\ntreatment. Continuation requested.\n\nDr. M. Okafor, MD — Internal Medicine | NPI: 5551234567\nSigned: 2026-07-14 11:20 EST",
+            "4": "CLINICAL WEIGHT ASSESSMENT — PA DOCUMENTATION\nSOURCE: ePA Attachment (1 of 1), page 2\n════════════════════════════════════════════════════════════\nPATIENT:   Robert Hensley             MRN:     AET-6120485\nDOB:       03/02/1971  (Age: 55)      SEX:     Male\nPROVIDER:  Dr. M. Okafor, MD          DATE:    2026-07-20\nFACILITY:  Aetna Chart ASP — Internal Medicine\n════════════════════════════════════════════════════════════\nWEIGHT MEASUREMENTS:\n\n  BASELINE (prior to drug therapy):\n    Date:    January 26, 2024\n    Weight:  174.0 lbs  (78.9 kg)\n\n  CURRENT:\n    Date:    July 20, 2026\n    Weight:  128.0 lbs  (58.1 kg)\n\nBoth weights measured in office on a calibrated scale.\n\nDr. M. Okafor, MD — NPI: 5551234567\nSigned: 2026-07-20 09:40 EST",
+            "5": "DOCUMENTATION SUBMISSION CONFIRMATION\n════════════════════════════════════════════════════════════\nPATIENT:   Robert Hensley             MRN:     AET-6120485\nDATE:      2026-07-23\nSUBMITTED BY: Dr. M. Okafor, MD (via ePA portal)\n════════════════════════════════════════════════════════════\n\nATTACHMENTS RECEIVED WITH THE ePA REQUEST:   1\n\n  [1] ePA Attachment\n      Document type: ePA Attachment\n      Created by:    SYSTEM SERVICES\n      Created:       07/23/2026 11:23 AM\n      Content:       Progress note (stable dose) and weight record with\n                     the date of each weight: baseline 2024-01-26,\n                     current 2026-07-20.\n\nSTATUS: Weights and the dates they were taken are included.\nReference: EPA-2026-0723-AET6120485-WEGOVY"
+          }
+        }
+      ]
     }
   ],
-  "drugVerification": {
-    "submittedName": "Wegovy 25MG OR TABS",
-    "ndc": "00169442531",
-    "gpi": "612520700003**",
-    "message": "Requested drug set automatically to match the submitted product (Wegovy 25MG OR TABS).",
-    "requestedDrugOptions": [
-      "Wegovy Tablet (semaglutide)"
-    ]
+  "drugOptions": [
+    {
+      "label": "Wegovy HD Injection (semaglutide)"
+    },
+    {
+      "label": "Wegovy Injection (semaglutide)"
+    },
+    {
+      "label": "Wegovy Tablet (semaglutide)",
+      "ndc": "00169442531"
+    },
+    {
+      "label": "Wegovy 25MG OR TABS",
+      "ndc": "00169442531"
+    }
+  ],
+  "mockClaimDefaults": {
+    "26-123456": {
+      "qty": "30",
+      "days": "30",
+      "pharmacyId": "2221113",
+      "fillDate": "07/23/2026",
+      "physicianId": "",
+      "psc": "0",
+      "drugName": "WEGOVY 25MG OR TABS",
+      "ndc": "00169442531"
+    }
   },
-  "paHistory": {
-    "summary": "No active approved PA found for this member and drug. 1 prior PA on this criteria (01/19/26); 11 prior PAs in the last 24 months across all criteria.",
-    "records": [
-      {
-        "number": "26-123456",
-        "drug": "WEGOVY 25mg tab",
-        "date": "07/23/26",
-        "status": "In Review",
-        "state": "review",
-        "current": true
+  "mockClaimResults": {
+    "26-123456": {
+      "msg": {
+        "result": "Prior Auth Req - Drug Requires Prior Authorization 75 - Prior Authorization Required 75 8002945979\nFrozen Reset Date - , PlanDrugOptout -",
+        "settlement": "00058",
+        "code": "75",
+        "label": "PA Required"
       },
-      {
-        "number": "26-106481935",
-        "drug": "WEGOVY tab",
-        "date": "01/19/26",
-        "status": "Denied",
-        "state": "denied"
+      "d30": {
+        "result": "Prior Auth Req - Drug Requires Prior Authorization 75 - Prior Authorization Required 75 8002945979\nFrozen Reset Date - , PlanDrugOptout -",
+        "settlement": "00058",
+        "code": "75",
+        "label": "PA Required"
+      },
+      "d60": {
+        "result": "Prior Auth Req - Drug Requires Prior Authorization 75 - Prior Authorization Required 75 8002945979\nFrozen Reset Date - , PlanDrugOptout -",
+        "settlement": "00058",
+        "code": "75",
+        "label": "PA Required"
+      },
+      "d90": {
+        "result": "Prior Auth Req - Drug Requires Prior Authorization 75 - Prior Authorization Required 75 8002945979\nQty Limit 76 - Quantity exceeds plan limit (max 30 tablets per 30 days). Quantity reject returned in addition to PA.",
+        "settlement": "00058",
+        "code": "75, 76",
+        "label": "PA Req + QTY Limit"
       }
-    ]
+    }
   },
-  "mockClaim": {
-    "resultTitle": "Reject Code 75 — Prior Authorization Required",
-    "resultDetail": "WEGOVY 25MG OR TABS · 30 tablets · 30-day supply · Filled 2026-07-23",
-    "message": "PA is required. Continue working — do not turn away the member.",
-    "drugName": "Wegovy Tablet (semaglutide)",
-    "ndc": "00169442531",
-    "quantity": 30,
-    "daysSupply": 30,
-    "pharmacyId": "2221113",
-    "fillDate": "2026-07-23",
-    "physicianId": "",
-    "productSelectionCode": "0",
-    "productSelectionOptions": [
-      {
-        "value": "0",
-        "label": "0 — Not Specified"
-      }
-    ]
+  "caseNotes": {
+    "26-123456": "Drug: Wegovy Tablet (semaglutide) 25 mg\nDiagnosis: Weight management, Adult\nClinical Info: ePA Loop-2 fallout (step 1150). Verified Q3, Q4 and Q5 - stable maintenance dose confirmed, patient lost >5% baseline body weight (26.4%), weight documentation on file. Q6 within plan allowance.\nOutcome: Approve for 12 months\nInitials/Date: C123456 Tech 7/23/26"
   },
-  "criteriaReview": {
-    "title": "Weight Loss Wegovy PA with Limit CMK STD 06-2026",
-    "fallout": "ePA Loop-2 Fallout: Automated ePA review stopped at step 1150 — could not validate the outcome code from the criteria form. Case routed to Pending Approval for a manual Verify Criteria Form check.",
-    "notice": "Scores to Approval on the prescriber’s answers. Q4 still needs your verification before you approve.",
-    "result": "Approval",
-    "questions": [
-      {
-        "id": "Q1",
-        "label": "Diet + physical activity?",
-        "answer": "Yes",
-        "status": "Per submission",
-        "state": "submission"
-      },
-      {
-        "id": "Q2",
-        "label": "Patient age 18+?",
-        "answer": "Yes",
-        "status": "Verified",
-        "state": "complete"
-      },
-      {
-        "id": "Q3",
-        "label": "Additional criterion (not visible in reference)",
-        "answer": "",
-        "status": "Not provided",
-        "state": "pending",
-        "detail": "The reference images do not show Q3. Replace this entry with your JSON content."
-      },
-      {
-        "id": "Q4",
-        "label": "Loss ≥ 5% baseline body weight?",
-        "answer": "Yes",
-        "status": "Needs verification",
-        "state": "review",
-        "detail": "Verify against the submitted documentation. The reference image only partially shows this question."
-      },
-      {
-        "id": "Q5",
-        "label": "Weight documentation submitted?",
-        "answer": "Yes",
-        "status": "Verified",
-        "state": "complete"
-      },
-      {
-        "id": "Q6",
-        "label": "Requesting > plan allowance/month?",
-        "answer": "No",
-        "status": "Verified",
-        "state": "complete"
-      }
-    ]
-  },
-  "notes": {
-    "text": "",
-    "maxLength": 3000,
-    "placeholder": "Enter or generate notes...",
-    "generatedText": "LOCAL DEMO — PA 26-123456. Requested drug: Wegovy Tablet (semaglutide). PA history reviewed. Mock claim sample result: Reject Code 75 — Prior Authorization Required. Criteria sample score: Approval; Q4 requires manual verification. No case decision has been submitted."
-  },
-  "caseDecision": {
-    "message": "The criteria score to Approval on the prescriber’s answers. Verify Q4 in the Criteria Review first."
+  "toolData": {
+    "26-123456": {
+      "paHistory": [
+        {
+          "pa": "26-123456",
+          "drug": "WEGOVY 25mg tab",
+          "date": "07/23/26",
+          "outcome": null
+        },
+        {
+          "pa": "26-106481935",
+          "drug": "WEGOVY tab",
+          "date": "01/19/26",
+          "outcome": "D"
+        }
+      ],
+      "claimHistory": [
+        {
+          "dt": "07/23/26",
+          "drug": "WEGOVY 25MG TABS",
+          "qty": "30 tabs",
+          "days": 30,
+          "status": "Rejected"
+        },
+        {
+          "dt": "06/25/26",
+          "drug": "WEGOVY 25MG TABS",
+          "qty": "30 tabs",
+          "days": 30,
+          "status": "Paid"
+        },
+        {
+          "dt": "05/27/26",
+          "drug": "WEGOVY 25MG TABS",
+          "qty": "30 tabs",
+          "days": 30,
+          "status": "Paid"
+        },
+        {
+          "dt": "04/28/26",
+          "drug": "WEGOVY 25MG TABS",
+          "qty": "30 tabs",
+          "days": 30,
+          "status": "Paid"
+        },
+        {
+          "dt": "03/30/26",
+          "drug": "WEGOVY 25MG TABS",
+          "qty": "30 tabs",
+          "days": 30,
+          "status": "Paid"
+        }
+      ]
+    }
   }
 }

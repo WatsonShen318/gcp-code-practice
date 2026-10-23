@@ -1,46 +1,103 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>PA Caddie — Guided Review</title>
-  <link rel="stylesheet" href="/static/styles.css">
-  <script src="/static/app.js" defer></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PA Caddie — Guided Review</title>
+<link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
-  <main class="app-shell">
-    <header class="topbar">
-      <div class="brand">CAREMARK</div>
-      <h1>PA Caddie <span>— Guided Review</span></h1>
-      <p class="role" id="role"></p>
-    </header>
-    <div id="error" role="alert" hidden></div>
-    <section class="case-summary" aria-label="Case summary" id="summary"></section>
-    <div class="workspace" id="workspace" hidden>
-      <aside class="sidebar">
-        <details class="side-section" id="member-section">
-          <summary>Member Info</summary>
-          <dl id="member-info"></dl>
-        </details>
-        <details class="side-section pa-section" open>
-          <summary>PA Info</summary>
-          <dl>
-            <dt>PAC</dt><dd id="pac"></dd>
-            <dt>PSG</dt><dd id="psg"></dd>
-          </dl>
-          <label class="urgent"><input id="urgent" type="checkbox" disabled> Urgent</label>
-        </details>
-        <section class="member-center">
-          <h2>Member Center</h2>
-          <button type="button" disabled><span aria-hidden="true">⌕</span> Member Search <span class="external" aria-hidden="true">↗</span></button>
-          <button type="button" disabled><span aria-hidden="true">▤</span> PA History <span class="external" aria-hidden="true">↗</span></button>
-          <button type="button" disabled><span aria-hidden="true">◷</span> Claim History <span class="external" aria-hidden="true">↗</span></button>
-          <p class="side-hint">Member Center links are not configured.</p>
-        </section>
-      </aside>
-      <section class="review" aria-label="Guided review steps" id="steps"></section>
+
+<!-- APPBAR -->
+<header class="appbar">
+  <span class="brand">CAREMARK</span>
+  <span class="bar-sep">|</span>
+  <span class="bar-title">PA Caddie — Guided Review</span>
+  <div class="bar-right"><span class="local-demo">Local demo</span><button class="export-btn" id="export-json" onclick="exportReview()" disabled>Export JSON</button>
+    <span class="bar-role" id="bar-role">Role: Technician &nbsp;|&nbsp; Queue: Pending Approval</span>
+  </div>
+</header>
+
+<!-- STRIP -->
+<div class="strip" id="strip"></div>
+
+<!-- LEG BAR -->
+<div class="leg-bar" id="leg-bar" style="display:none"></div>
+
+<!-- LAYOUT -->
+<div class="layout" id="layout">
+
+  <!-- LEFT PANEL -->
+  <aside class="left-rail" id="left-rail">
+
+    <!-- Member Info — collapsed by default -->
+    <div class="lsec">
+      <div class="lsec-hdr" onclick="toggleSec('mbr')">
+        <span class="lsec-ttl">Member Info</span>
+        <span class="lsec-icon" id="mbr-icon">▼</span>
+      </div>
+      <div class="lsec-body" id="mbr-body" style="display:none"></div>
     </div>
-    <footer>PA Caddie <span>Guided Review</span><span class="demo">Local preview · sample data</span></footer>
+
+    <!-- PA Info — expanded by default -->
+    <div class="lsec">
+      <div class="lsec-hdr" onclick="toggleSec('pai')">
+        <span class="lsec-ttl">PA Info</span>
+        <span class="lsec-icon" id="pai-icon">▲</span>
+      </div>
+      <div class="lsec-body" id="pai-body"></div>
+    </div>
+
+    <!-- Member Center -->
+    <div class="lsec">
+      <div class="lsec-hdr" style="cursor:default">
+        <span class="lsec-ttl">Member Center</span>
+      </div>
+      <div class="lsec-body" id="mc-body"></div>
+    </div>
+
+  </aside>
+
+  <!-- MAIN GUIDED WORKFLOW -->
+  <main class="wf-main">
+    <div class="wf-steps" id="wf-steps"></div>
   </main>
+
+</div>
+
+<!-- DOCUMENT MODAL -->
+<div class="doc-overlay" id="doc-modal" style="display:none" onclick="closeDocOverlay(event)">
+  <div class="doc-box">
+    <div class="doc-hdr">
+      <div>
+        <div class="doc-ttl" id="doc-ttl">Clinical Chart Note</div>
+        <div class="doc-sub">PA Caddie — retrieved from chart notes</div>
+      </div>
+      <button class="doc-close" onclick="closeDoc()">✕</button>
+    </div>
+    <pre id="doc-body" class="doc-pre"></pre>
+    <div class="doc-foot">
+      <button class="doc-dismiss" onclick="closeDoc()">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOOL MODAL (Member Center) -->
+<div class="tool-overlay" id="tool-modal" style="display:none" onclick="closeToolOverlay(event)">
+  <div class="tool-box">
+    <div class="tool-hdr">
+      <div>
+        <div class="tool-hdr-title" id="tool-ttl">Tool</div>
+        <div class="tool-hdr-sub" id="tool-sub">CVS Caremark</div>
+      </div>
+      <button class="tool-hdr-close" onclick="closeTool()">✕</button>
+    </div>
+    <div class="tool-body" id="tool-body"></div>
+  </div>
+</div>
+
+
+
+<script src="/static/loader.js"></script>
 </body>
 </html>

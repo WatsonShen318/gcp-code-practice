@@ -16,14 +16,16 @@ class AppTest(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertIn('text/html', response.headers['content-type'])
         self.assertIn('PA Caddie', response.text)
-        for asset in ('app.js', 'styles.css'):
+        for asset in ('app.js', 'styles.css', 'loader.js'):
             self.assertEqual(self.client.get(f'/static/{asset}').status_code, 200)
 
     def test_sample_case(self):
         response = self.client.get('/api/case')
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.json()['paNumber'], '26-123456')
-        self.assertEqual(len(response.json()['steps']), 6)
+        data = response.json()
+        self.assertEqual(data['schemaVersion'], 2)
+        self.assertEqual(data['cases'][0]['id'], '26-123456')
+        self.assertEqual(len(data['questionMetadata']), 57)
 
     def test_json_edits_are_read_on_next_request(self):
         with tempfile.TemporaryDirectory() as directory:
