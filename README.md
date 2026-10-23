@@ -13,7 +13,7 @@ python -m uvicorn app:app --reload --port 8081
 
 ## 文件和接口
 
-- `app.py`：`GET /` 返回应用；`GET /api/case` 每次请求读取 JSON。
+- `app.py`：`GET /` 返回应用；`GET /api/case` 每次请求读取 JSON；`GET /health` 返回 HTTP 200 和 `{"status":"ok"}`，供 CI/CD 和 GKE 健康检查使用。
 - `data/case.json`：schemaVersion 2，包含参考 HTML 的数据、57 个问题和跳转表。
 - `static/index.html`、`styles.css`：参考 HTML 的结构、样式与响应式适配。
 - `static/loader.js`：读取和检查 JSON，加载界面；失败时显示错误信息。

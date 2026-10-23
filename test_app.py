@@ -11,6 +11,11 @@ class AppTest(unittest.TestCase):
     def setUp(self):
         self.client = TestClient(app)
 
+    def test_health(self):
+        response = self.client.get('/health')
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json(), {'status': 'ok'})
+
     def test_home_and_assets(self):
         response = self.client.get('/')
         self.assertEqual(response.status_code, 200)
