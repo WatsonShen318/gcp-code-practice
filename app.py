@@ -5,10 +5,13 @@ from fastapi import FastAPI, HTTPException
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
+from access_control import install_access_control
+
 BASE_DIR = Path(__file__).resolve().parent
 DATA_FILE = BASE_DIR / "data" / "case.json"
 
 app = FastAPI()
+install_access_control(app)
 app.mount("/static", StaticFiles(directory=BASE_DIR / "static"), name="static")
 
 

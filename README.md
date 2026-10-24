@@ -69,3 +69,50 @@ Dockerfile 使用组织的 builder 和 distroless 镜像，在 builder 的 `/bui
 镜像默认监听 `8000`；Deployment、Service 的 targetPort 和探针需要与此一致。共享集群若在 Deployment 中配置了 command/args，它们会覆盖镜像默认入口；请确认仍使用 `python -m uvicorn app:app --app-dir /app --host 0.0.0.0 --port 8000`，且 volumeMount 不覆盖 `/app`。
 
 修改 Dockerfile 后需要重新构建并发布新镜像，再更新 Deployment 使用的镜像版本。仅重启使用旧镜像的 Pod 不会包含修复。组织私有基础镜像和集群需要在具备访问权限的环境中验证；仓库的本地测试不能替代最终镜像运行测试。
+
+## 邮箱与 AD Group 访问限制（独立于 SAGE）
+
+`access_control.py` 仅复用参考文件中的身份提取思路：公司 OAuth 登录后，读取经过签名验证的 access token 中的 `mail`/`email` 和 `groups`/`Groups`/`GROUPS`，需要时从公司 userinfo 接口补充。支持普通组名和 LDAP `CN=...`。不导入 `config.py` / `reference_email.py`，不使用 SAGE Cookie、应用权限映射、Spanner 或参考配置中的密钥。
+
+默认允许截图中的 11 个完整组名，任意一个匹配即可：
+
+```text
+app-paops-eng
+app-paops-pnp-eng
+app-paops-prod-eng
+app-paops-restrict-admin
+app-paops-restrict-eng
+app-paops-rnp-admin
+app-paops-rnp-eng
+clb-paops-rnp-editor
+clb-paops-rnp-read
+csm-paops-pnp-read
+csm-paops-rnp-read
+```
+
+匹配忽略大小写，使用完整组名，不按 `paops` 前缀放行。可用 `AUTH_ALLOWED_GROUPS`（逗号分隔）覆盖。上游必须返回这些组的组名或 LDAP CN；若上游只返回 Object ID，需要将允许列表改为完整 Object ID。本实现不会通过邮箱查目录，也不根据邮箱域名放行；组未返回或无法校验时拒绝访问。
+
+### 部署配置
+
+参考 `.env.example`，在 GKE 环境变量/Secret 中设置：
+
+- `AUTH_ENABLED=true`：启用限制。Docker 最终镜像默认开启；本机未设置时默认关闭，方便继续本地测试。开启但配置不全会拒绝启动，不会自动放行。
+- `SSO_CLIENT_ID`、`SSO_CLIENT_SECRET`：获授权用于本应用的公司 OAuth Client；不自动复用 SAGE 凭据。
+- `SSO_AUTHORIZE_URL`、`SSO_TOKEN_URL`、`SSO_USERINFO_URL`：公司认证端点。
+- `SSO_ISSUER`、`SSO_JWKS_URL`、`SSO_AUDIENCE`：access token 的发行方、签名公钥地址和预期 audience，用于 RS256 签名、发行方、受众、有效期验证。参考文件未包含完整的签名校验配置，需由平台提供。
+- `SSO_REDIRECT_URI=https://你的应用域名/auth/callback`：必须与公司 OAuth Client 注册的回调地址一致。
+- `AUTH_SESSION_SECRET`：本应用独立的随机密钥，至少 32 字符，放入 GKE Secret；所有副本使用相同值。
+
+代码不会自动加载 `.env.example`，不要提交真实密钥。正式环境使用 HTTPS；反向代理应保留本应用的根路径 `/auth/callback`，不要缓存应用内容。所有 Pod 必须共享相同会话密钥，才能处理负载均衡后的登录回调。
+
+### 访问与日志
+
+1. 未登录访问 `/` → `/auth/login` → 公司登录。已有公司会话时是否静默通过由公司认证服务决定。
+2. `/auth/callback` 交换并验证 Token，读取邮箱和组。Authlib 管理随机 state、nonce 和 PKCE。
+3. 命中允许组 → 设置本应用的 Secure/HttpOnly Cookie → 跳转 `/`；不命中 → **403**。
+4. 页面、静态资源、JSON 数据接口和 API 文档均受后端保护；未认证直接访问数据接口返回 **401**。
+5. `/health` 继续免登录返回 **200**，不影响集群探针。
+
+应用日志为 `access_check` JSON，记录时间、邮箱、允许/拒绝、原因和命中组，不输出 Token、Secret 或完整组列表；无法确认身份的请求 email 为 null。Uvicorn callback access log 会去除含授权 code 的查询参数；Ingress/外部日志由平台另行配置。
+
+会话最长 15 分钟且不超过 access token 有效期。组成员变更将在现有会话过期并重新登录后反映，不是实时目录查询。浏览器回调和签名测试使用模拟 SSO；生产激活仍需要上述配置以及公司端点的连通性、Client 回调登记和组声明授权。
