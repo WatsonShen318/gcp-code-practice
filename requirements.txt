@@ -1,5 +1,4 @@
 fastapi[standard]
-Authlib>=1.6.5,<2
-PyJWT[crypto]>=2.10.1,<3
+PyJWT>=2.10.1,<3
 httpx>=0.28.1,<1
 itsdangerous>=2.2,<3

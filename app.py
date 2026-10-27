@@ -5,13 +5,13 @@ from fastapi import FastAPI, HTTPException
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
-from access_control import install_access_control
+from ping_auth import install_ping_auth
 
 BASE_DIR = Path(__file__).resolve().parent
 DATA_FILE = BASE_DIR / "data" / "case.json"
 
 app = FastAPI()
-install_access_control(app)
+install_ping_auth(app)
 app.mount("/static", StaticFiles(directory=BASE_DIR / "static"), name="static")
 
 

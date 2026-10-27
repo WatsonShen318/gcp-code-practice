@@ -21,7 +21,7 @@ RUN --mount=type=secret,id=artifactory_user,env=ARTIFACTORY_USERNAME \
     && rm -f "$HOME/.netrc"
 
 COPY app.py .
-COPY access_control.py .
+COPY ping_auth.py .
 COPY static ./static
 COPY data ./data
 
@@ -32,7 +32,7 @@ FROM ${fromImage}
 
 COPY --from=builder /app/packages /app/packages
 COPY --from=builder /build/app.py /app/app.py
-COPY --from=builder /build/access_control.py /app/access_control.py
+COPY --from=builder /build/ping_auth.py /app/ping_auth.py
 COPY --from=builder /build/static /app/static
 COPY --from=builder /build/data /app/data
 

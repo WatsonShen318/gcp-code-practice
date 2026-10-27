@@ -70,11 +70,11 @@ Dockerfile 使用组织的 builder 和 distroless 镜像，在 builder 的 `/bui
 
 修改 Dockerfile 后需要重新构建并发布新镜像，再更新 Deployment 使用的镜像版本。仅重启使用旧镜像的 Pod 不会包含修复。组织私有基础镜像和集群需要在具备访问权限的环境中验证；仓库的本地测试不能替代最终镜像运行测试。
 
-## 邮箱与 AD Group 访问限制（独立于 SAGE）
+## Ping userinfo 与 AD Group 访问限制
 
-`access_control.py` 仅复用参考文件中的身份提取思路：公司 OAuth 登录后，读取经过签名验证的 access token 中的 `mail`/`email` 和 `groups`/`Groups`/`GROUPS`，需要时从公司 userinfo 接口补充。支持普通组名和 LDAP `CN=...`。不导入 `config.py` / `reference_email.py`，不使用 SAGE Cookie、应用权限映射、Spanner 或参考配置中的密钥。
+采用 PA Pulse 参考中的方法：公司 Ping 登录 → 用授权 code 换取 access token → 调用 HTTPS userinfo → 获取邮箱与 AD Group → 匹配允许组。access token 视为不透明字符串，不再要求它是 JWT，也不需要旧版的 Issuer/JWKS/Audience 配置。已删除旧认证模块、三个参考 ZIP、SAGE config 和 reference_email.py；应用界面与业务 JSON 保持不变。
 
-默认允许截图中的 11 个完整组名，任意一个匹配即可：
+`ping_auth.py` 合并 userinfo 的 `groups_cn` 和 `groups`；支持字符串、数组及 LDAP `CN=...`。匹配完整组名并忽略大小写，任意一个匹配即可：
 
 ```text
 app-paops-eng
@@ -90,29 +90,33 @@ csm-paops-pnp-read
 csm-paops-rnp-read
 ```
 
-匹配忽略大小写，使用完整组名，不按 `paops` 前缀放行。可用 `AUTH_ALLOWED_GROUPS`（逗号分隔）覆盖。上游必须返回这些组的组名或 LDAP CN；若上游只返回 Object ID，需要将允许列表改为完整 Object ID。本实现不会通过邮箱查目录，也不根据邮箱域名放行；组未返回或无法校验时拒绝访问。
+允许组为空、缺失或不匹配不会放行。这里没有参考项目“空允许列表即放行”的行为，也没有测试登录旁路。如果上游只返回组 Object ID，必须先调整允许名单；目前采用图片中的组名。群组查询来源始终是 Ping userinfo，不是根据用户输入的邮箱查询或放行。
 
-### 部署配置
+### 部署参数
 
-参考 `.env.example`，在 GKE 环境变量/Secret 中设置：
+示例见 `.env.example`。配置方式是 GKE 的环境变量/Secret，不会自动加载示例文件：
 
-- `AUTH_ENABLED=true`：启用限制。Docker 最终镜像默认开启；本机未设置时默认关闭，方便继续本地测试。开启但配置不全会拒绝启动，不会自动放行。
-- `SSO_CLIENT_ID`、`SSO_CLIENT_SECRET`：获授权用于本应用的公司 OAuth Client；不自动复用 SAGE 凭据。
-- `SSO_AUTHORIZE_URL`、`SSO_TOKEN_URL`、`SSO_USERINFO_URL`：公司认证端点。
-- `SSO_ISSUER`、`SSO_JWKS_URL`、`SSO_AUDIENCE`：access token 的发行方、签名公钥地址和预期 audience，用于 RS256 签名、发行方、受众、有效期验证。参考文件未包含完整的签名校验配置，需由平台提供。
-- `SSO_REDIRECT_URI=https://你的应用域名/auth/callback`：必须与公司 OAuth Client 注册的回调地址一致。
-- `AUTH_SESSION_SECRET`：本应用独立的随机密钥，至少 32 字符，放入 GKE Secret；所有副本使用相同值。
+| 配置 | 用途 |
+| --- | --- |
+| `AUTH_ENABLED` | Docker 镜像默认 `true`；本地未设置时为 `false`，可继续不登录进行页面开发 |
+| `SSO_CLIENT_ID` | 获授权用于本应用的公司 Ping Client ID |
+| `SSO_CLIENT_SECRET` | Client Secret，也兼容参考项目的 `sso_client_secret` 环境变量名 |
+| `REDIRECT_URI` | 本应用的 `https://你的域名/token`；须与 Ping Client 登记的回调一致 |
+| `SHARED_SECRET_KEY` | 本应用自己的随机会话密钥，至少 32 字符；放在 Secret，所有副本一致 |
+| `TOKEN_EXPIRATION_TIME` | 本地登录会话时长，默认 7200 秒，且不超过 Ping 返回的 expires_in |
+| `AUTH_URL`、`TOKEN_ENDPOINT`、`USERINFO_ENDPOINT` | 默认使用参考项目的公司生产 Ping 地址，可覆盖为当前环境的地址 |
 
-代码不会自动加载 `.env.example`，不要提交真实密钥。正式环境使用 HTTPS；反向代理应保留本应用的根路径 `/auth/callback`，不要缓存应用内容。所有 Pod 必须共享相同会话密钥，才能处理负载均衡后的登录回调。
+本实现使用 Basic Client Authentication、`openid groups profile email` scope 和 PKCE S256。Client 必须获准使用该回调与 scope，userinfo 必须返回当前用户的 `email`（或 mail）、`sub` 和目标组。客户端配置和真实公司端点连通性需由平台确认；本地自动测试不连接公司服务。不会复用参考应用的 Client ID、Secret 或会话密钥。
 
-### 访问与日志
+### 行为与日志
 
-1. 未登录访问 `/` → `/auth/login` → 公司登录。已有公司会话时是否静默通过由公司认证服务决定。
-2. `/auth/callback` 交换并验证 Token，读取邮箱和组。Authlib 管理随机 state、nonce 和 PKCE。
-3. 命中允许组 → 设置本应用的 Secure/HttpOnly Cookie → 跳转 `/`；不命中 → **403**。
-4. 页面、静态资源、JSON 数据接口和 API 文档均受后端保护；未认证直接访问数据接口返回 **401**。
-5. `/health` 继续免登录返回 **200**，不影响集群探针。
+- 未登录打开 `/` 跳到 `/login`，再进入公司 Ping。已有公司登录会话时，是否需要再次输入凭据由 Ping 决定。
+- `/token` 回调获取 userinfo：允许组成员设置 Secure/HttpOnly 会话 Cookie 并跳转页面；不匹配返回 **403**。
+- Cookie 验证和组检查覆盖页面、静态文件、数据接口和 API 文档；未认证直接访问数据接口返回 **401**。
+- `/health` 始终免登录返回 **200**。认证配置缺失时应用仍可启动并响应健康探针，其余入口返回 **503**，不会绕过权限检查放行。
+- `/logout` 清除本应用会话；不退出整个公司登录会话。
+- 日志输出 `access_check` JSON，包含时间、已验证邮箱、允许/拒绝、原因与命中组；不记录 Token、密码或完整组名单。Uvicorn 的 `/token` 请求日志去除查询参数，Ingress 日志需由平台设置。
+- 不将 access token/refresh token 放入浏览器会话；本地 Cookie 只保存邮箱、用户标识、命中组和有效期。登录 state 与 PKCE 信息放在独立的短期签名 Cookie 中。
+- 会话期间不会逐请求查询目录，组成员变更在会话过期并重新登录后体现。若需要更快生效，可降低 TOKEN_EXPIRATION_TIME。
 
-应用日志为 `access_check` JSON，记录时间、邮箱、允许/拒绝、原因和命中组，不输出 Token、Secret 或完整组列表；无法确认身份的请求 email 为 null。Uvicorn callback access log 会去除含授权 code 的查询参数；Ingress/外部日志由平台另行配置。
-
-会话最长 15 分钟且不超过 access token 有效期。组成员变更将在现有会话过期并重新登录后反映，不是实时目录查询。浏览器回调和签名测试使用模拟 SSO；生产激活仍需要上述配置以及公司端点的连通性、Client 回调登记和组声明授权。
+测试包含真实 HTTP 请求形态的 Mock Ping（Basic 认证、code 交换、userinfo、groups_cn/groups、403、state/PKCE、过期或伪造会话），不需要公司凭据。
