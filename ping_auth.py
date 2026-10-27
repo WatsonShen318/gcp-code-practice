@@ -63,9 +63,14 @@ class PingSettings:
     client_secret: str = field(default="", repr=False)
     redirect_uri: str = "https://pa-caddie-demo.pdev.cvshealth.com/token"
     session_secret: str = field(default="", repr=False)
-    auth_url: str = "https://authsvc.cvshealth.com/as/authorization.oauth2"
-    token_endpoint: str = "https://authsvc.cvshealth.com/as/token.oauth2"
-    userinfo_endpoint: str = "https://authsvc.cvshealth.com/idp/userinfo.openid"
+    # Dev SSO endpoints, from its OpenID configuration document.
+    auth_url: str = "https://authsvc-dev.cvshealth.com/as/authorization.oauth2"
+    token_endpoint: str = "https://authsvc-dev.cvshealth.com/as/token.oauth2"
+    userinfo_endpoint: str = "https://authsvc-dev.cvshealth.com/idp/userinfo.openid"
+    # Prod SSO endpoints (inactive; retain for a future approved change).
+    # auth_url: str = "https://authsvc.cvshealth.com/as/authorization.oauth2"
+    # token_endpoint: str = "https://authsvc.cvshealth.com/as/token.oauth2"
+    # userinfo_endpoint: str = "https://authsvc.cvshealth.com/idp/userinfo.openid"
     session_seconds: int = 7200
 
     @classmethod
