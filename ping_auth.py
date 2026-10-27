@@ -136,6 +136,32 @@ def failure(status, detail):
     return JSONResponse({"detail": detail}, status_code=status, headers={"Cache-Control": "no-store"})
 
 
+def check_ping_response(response, stage):
+    try:
+        response.raise_for_status()
+    except httpx.HTTPStatusError:
+        known_errors = {
+            "invalid_client", "invalid_grant", "unauthorized_client", "unsupported_grant_type",
+            "invalid_scope", "invalid_token", "insufficient_scope", "access_denied",
+            "invalid_request", "temporarily_unavailable", "server_error", "invalid_redirect_uri",
+        }
+        oauth_error = None
+        try:
+            payload = response.json()
+            value = payload.get("error") if isinstance(payload, dict) else None
+            if isinstance(value, str) and value in known_errors:
+                oauth_error = value
+        except ValueError:
+            pass
+        if oauth_error is None:
+            challenge = response.headers.get("www-authenticate", "")
+            oauth_error = next((value for value in sorted(known_errors) if f'error="{value}"' in challenge), None)
+        # No response bodies, error descriptions, request URLs, or credentials.
+        logger.error(json.dumps({"event": "ping_upstream_error", "stage": stage,
+                                 "status_code": response.status_code, "oauth_error": oauth_error}))
+        raise
+
+
 class PingAuth:
     cookie_name = "pa_caddie_ping"
     issuer = "pa-caddie-ping"
@@ -201,14 +227,14 @@ class PingAuth:
                 data={"grant_type": "authorization_code", "redirect_uri": self.settings.redirect_uri,
                       "code": code, "code_verifier": verifier},
             )
-            token_response.raise_for_status()
+            check_ping_response(token_response, "token_exchange")
             token_data = token_response.json()
             access_token = token_data.get("access_token")
             if not isinstance(access_token, str) or not access_token:
                 raise ValueError("Missing access token")
             info_response = await client.get(self.settings.userinfo_endpoint,
                                             headers={"Authorization": f"Bearer {access_token}"})
-            info_response.raise_for_status()
+            check_ping_response(info_response, "userinfo")
             info = info_response.json()
         if not isinstance(info, dict):
             raise ValueError("Invalid userinfo response")

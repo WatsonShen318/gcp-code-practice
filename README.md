@@ -121,6 +121,7 @@ csm-paops-rnp-read
 - `/logout` 清除本应用会话；不退出整个公司登录会话。
 - 日志输出 `access_check` JSON，包含时间、已验证邮箱、允许/拒绝、原因与命中组；不记录 Token、密码或完整组名单。Uvicorn 的 `/token` 请求日志去除查询参数，Ingress 日志需由平台设置。
 - 测试期间默认增加 `userinfo_debug` 日志：在权限判断前记录 userinfo 的字段名，以及邮箱和群组相关字段的实际值（包括 groups_cn/groups/PHGroup/memberOf 等），不输出 Token 或密钥。即使随后返回 403 也可在 Pod 日志中查看。设置 `AUTH_LOG_USERINFO=false` 可关闭此临时诊断。
+- Ping 返回 HTTP 错误时，`ping_upstream_error` 日志记录 `stage`（token_exchange 或 userinfo）、`status_code` 和标准 `oauth_error`；不输出响应正文、错误描述、授权码或凭据。用于区分换取 Token 失败和读取用户信息失败。
 - 不将 access token/refresh token 放入浏览器会话；本地 Cookie 只保存邮箱、用户标识、命中组和有效期。登录 state 与 PKCE 信息放在独立的短期签名 Cookie 中。
 - 会话期间不会逐请求查询目录，组成员变更在会话过期并重新登录后体现。若需要更快生效，可降低 TOKEN_EXPIRATION_TIME。
 
