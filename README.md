@@ -103,14 +103,14 @@ csm-paops-rnp-read
 | `USE_SECRET_MANAGER` | 默认 `1`，使用 Pod 的 Google 默认凭据读取同一 Secret；设为 `0` 时仅使用注入的 Client Secret |
 | `GCP_PROJECT_ID`、`SECRET_ID`、`SECRET_VERSION` | 默认 `edp-pdev-restrict-paops`、`paops-streamlit-pdev`、`latest`，与原 ZIP 相同 |
 | `SSO_CLIENT_SECRET` | 可选的环境变量回退值，也接受 `sso_client_secret`；正常从 Secret JSON 的 `sso_client_secret` 字段自动读取 |
-| `REDIRECT_URI` | 本应用的 `https://你的域名/token`；须与 Ping Client 登记的回调一致 |
+| `REDIRECT_URI` | 默认 `https://pa-caddie-demo.pdev.cvshealth.com/token`，可覆盖；须与 Ping Client 登记的回调一致 |
 | `SHARED_SECRET_KEY` | 可选；未设置时从读取的 Client Secret、Client ID、回调地址派生本应用的稳定会话密钥；不复用原 ZIP 的公开默认字符串 |
 | `TOKEN_EXPIRATION_TIME` | 本地登录会话时长，默认 7200 秒，且不超过 Ping 返回的 expires_in |
 | `AUTH_URL`、`TOKEN_ENDPOINT`、`USERINFO_ENDPOINT` | 默认使用参考项目的公司生产 Ping 地址，可覆盖为当前环境的地址 |
 
 完整默认 Secret 路径是 `projects/edp-pdev-restrict-paops/secrets/paops-streamlit-pdev/versions/latest`。`secret_loader.py` 与原项目一样通过 Google Application Default Credentials（GKE 中的 Pod 身份）调用 Secret Manager，解析 JSON 并读取 `sso_client_secret`，不输出真实密钥。密钥内容只在进程内使用，不写文件。多个副本使用相同 Secret 和回调地址会得到相同会话密钥；Secret 轮换后重启的副本会要求已有用户重新登录。镜像构建及默认本地开发不会访问 Secret Manager。
 
-本实现使用 Basic Client Authentication、`openid groups profile email` scope 和 PKCE S256。按要求复用原 Client 和原 Secret，但回调必须是我们的应用地址，而不是 PA Pulse 的地址。`REDIRECT_URI` 仍须配置并获该 Client 允许，userinfo 必须返回当前用户的 `email`（或 mail）、`sub` 和目标组。客户端配置和真实公司端点连通性需由平台确认；本地自动测试使用 Mock Secret Manager 和 Mock Ping，不读取公司密钥。
+本实现使用 Basic Client Authentication、`openid groups profile email` scope 和 PKCE S256。按要求复用原 Client 和原 Secret，回调默认使用 `https://pa-caddie-demo.pdev.cvshealth.com/token`。该回调须获原 Client 允许，userinfo 必须返回当前用户的 `email`（或 mail）、`sub` 和目标组。客户端配置和真实公司端点连通性需由平台确认；本地自动测试使用 Mock Secret Manager 和 Mock Ping，不读取公司密钥。
 
 ### 行为与日志
 

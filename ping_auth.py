@@ -61,7 +61,7 @@ class PingSettings:
     enabled: bool = False
     client_id: str = "APM0015442"
     client_secret: str = field(default="", repr=False)
-    redirect_uri: str = ""
+    redirect_uri: str = "https://pa-caddie-demo.pdev.cvshealth.com/token"
     session_secret: str = field(default="", repr=False)
     auth_url: str = "https://authsvc.cvshealth.com/as/authorization.oauth2"
     token_endpoint: str = "https://authsvc.cvshealth.com/as/token.oauth2"
@@ -76,7 +76,7 @@ class PingSettings:
         settings = cls(
             enabled=enabled == "true", client_id=os.getenv("SSO_CLIENT_ID") or cls.client_id,
             client_secret=os.getenv("SSO_CLIENT_SECRET") or os.getenv("sso_client_secret", ""),
-            redirect_uri=os.getenv("REDIRECT_URI", ""), session_secret=os.getenv("SHARED_SECRET_KEY", ""),
+            redirect_uri=os.getenv("REDIRECT_URI") or cls.redirect_uri, session_secret=os.getenv("SHARED_SECRET_KEY", ""),
             auth_url=os.getenv("AUTH_URL", cls.auth_url),
             token_endpoint=os.getenv("TOKEN_ENDPOINT", cls.token_endpoint),
             userinfo_endpoint=os.getenv("USERINFO_ENDPOINT", cls.userinfo_endpoint),
