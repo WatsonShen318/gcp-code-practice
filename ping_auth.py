@@ -19,6 +19,8 @@ from fastapi import Request
 from fastapi.responses import JSONResponse, RedirectResponse
 from starlette.middleware.sessions import SessionMiddleware
 
+from secret_loader import load_client_secret
+
 logger = logging.getLogger("uvicorn.error")
 ALLOWED_GROUPS = frozenset({
     "app-paops-eng", "app-paops-pnp-eng", "app-paops-prod-eng",
@@ -57,7 +59,7 @@ def extract_groups(userinfo):
 @dataclass
 class PingSettings:
     enabled: bool = False
-    client_id: str = ""
+    client_id: str = "APM0015442"
     client_secret: str = field(default="", repr=False)
     redirect_uri: str = ""
     session_secret: str = field(default="", repr=False)
@@ -71,8 +73,8 @@ class PingSettings:
         enabled = os.getenv("AUTH_ENABLED", "false").strip().lower()
         if enabled not in {"true", "false"}:
             raise ValueError("AUTH_ENABLED must be true or false")
-        return cls(
-            enabled=enabled == "true", client_id=os.getenv("SSO_CLIENT_ID", ""),
+        settings = cls(
+            enabled=enabled == "true", client_id=os.getenv("SSO_CLIENT_ID") or cls.client_id,
             client_secret=os.getenv("SSO_CLIENT_SECRET") or os.getenv("sso_client_secret", ""),
             redirect_uri=os.getenv("REDIRECT_URI", ""), session_secret=os.getenv("SHARED_SECRET_KEY", ""),
             auth_url=os.getenv("AUTH_URL", cls.auth_url),
@@ -80,6 +82,14 @@ class PingSettings:
             userinfo_endpoint=os.getenv("USERINFO_ENDPOINT", cls.userinfo_endpoint),
             session_seconds=int(os.getenv("TOKEN_EXPIRATION_TIME", "7200")),
         )
+        if settings.enabled:
+            settings.client_secret = load_client_secret(settings.client_secret)
+            if settings.client_secret and not settings.session_secret:
+                # A stable, application-specific key shared by all replicas. Do not
+                # reuse the public placeholder session key from the reference ZIP.
+                context = "pa-caddie/session/v1\0" + settings.client_id + "\0" + settings.redirect_uri
+                settings.session_secret = hmac.new(settings.client_secret.encode(), context.encode(), hashlib.sha256).hexdigest()
+        return settings
 
     def validate(self):
         required = {"SSO_CLIENT_ID": self.client_id, "SSO_CLIENT_SECRET": self.client_secret,
