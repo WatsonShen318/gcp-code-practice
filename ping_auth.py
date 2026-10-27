@@ -63,14 +63,14 @@ class PingSettings:
     client_secret: str = field(default="", repr=False)
     redirect_uri: str = "https://pa-caddie-demo.pdev.cvshealth.com/token"
     session_secret: str = field(default="", repr=False)
-    # Dev SSO endpoints, from its OpenID configuration document.
-    auth_url: str = "https://authsvc-dev.cvshealth.com/as/authorization.oauth2"
-    token_endpoint: str = "https://authsvc-dev.cvshealth.com/as/token.oauth2"
-    userinfo_endpoint: str = "https://authsvc-dev.cvshealth.com/idp/userinfo.openid"
-    # Prod SSO endpoints (inactive; retain for a future approved change).
-    # auth_url: str = "https://authsvc.cvshealth.com/as/authorization.oauth2"
-    # token_endpoint: str = "https://authsvc.cvshealth.com/as/token.oauth2"
-    # userinfo_endpoint: str = "https://authsvc.cvshealth.com/idp/userinfo.openid"
+    # Prod SSO endpoints. Enable authentication after Ping approves the callback.
+    auth_url: str = "https://authsvc.cvshealth.com/as/authorization.oauth2"
+    token_endpoint: str = "https://authsvc.cvshealth.com/as/token.oauth2"
+    userinfo_endpoint: str = "https://authsvc.cvshealth.com/idp/userinfo.openid"
+    # Dev SSO endpoints (inactive).
+    # auth_url: str = "https://authsvc-dev.cvshealth.com/as/authorization.oauth2"
+    # token_endpoint: str = "https://authsvc-dev.cvshealth.com/as/token.oauth2"
+    # userinfo_endpoint: str = "https://authsvc-dev.cvshealth.com/idp/userinfo.openid"
     session_seconds: int = 7200
 
     @classmethod
@@ -211,7 +211,7 @@ class PingAuth:
         request.session["ping_login"] = {"state": state, "verifier": verifier, "created": time.time()}
         challenge = base64.urlsafe_b64encode(hashlib.sha256(verifier.encode()).digest()).rstrip(b"=").decode()
         params = urlencode({"response_type": "code", "client_id": self.settings.client_id,
-                            "redirect_uri": self.settings.redirect_uri, "scope": "openid profile email PHGroup",
+                            "redirect_uri": self.settings.redirect_uri, "scope": "openid groups profile email",
                             "state": state, "code_challenge": challenge, "code_challenge_method": "S256"})
         response = RedirectResponse(self.settings.auth_url + "?" + params, status_code=302)
         response.headers["Cache-Control"] = "no-store"

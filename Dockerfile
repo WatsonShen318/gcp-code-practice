@@ -41,7 +41,7 @@ COPY --from=builder /build/data /app/data
 WORKDIR /app
 
 ENV PYTHONPATH=/app:/app/packages \
-    AUTH_ENABLED=true \
+    AUTH_ENABLED=false \
     PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1
 

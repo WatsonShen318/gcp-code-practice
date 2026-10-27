@@ -98,7 +98,7 @@ csm-paops-rnp-read
 
 | 配置 | 用途 |
 | --- | --- |
-| `AUTH_ENABLED` | Docker 镜像默认 `true`；本地未设置时为 `false`，可继续不登录进行页面开发 |
+| `AUTH_ENABLED` | 当前 Docker 镜像及本地默认 `false`，直接展示页面；设为 `true` 开启 Ping 登录和 AD Group 检查 |
 | `SSO_CLIENT_ID` | 默认沿用原 ZIP 的 `APM0015442`，可覆盖 |
 | `USE_SECRET_MANAGER` | 默认 `1`，使用 Pod 的 Google 默认凭据读取同一 Secret；设为 `0` 时仅使用注入的 Client Secret |
 | `GCP_PROJECT_ID`、`SECRET_ID`、`SECRET_VERSION` | 默认 `edp-pdev-restrict-paops`、`paops-streamlit-pdev`、`latest`，与原 ZIP 相同 |
@@ -106,13 +106,15 @@ csm-paops-rnp-read
 | `REDIRECT_URI` | 默认 `https://pa-caddie-demo.pdev.cvshealth.com/token`，可覆盖；须与 Ping Client 登记的回调一致 |
 | `SHARED_SECRET_KEY` | 可选；未设置时从读取的 Client Secret、Client ID、回调地址派生本应用的稳定会话密钥；不复用原 ZIP 的公开默认字符串 |
 | `TOKEN_EXPIRATION_TIME` | 本地登录会话时长，默认 7200 秒，且不超过 Ping 返回的 expires_in |
-| `AUTH_URL`、`TOKEN_ENDPOINT`、`USERINFO_ENDPOINT` | 默认使用 `authsvc-dev.cvshealth.com` 的 Dev SSO 地址；Prod 地址已在代码和 `.env.example` 中注释保留 |
+| `AUTH_URL`、`TOKEN_ENDPOINT`、`USERINFO_ENDPOINT` | 默认使用 `authsvc.cvshealth.com` 的 Prod SSO 地址；Dev 地址在代码和 `.env.example` 中注释保留 |
 
 完整默认 Secret 路径是 `projects/edp-pdev-restrict-paops/secrets/paops-streamlit-pdev/versions/latest`。`secret_loader.py` 与原项目一样通过 Google Application Default Credentials（GKE 中的 Pod 身份）调用 Secret Manager，解析 JSON 并读取 `sso_client_secret`，不输出真实密钥。密钥内容只在进程内使用，不写文件。多个副本使用相同 Secret 和回调地址会得到相同会话密钥；Secret 轮换后重启的副本会要求已有用户重新登录。镜像构建及默认本地开发不会访问 Secret Manager。
 
-本实现使用 Basic Client Authentication、`openid profile email PHGroup` scope 和 PKCE S256。当前默认使用 Dev SSO，Client ID、Secret 路径及回调保持原配置，回调为 `https://pa-caddie-demo.pdev.cvshealth.com/token`。需确认该 Client 和 Secret 在 Dev 有效，且 Dev 允许此回调；userinfo 必须返回当前用户的 `email`（或 mail）、`sub` 和目标组。本地自动测试使用 Mock Secret Manager 和 Mock Ping，不读取公司密钥。若 Deployment 已设置上述三个端点环境变量，需要同步改为 Dev 或删除覆盖值，否则环境变量仍会覆盖代码默认值。
+本实现恢复原先 Prod 配置：Basic Client Authentication、`openid groups profile email` scope 和 PKCE S256。Client ID、Secret 路径及回调保持不变，回调为 `https://pa-caddie-demo.pdev.cvshealth.com/token`。当前 `AUTH_ENABLED=false`，用于前端开发：不跳转登录、不读取 SSO Secret，也不检查 AD Group，页面和数据接口直接可访问。完成 Prod Ping 回调 Change Request 后，在 GKE Deployment 中设置 `AUTH_ENABLED=true` 并重启 Pod 即可开启认证；userinfo 必须返回当前用户的 `email`（或 mail）、`sub` 和目标组。若 Deployment 已设置 `AUTH_ENABLED=true`，它会覆盖镜像默认值，当前需显式改为 `false`。若 Deployment 已设置三个端点环境变量，也需同步改为 Prod 或删除覆盖值，否则仍会覆盖代码默认值。
 
 ### 行为与日志
+
+以下认证行为适用于 `AUTH_ENABLED=true`。
 
 - 未登录打开 `/` 跳到 `/login`，再进入公司 Ping。已有公司登录会话时，是否需要再次输入凭据由 Ping 决定。
 - `/token` 回调获取 userinfo：允许组成员设置 Secure/HttpOnly 会话 Cookie 并跳转页面；不匹配返回 **403**。

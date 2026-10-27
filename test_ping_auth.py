@@ -71,7 +71,7 @@ class PingAuthTest(unittest.TestCase):
         response = self.client.get("/login")
         self.assertEqual(response.status_code, 302)
         params = parse_qs(urlsplit(response.headers["location"]).query)
-        self.assertEqual(params["scope"], ["openid profile email PHGroup"])
+        self.assertEqual(params["scope"], ["openid groups profile email"])
         self.assertEqual(params["code_challenge_method"], ["S256"])
         self.challenge = params["code_challenge"][0]
         return params["state"][0]
