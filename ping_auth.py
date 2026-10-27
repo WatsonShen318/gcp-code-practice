@@ -185,7 +185,7 @@ class PingAuth:
         request.session["ping_login"] = {"state": state, "verifier": verifier, "created": time.time()}
         challenge = base64.urlsafe_b64encode(hashlib.sha256(verifier.encode()).digest()).rstrip(b"=").decode()
         params = urlencode({"response_type": "code", "client_id": self.settings.client_id,
-                            "redirect_uri": self.settings.redirect_uri, "scope": "openid groups profile email",
+                            "redirect_uri": self.settings.redirect_uri, "scope": "openid profile email PHGroup",
                             "state": state, "code_challenge": challenge, "code_challenge_method": "S256"})
         response = RedirectResponse(self.settings.auth_url + "?" + params, status_code=302)
         response.headers["Cache-Control"] = "no-store"
@@ -210,6 +210,17 @@ class PingAuth:
                                             headers={"Authorization": f"Bearer {access_token}"})
             info_response.raise_for_status()
             info = info_response.json()
+        if not isinstance(info, dict):
+            raise ValueError("Invalid userinfo response")
+        if os.getenv("AUTH_LOG_USERINFO", "true").lower() == "true":
+            # Temporary diagnostics before authorization, so rejected users can
+            # still see which group claims Ping actually supplied in Pod logs.
+            debug_info = {
+                key: value for key, value in info.items()
+                if (key.casefold() in {"email", "mail", "memberof"} or "group" in key.casefold())
+                and not any(word in key.casefold() for word in ("token", "secret", "password", "credential", "authorization"))
+            }
+            logger.info(json.dumps({"event": "userinfo_debug", "claim_names": sorted(info), "userinfo": debug_info}))
         email, subject = info.get("email") or info.get("mail"), info.get("sub")
         if not isinstance(email, str) or not email.strip() or not isinstance(subject, str) or not subject:
             raise ValueError("Userinfo must contain email and subject")

@@ -110,7 +110,7 @@ csm-paops-rnp-read
 
 完整默认 Secret 路径是 `projects/edp-pdev-restrict-paops/secrets/paops-streamlit-pdev/versions/latest`。`secret_loader.py` 与原项目一样通过 Google Application Default Credentials（GKE 中的 Pod 身份）调用 Secret Manager，解析 JSON 并读取 `sso_client_secret`，不输出真实密钥。密钥内容只在进程内使用，不写文件。多个副本使用相同 Secret 和回调地址会得到相同会话密钥；Secret 轮换后重启的副本会要求已有用户重新登录。镜像构建及默认本地开发不会访问 Secret Manager。
 
-本实现使用 Basic Client Authentication、`openid groups profile email` scope 和 PKCE S256。当前默认使用 Dev SSO，Client ID、Secret 路径及回调保持原配置，回调为 `https://pa-caddie-demo.pdev.cvshealth.com/token`。需确认该 Client 和 Secret 在 Dev 有效，且 Dev 允许此回调；userinfo 必须返回当前用户的 `email`（或 mail）、`sub` 和目标组。本地自动测试使用 Mock Secret Manager 和 Mock Ping，不读取公司密钥。若 Deployment 已设置上述三个端点环境变量，需要同步改为 Dev 或删除覆盖值，否则环境变量仍会覆盖代码默认值。
+本实现使用 Basic Client Authentication、`openid profile email PHGroup` scope 和 PKCE S256。当前默认使用 Dev SSO，Client ID、Secret 路径及回调保持原配置，回调为 `https://pa-caddie-demo.pdev.cvshealth.com/token`。需确认该 Client 和 Secret 在 Dev 有效，且 Dev 允许此回调；userinfo 必须返回当前用户的 `email`（或 mail）、`sub` 和目标组。本地自动测试使用 Mock Secret Manager 和 Mock Ping，不读取公司密钥。若 Deployment 已设置上述三个端点环境变量，需要同步改为 Dev 或删除覆盖值，否则环境变量仍会覆盖代码默认值。
 
 ### 行为与日志
 
@@ -120,6 +120,7 @@ csm-paops-rnp-read
 - `/health` 始终免登录返回 **200**。认证配置缺失时应用仍可启动并响应健康探针，其余入口返回 **503**，不会绕过权限检查放行。
 - `/logout` 清除本应用会话；不退出整个公司登录会话。
 - 日志输出 `access_check` JSON，包含时间、已验证邮箱、允许/拒绝、原因与命中组；不记录 Token、密码或完整组名单。Uvicorn 的 `/token` 请求日志去除查询参数，Ingress 日志需由平台设置。
+- 测试期间默认增加 `userinfo_debug` 日志：在权限判断前记录 userinfo 的字段名，以及邮箱和群组相关字段的实际值（包括 groups_cn/groups/PHGroup/memberOf 等），不输出 Token 或密钥。即使随后返回 403 也可在 Pod 日志中查看。设置 `AUTH_LOG_USERINFO=false` 可关闭此临时诊断。
 - 不将 access token/refresh token 放入浏览器会话；本地 Cookie 只保存邮箱、用户标识、命中组和有效期。登录 state 与 PKCE 信息放在独立的短期签名 Cookie 中。
 - 会话期间不会逐请求查询目录，组成员变更在会话过期并重新登录后体现。若需要更快生效，可降低 TOKEN_EXPIRATION_TIME。
 
