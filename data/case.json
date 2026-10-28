@@ -261,8 +261,7 @@
     "6": {
       "s": "Requesting > plan allowance/month?",
       "f": "Does the patient require MORE than the plan allowance per month of any of the following: A) 1 package/4 pens of Wegovy (semaglutide) 0.25 mg/0.5 mL injection, B) 1 package/4 pens of Wegovy (semaglutide) 0.5 mg/0.5 mL injection, C) 1 package/4 pens of Wegovy (semaglutide) 1 mg/0.5 mL injection, D) 1 package/4 pens of Wegovy (semaglutide) 1.7 mg/0.75 mL injection, E) 1 package/4 pens of Wegovy (semaglutide) 2.4 mg/0.75 mL injection, F) 1 package/4 pens of Wegovy (semaglutide) HD 7.2 mg/0.75 mL, G) 30 tablets of Wegovy (semaglutide)?",
-      "auto": true,
-      "ev": "Test claim: no quantity reject returned. 30 tablets for 30 days is within the plan allowance of 30 tablets per month."
+      "auto": true
     },
     "7": {
       "s": "Weight mgmt program ≥6 months prior?",
@@ -327,20 +326,17 @@
     "19": {
       "s": "Is this Wegovy injection?",
       "f": "Is this request for Wegovy (semaglutide) injection?",
-      "auto": true,
-      "ev": "Drug confirmed as WEGOVY (semaglutide) injection per drug record and prescriber submission."
+      "auto": true
     },
     "20": {
       "s": "Requesting > plan allowance (injection)?",
       "f": "Does the patient require MORE than the plan allowance of 1 package/4 pens per month of any of the following: A) Wegovy 0.25 mg/0.5 mL injection, B) Wegovy 0.5 mg/0.5 mL injection, C) Wegovy 1 mg/0.5 mL injection, D) Wegovy 1.7 mg/0.75 mL injection, E) Wegovy 2.4 mg/0.75 mL injection, F) Wegovy HD 7.2 mg/0.75 mL injection?",
-      "auto": true,
-      "ev": "Test claim: no quantity reject. Plan allowance 1 pkg/4 pens per month — within limit."
+      "auto": true
     },
     "21": {
       "s": "Requesting > plan allowance (tablet)?",
       "f": "Does the patient require MORE than the plan allowance of 30 tablets per month of Wegovy (semaglutide)?",
-      "auto": true,
-      "ev": "Test claim: no quantity reject. Plan allowance 30 tablets per month — within limit."
+      "auto": true
     },
     "22": {
       "s": "Patient age 12–17?",
@@ -350,8 +346,7 @@
     "23": {
       "s": "HD 7.2 mg or tablet form requested?",
       "f": "Is this request for ANY of the following: A) Wegovy (semaglutide) HD 7.2 mg/0.75 mL injection, B) Wegovy (semaglutide) tablets?",
-      "auto": true,
-      "ev": "Drug confirmed as Wegovy 2.4 mg injection — not HD 7.2 mg or tablet formulation."
+      "auto": true
     },
     "24": {
       "s": "Continuation of therapy?",
@@ -371,8 +366,7 @@
     "27": {
       "s": "Requesting > plan allowance?",
       "f": "Does the patient require MORE than the plan allowance of 1 package/4 pens of any of the following per month: A) Wegovy 0.25 mg/0.5 mL, B) Wegovy 0.5 mg/0.5 mL, C) Wegovy 1 mg/0.5 mL, D) Wegovy 1.7 mg/0.75 mL, E) Wegovy 2.4 mg/0.75 mL injection?",
-      "auto": true,
-      "ev": "Test claim: no quantity reject. Within plan allowance."
+      "auto": true
     },
     "28": {
       "s": "Weight mgmt program ≥6 months prior?",
@@ -392,8 +386,7 @@
     "31": {
       "s": "Requesting > plan allowance?",
       "f": "Does the patient require MORE than the plan allowance of 1 package/4 pens of any of the following per month: A) Wegovy 0.25 mg/0.5 mL, B) Wegovy 0.5 mg/0.5 mL, C) Wegovy 1 mg/0.5 mL, D) Wegovy 1.7 mg/0.75 mL, E) Wegovy 2.4 mg/0.75 mL injection?",
-      "auto": true,
-      "ev": "Test claim: no quantity reject. Within plan allowance."
+      "auto": true
     },
     "32": {
       "s": "CV risk reduction indication?",
@@ -407,8 +400,7 @@
     "34": {
       "s": "Is this Wegovy HD 7.2 mg injection?",
       "f": "Is this request for Wegovy (semaglutide) HD 7.2 mg injection?",
-      "auto": true,
-      "ev": "Drug confirmed as Wegovy 2.4 mg/0.75 mL — not HD 7.2 mg formulation."
+      "auto": true
     },
     "35": {
       "s": "Established CV disease (specific history)?",
@@ -431,8 +423,7 @@
     "39": {
       "s": "Requesting > plan allowance?",
       "f": "Does the patient require MORE than the plan allowance per month of any of the following: A) 1 package/4 pens Wegovy 0.25 mg/0.5 mL, B) 0.5 mg/0.5 mL, C) 1 mg/0.5 mL, D) 1.7 mg/0.75 mL, E) 2.4 mg/0.75 mL injection, F) 30 tablets Wegovy?",
-      "auto": true,
-      "ev": "Test claim: no quantity reject. Within plan allowance."
+      "auto": true
     },
     "40": {
       "s": "Baseline BMI ≥27 kg/m²?",
@@ -461,8 +452,7 @@
     "45": {
       "s": "Requesting > plan allowance?",
       "f": "Does the patient require MORE than the plan allowance per month of any of the following: A) 1 package/4 pens Wegovy 0.25 mg/0.5 mL, B) 0.5 mg/0.5 mL, C) 1 mg/0.5 mL, D) 1.7 mg/0.75 mL, E) 2.4 mg/0.75 mL injection, F) 30 tablets Wegovy?",
-      "auto": true,
-      "ev": "Test claim: no quantity reject. Within plan allowance."
+      "auto": true
     },
     "46": {
       "s": "MASH / liver fibrosis indication?",
@@ -476,8 +466,7 @@
     "48": {
       "s": "HD 7.2 mg or tablet form?",
       "f": "Is this request for ANY of the following: A) Wegovy (semaglutide) HD 7.2 mg injection, B) Wegovy (semaglutide) tablets?",
-      "auto": true,
-      "ev": "Drug confirmed as Wegovy 2.4 mg injection — not HD 7.2 mg or tablet formulation."
+      "auto": true
     },
     "49": {
       "s": "Continuation of therapy?",
@@ -500,8 +489,7 @@
     "53": {
       "s": "Requesting > plan allowance?",
       "f": "Does the patient require MORE than the plan allowance of 1 package/4 pens of any of the following per month: A) Wegovy 0.25 mg/0.5 mL, B) Wegovy 0.5 mg/0.5 mL, C) Wegovy 1 mg/0.5 mL, D) Wegovy 1.7 mg/0.75 mL, E) Wegovy 2.4 mg/0.75 mL injection?",
-      "auto": true,
-      "ev": "Test claim: no quantity reject. Within plan allowance."
+      "auto": true
     },
     "54": {
       "s": "Prescribed by GI/hepatologist?",
@@ -521,54 +509,80 @@
     "57": {
       "s": "Requesting > plan allowance?",
       "f": "Does the patient require MORE than the plan allowance of 1 package/4 pens of any of the following per month: A) Wegovy 0.25 mg/0.5 mL, B) Wegovy 0.5 mg/0.5 mL, C) Wegovy 1 mg/0.5 mL, D) Wegovy 1.7 mg/0.75 mL, E) Wegovy 2.4 mg/0.75 mL injection?",
-      "auto": true,
-      "ev": "Test claim: no quantity reject. Within plan allowance."
+      "auto": true
     }
   },
   "cases": [
     {
-      "id": "26-123456",
+      "id": "26-900000001",
+      "scenario": "Continuation: weight reduction",
+      "synthetic": true,
+      "attachments": [
+        {
+          "ATCHM_ID": "DEMO-1-progress-note.pdf",
+          "filename": "progress-note.pdf",
+          "ATCHM_DESC": "Synthetic progress note",
+          "CRTE_TS": "2026-10-20T10:00:00",
+          "CNTNT_TYP_CD": "application/pdf",
+          "question_numbers": [
+            3
+          ],
+          "url": "/static/documents/26-900000001/progress-note.pdf"
+        },
+        {
+          "ATCHM_ID": "DEMO-1-weight-record.pdf",
+          "filename": "weight-record.pdf",
+          "ATCHM_DESC": "Synthetic weight record",
+          "CRTE_TS": "2026-10-20T10:00:00",
+          "CNTNT_TYP_CD": "application/pdf",
+          "question_numbers": [
+            4,
+            5
+          ],
+          "url": "/static/documents/26-900000001/weight-record.pdf"
+        }
+      ],
       "meta": {
         "drug": "Wegovy Tablet (semaglutide)",
-        "submittedDrug": "Wegovy 25MG OR TABS",
+        "submittedDrug": "WEGOVY 25MG OR TABS",
         "requestedDrug": "Wegovy Tablet (semaglutide)",
-        "cls": "PAC131011 — Weight Loss Wegovy PA with Limit",
-        "dx": "Weight management, Adult",
+        "cls": "DEMO-PAC - Weight management demo",
+        "dx": "Fictional weight management scenario",
         "lob": "Commercial",
         "origin": "ePA",
-        "ref": "4774-C",
-        "name": "Weight Loss Wegovy PA with Limit CMK STD 06-2026",
-        "client": "Aetna — CHART ASP — SI",
-        "qset": "255357",
+        "ref": "DEMO-REF-001",
+        "name": "Synthetic weight management criteria",
+        "client": "SYNTHETIC PLAN",
+        "qset": "DEMO-QSET",
         "ndc": "00169442531",
-        "gpi": "612520700003**",
-        "urgent": true
+        "gpi": "6125207000",
+        "urgent": false
       },
       "member": {
-        "id": "AET-6120485",
-        "name": "Robert Hensley",
-        "dob": "03/02/1971",
-        "sex": "Male",
-        "pag": "AETNA — CHART ASP — SI"
+        "id": "DEMO-MEMBER-001",
+        "name": "Synthetic Member 01",
+        "dob": "04/12/1982",
+        "sex": "Female",
+        "pag": "SYNTHETIC PLAN"
       },
       "claim": {
         "code": "75",
         "msg": "Prior Authorization Required",
-        "dt": "2026-07-23",
+        "dt": "2026-10-20",
         "drug": "WEGOVY 25MG OR TABS",
         "qty": "30 tablets",
         "days": "30"
       },
-      "phNote": "✓ No active approved PA found for this member and drug. 1 prior PA on this criteria (01/19/26); 11 prior PAs in the last 24 months across all criteria.",
+      "phNote": "No active approved PA. One synthetic prior approval expired on 09/01/2026.",
       "legs": [
         {
           "role": "Technician",
-          "rev": "C123456",
-          "aht": "2:16",
-          "ahtS": 136,
+          "rev": "DEMO-REVIEWER",
+          "aht": "",
+          "ahtS": 0,
           "queue": "Pending Approval",
           "isAgent": false,
-          "fallout": "Automated ePA review stopped at step 1150 — could not validate the outcome code from the criteria form. Case routed to Pending Approval for a manual Verify Criteria Form check.",
+          "fallout": "Synthetic ePA stopped at step 1150. Manual criteria review required.",
           "initAns": {
             "1": "T",
             "2": "T",
@@ -578,17 +592,379 @@
             "6": "F"
           },
           "comments": {
-            "4": "1/26/24 174lbs now 128lbs"
+            "4": "Baseline 2026-04-15: 220 lb; current 2026-10-15: 198 lb. Synthetic example."
           },
           "notes": {
-            "2": "DOB: 03/02/1971. Age: 55 years. Meets 18+ threshold.",
-            "3": "Claims history: 4 consecutive paid fills of Wegovy 25 mg tablets (2026-03-30 to 2026-06-25), 30 tablets each; 11 paid fills of Wegovy in the last 24 months.",
-            "5": "1 ePA attachment on file, received 07/23/2026 11:23 AM."
+            "2": "DOB: 1982-04-12. Age at case creation: 44 years.",
+            "3": "Four synthetic paid fills from June through September 2026.",
+            "5": "Progress note and weight record attached."
           },
           "docs": {
-            "3": "CLINICAL PROGRESS NOTE — STABLE DOSE DOCUMENTATION\nSOURCE: ePA Attachment (1 of 1), page 1\n════════════════════════════════════════════════════════════\nPATIENT:   Robert Hensley             MRN:     AET-6120485\nDOB:       03/02/1971  (Age: 55)      SEX:     Male\nPROVIDER:  Dr. M. Okafor, MD          DATE:    2026-07-14\nFACILITY:  Aetna Chart ASP — Internal Medicine\n════════════════════════════════════════════════════════════\nVISIT TYPE:  Wegovy Continuation — Stable Dose Verification\n\nWEGOVY THERAPY HISTORY:\n\n  Wegovy injection (weight management):   Feb 2024 – Dec 2025\n  Wegovy tablet (semaglutide):            started Jan 2026\n\nCURRENT THERAPY:\n  Wegovy (semaglutide) 25 mg tablet, once daily\n  No dose change since 2026-04-15  (3+ months as of July 2026)\n\nCLINICAL NOTE: Patient has completed more than 3 months of therapy\nwith Wegovy tablets at a stable maintenance dose and is tolerating\ntreatment. Continuation requested.\n\nDr. M. Okafor, MD — Internal Medicine | NPI: 5551234567\nSigned: 2026-07-14 11:20 EST",
-            "4": "CLINICAL WEIGHT ASSESSMENT — PA DOCUMENTATION\nSOURCE: ePA Attachment (1 of 1), page 2\n════════════════════════════════════════════════════════════\nPATIENT:   Robert Hensley             MRN:     AET-6120485\nDOB:       03/02/1971  (Age: 55)      SEX:     Male\nPROVIDER:  Dr. M. Okafor, MD          DATE:    2026-07-20\nFACILITY:  Aetna Chart ASP — Internal Medicine\n════════════════════════════════════════════════════════════\nWEIGHT MEASUREMENTS:\n\n  BASELINE (prior to drug therapy):\n    Date:    January 26, 2024\n    Weight:  174.0 lbs  (78.9 kg)\n\n  CURRENT:\n    Date:    July 20, 2026\n    Weight:  128.0 lbs  (58.1 kg)\n\nBoth weights measured in office on a calibrated scale.\n\nDr. M. Okafor, MD — NPI: 5551234567\nSigned: 2026-07-20 09:40 EST",
-            "5": "DOCUMENTATION SUBMISSION CONFIRMATION\n════════════════════════════════════════════════════════════\nPATIENT:   Robert Hensley             MRN:     AET-6120485\nDATE:      2026-07-23\nSUBMITTED BY: Dr. M. Okafor, MD (via ePA portal)\n════════════════════════════════════════════════════════════\n\nATTACHMENTS RECEIVED WITH THE ePA REQUEST:   1\n\n  [1] ePA Attachment\n      Document type: ePA Attachment\n      Created by:    SYSTEM SERVICES\n      Created:       07/23/2026 11:23 AM\n      Content:       Progress note (stable dose) and weight record with\n                     the date of each weight: baseline 2024-01-26,\n                     current 2026-07-20.\n\nSTATUS: Weights and the dates they were taken are included.\nReference: EPA-2026-0723-AET6120485-WEGOVY"
+            "3": "progress-note.pdf",
+            "4": "weight-record.pdf",
+            "5": "weight-record.pdf"
+          }
+        }
+      ]
+    },
+    {
+      "id": "26-900000002",
+      "scenario": "Continuation: below weight threshold",
+      "synthetic": true,
+      "attachments": [
+        {
+          "ATCHM_ID": "DEMO-2-progress-note.pdf",
+          "filename": "progress-note.pdf",
+          "ATCHM_DESC": "Synthetic progress note",
+          "CRTE_TS": "2026-10-20T10:00:00",
+          "CNTNT_TYP_CD": "application/pdf",
+          "question_numbers": [
+            3
+          ],
+          "url": "/static/documents/26-900000002/progress-note.pdf"
+        },
+        {
+          "ATCHM_ID": "DEMO-2-weight-record.pdf",
+          "filename": "weight-record.pdf",
+          "ATCHM_DESC": "Synthetic weight record",
+          "CRTE_TS": "2026-10-20T10:00:00",
+          "CNTNT_TYP_CD": "application/pdf",
+          "question_numbers": [
+            4,
+            5
+          ],
+          "url": "/static/documents/26-900000002/weight-record.pdf"
+        }
+      ],
+      "meta": {
+        "drug": "Wegovy Tablet (semaglutide)",
+        "submittedDrug": "WEGOVY 25MG OR TABS",
+        "requestedDrug": "Wegovy Tablet (semaglutide)",
+        "cls": "DEMO-PAC - Weight management demo",
+        "dx": "Fictional weight management scenario",
+        "lob": "Commercial",
+        "origin": "ePA",
+        "ref": "DEMO-REF-002",
+        "name": "Synthetic weight management criteria",
+        "client": "SYNTHETIC PLAN",
+        "qset": "DEMO-QSET",
+        "ndc": "00169442531",
+        "gpi": "6125207000",
+        "urgent": false
+      },
+      "member": {
+        "id": "DEMO-MEMBER-002",
+        "name": "Synthetic Member 02",
+        "dob": "06/08/1976",
+        "sex": "Male",
+        "pag": "SYNTHETIC PLAN"
+      },
+      "claim": {
+        "code": "75",
+        "msg": "Prior Authorization Required",
+        "dt": "2026-10-20",
+        "drug": "WEGOVY 25MG OR TABS",
+        "qty": "30 tablets",
+        "days": "30"
+      },
+      "phNote": "No active approved PA. One synthetic prior approval expired on 09/01/2026.",
+      "legs": [
+        {
+          "role": "Technician",
+          "rev": "DEMO-REVIEWER",
+          "aht": "",
+          "ahtS": 0,
+          "queue": "Pending Approval",
+          "isAgent": false,
+          "fallout": "Synthetic ePA stopped at step 1150. Manual criteria review required.",
+          "initAns": {
+            "1": "T",
+            "2": "T",
+            "3": "T",
+            "4": "F",
+            "5": "T",
+            "6": "F"
+          },
+          "comments": {
+            "4": "Baseline 2026-04-15: 210 lb; current 2026-10-15: 205 lb. Synthetic example."
+          },
+          "notes": {
+            "2": "DOB: 1976-06-08. Age at case creation: 50 years.",
+            "3": "Four synthetic paid fills from June through September 2026.",
+            "5": "Progress note and weight record attached."
+          },
+          "docs": {
+            "3": "progress-note.pdf",
+            "4": "weight-record.pdf",
+            "5": "weight-record.pdf"
+          }
+        }
+      ]
+    },
+    {
+      "id": "26-900000003",
+      "scenario": "Documentation missing",
+      "synthetic": true,
+      "attachments": [
+        {
+          "ATCHM_ID": "DEMO-3-progress-note.pdf",
+          "filename": "progress-note.pdf",
+          "ATCHM_DESC": "Synthetic progress note",
+          "CRTE_TS": "2026-10-20T10:00:00",
+          "CNTNT_TYP_CD": "application/pdf",
+          "question_numbers": [
+            3
+          ],
+          "url": "/static/documents/26-900000003/progress-note.pdf"
+        }
+      ],
+      "meta": {
+        "drug": "Wegovy Tablet (semaglutide)",
+        "submittedDrug": "WEGOVY 25MG OR TABS",
+        "requestedDrug": "Wegovy Tablet (semaglutide)",
+        "cls": "DEMO-PAC - Weight management demo",
+        "dx": "Fictional weight management scenario",
+        "lob": "Commercial",
+        "origin": "ePA",
+        "ref": "DEMO-REF-003",
+        "name": "Synthetic weight management criteria",
+        "client": "SYNTHETIC PLAN",
+        "qset": "DEMO-QSET",
+        "ndc": "00169442531",
+        "gpi": "6125207000",
+        "urgent": false
+      },
+      "member": {
+        "id": "DEMO-MEMBER-003",
+        "name": "Synthetic Member 03",
+        "dob": "02/20/1991",
+        "sex": "Female",
+        "pag": "SYNTHETIC PLAN"
+      },
+      "claim": {
+        "code": "75",
+        "msg": "Prior Authorization Required",
+        "dt": "2026-10-20",
+        "drug": "WEGOVY 25MG OR TABS",
+        "qty": "30 tablets",
+        "days": "30"
+      },
+      "phNote": "No active approved PA. One synthetic prior approval expired on 09/01/2026.",
+      "legs": [
+        {
+          "role": "Technician",
+          "rev": "DEMO-REVIEWER",
+          "aht": "",
+          "ahtS": 0,
+          "queue": "Pending Approval",
+          "isAgent": false,
+          "fallout": "Synthetic ePA stopped at step 1150. Manual criteria review required.",
+          "initAns": {
+            "1": "T",
+            "2": "T",
+            "3": "T",
+            "4": "T",
+            "5": "F",
+            "6": "F"
+          },
+          "comments": {
+            "4": "Baseline 2026-04-15: 240 lb; current 2026-10-15: 216 lb. Synthetic example."
+          },
+          "notes": {
+            "2": "DOB: 1991-02-20. Age at case creation: 35 years.",
+            "3": "Four synthetic paid fills from June through September 2026.",
+            "5": "Weight documentation missing: request additional documentation."
+          },
+          "docs": {
+            "3": "progress-note.pdf"
+          }
+        }
+      ]
+    },
+    {
+      "id": "26-900000004",
+      "scenario": "Quantity limit review",
+      "synthetic": true,
+      "attachments": [
+        {
+          "ATCHM_ID": "DEMO-4-progress-note.pdf",
+          "filename": "progress-note.pdf",
+          "ATCHM_DESC": "Synthetic progress note",
+          "CRTE_TS": "2026-10-20T10:00:00",
+          "CNTNT_TYP_CD": "application/pdf",
+          "question_numbers": [
+            3
+          ],
+          "url": "/static/documents/26-900000004/progress-note.pdf"
+        },
+        {
+          "ATCHM_ID": "DEMO-4-weight-record.pdf",
+          "filename": "weight-record.pdf",
+          "ATCHM_DESC": "Synthetic weight record",
+          "CRTE_TS": "2026-10-20T10:00:00",
+          "CNTNT_TYP_CD": "application/pdf",
+          "question_numbers": [
+            4,
+            5
+          ],
+          "url": "/static/documents/26-900000004/weight-record.pdf"
+        }
+      ],
+      "meta": {
+        "drug": "Wegovy Tablet (semaglutide)",
+        "submittedDrug": "WEGOVY 25MG OR TABS",
+        "requestedDrug": "Wegovy Tablet (semaglutide)",
+        "cls": "DEMO-PAC - Weight management demo",
+        "dx": "Fictional weight management scenario",
+        "lob": "Commercial",
+        "origin": "ePA",
+        "ref": "DEMO-REF-004",
+        "name": "Synthetic weight management criteria",
+        "client": "SYNTHETIC PLAN",
+        "qset": "DEMO-QSET",
+        "ndc": "00169442531",
+        "gpi": "6125207000",
+        "urgent": false
+      },
+      "member": {
+        "id": "DEMO-MEMBER-004",
+        "name": "Synthetic Member 04",
+        "dob": "09/03/1987",
+        "sex": "Male",
+        "pag": "SYNTHETIC PLAN"
+      },
+      "claim": {
+        "code": "75,76",
+        "msg": "Prior Authorization Required; Quantity limit exceeded",
+        "dt": "2026-10-20",
+        "drug": "WEGOVY 25MG OR TABS",
+        "qty": "60 tablets",
+        "days": "30"
+      },
+      "phNote": "No active approved PA. One synthetic prior approval expired on 09/01/2026.",
+      "legs": [
+        {
+          "role": "Technician",
+          "rev": "DEMO-REVIEWER",
+          "aht": "",
+          "ahtS": 0,
+          "queue": "Pending Approval",
+          "isAgent": false,
+          "fallout": "Synthetic ePA stopped at step 1150. Manual criteria review required.",
+          "initAns": {
+            "1": "T",
+            "2": "T",
+            "3": "T",
+            "4": "T",
+            "5": "T",
+            "6": "T"
+          },
+          "comments": {
+            "4": "Baseline 2026-04-15: 200 lb; current 2026-10-15: 180 lb. Synthetic example."
+          },
+          "notes": {
+            "2": "DOB: 1987-09-03. Age at case creation: 39 years.",
+            "3": "Four synthetic paid fills from June through September 2026.",
+            "5": "Progress note and weight record attached."
+          },
+          "docs": {
+            "3": "progress-note.pdf",
+            "4": "weight-record.pdf",
+            "5": "weight-record.pdf"
+          }
+        }
+      ]
+    },
+    {
+      "id": "26-900000005",
+      "scenario": "Age threshold review",
+      "synthetic": true,
+      "attachments": [
+        {
+          "ATCHM_ID": "DEMO-5-progress-note.pdf",
+          "filename": "progress-note.pdf",
+          "ATCHM_DESC": "Synthetic progress note",
+          "CRTE_TS": "2026-10-20T10:00:00",
+          "CNTNT_TYP_CD": "application/pdf",
+          "question_numbers": [
+            3
+          ],
+          "url": "/static/documents/26-900000005/progress-note.pdf"
+        },
+        {
+          "ATCHM_ID": "DEMO-5-weight-record.pdf",
+          "filename": "weight-record.pdf",
+          "ATCHM_DESC": "Synthetic weight record",
+          "CRTE_TS": "2026-10-20T10:00:00",
+          "CNTNT_TYP_CD": "application/pdf",
+          "question_numbers": [
+            4,
+            5
+          ],
+          "url": "/static/documents/26-900000005/weight-record.pdf"
+        }
+      ],
+      "meta": {
+        "drug": "Wegovy Tablet (semaglutide)",
+        "submittedDrug": "WEGOVY 25MG OR TABS",
+        "requestedDrug": "Wegovy Tablet (semaglutide)",
+        "cls": "DEMO-PAC - Weight management demo",
+        "dx": "Fictional weight management scenario",
+        "lob": "Commercial",
+        "origin": "ePA",
+        "ref": "DEMO-REF-005",
+        "name": "Synthetic weight management criteria",
+        "client": "SYNTHETIC PLAN",
+        "qset": "DEMO-QSET",
+        "ndc": "00169442531",
+        "gpi": "6125207000",
+        "urgent": false
+      },
+      "member": {
+        "id": "DEMO-MEMBER-005",
+        "name": "Synthetic Member 05",
+        "dob": "12/15/2010",
+        "sex": "Female",
+        "pag": "SYNTHETIC PLAN"
+      },
+      "claim": {
+        "code": "75",
+        "msg": "Prior Authorization Required",
+        "dt": "2026-10-20",
+        "drug": "WEGOVY 25MG OR TABS",
+        "qty": "30 tablets",
+        "days": "30"
+      },
+      "phNote": "No active approved PA. One synthetic prior approval expired on 09/01/2026.",
+      "legs": [
+        {
+          "role": "Technician",
+          "rev": "DEMO-REVIEWER",
+          "aht": "",
+          "ahtS": 0,
+          "queue": "Pending Approval",
+          "isAgent": false,
+          "fallout": "Synthetic ePA stopped at step 1150. Manual criteria review required.",
+          "initAns": {
+            "1": "T",
+            "2": "F",
+            "3": "T",
+            "4": "T",
+            "5": "T",
+            "6": "F"
+          },
+          "comments": {
+            "4": "Baseline 2026-04-15: 190 lb; current 2026-10-15: 171 lb. Synthetic example."
+          },
+          "notes": {
+            "2": "DOB: 2010-12-15. Age at case creation: 15 years.",
+            "3": "Four synthetic paid fills from June through September 2026.",
+            "5": "Progress note and weight record attached."
+          },
+          "docs": {
+            "3": "progress-note.pdf",
+            "4": "weight-record.pdf",
+            "5": "weight-record.pdf"
           }
         }
       ]
@@ -611,101 +987,421 @@
     }
   ],
   "mockClaimDefaults": {
-    "26-123456": {
+    "26-900000001": {
       "qty": "30",
       "days": "30",
-      "pharmacyId": "2221113",
-      "fillDate": "07/23/2026",
-      "physicianId": "",
+      "pharmacyId": "DEMO-PHARMACY",
+      "fillDate": "10/20/2026",
+      "physicianId": "DEMO-PROVIDER",
+      "psc": "0",
+      "drugName": "WEGOVY 25MG OR TABS",
+      "ndc": "00169442531"
+    },
+    "26-900000002": {
+      "qty": "30",
+      "days": "30",
+      "pharmacyId": "DEMO-PHARMACY",
+      "fillDate": "10/20/2026",
+      "physicianId": "DEMO-PROVIDER",
+      "psc": "0",
+      "drugName": "WEGOVY 25MG OR TABS",
+      "ndc": "00169442531"
+    },
+    "26-900000003": {
+      "qty": "30",
+      "days": "30",
+      "pharmacyId": "DEMO-PHARMACY",
+      "fillDate": "10/20/2026",
+      "physicianId": "DEMO-PROVIDER",
+      "psc": "0",
+      "drugName": "WEGOVY 25MG OR TABS",
+      "ndc": "00169442531"
+    },
+    "26-900000004": {
+      "qty": "60",
+      "days": "30",
+      "pharmacyId": "DEMO-PHARMACY",
+      "fillDate": "10/20/2026",
+      "physicianId": "DEMO-PROVIDER",
+      "psc": "0",
+      "drugName": "WEGOVY 25MG OR TABS",
+      "ndc": "00169442531"
+    },
+    "26-900000005": {
+      "qty": "30",
+      "days": "30",
+      "pharmacyId": "DEMO-PHARMACY",
+      "fillDate": "10/20/2026",
+      "physicianId": "DEMO-PROVIDER",
       "psc": "0",
       "drugName": "WEGOVY 25MG OR TABS",
       "ndc": "00169442531"
     }
   },
   "mockClaimResults": {
-    "26-123456": {
+    "26-900000001": {
       "msg": {
-        "result": "Prior Auth Req - Drug Requires Prior Authorization 75 - Prior Authorization Required 75 8002945979\nFrozen Reset Date - , PlanDrugOptout -",
-        "settlement": "00058",
+        "result": "Prior Authorization Required",
+        "settlement": "DEMO",
         "code": "75",
         "label": "PA Required"
       },
       "d30": {
-        "result": "Prior Auth Req - Drug Requires Prior Authorization 75 - Prior Authorization Required 75 8002945979\nFrozen Reset Date - , PlanDrugOptout -",
-        "settlement": "00058",
+        "result": "Prior Authorization Required",
+        "settlement": "DEMO",
         "code": "75",
         "label": "PA Required"
       },
       "d60": {
-        "result": "Prior Auth Req - Drug Requires Prior Authorization 75 - Prior Authorization Required 75 8002945979\nFrozen Reset Date - , PlanDrugOptout -",
-        "settlement": "00058",
+        "result": "Prior Authorization Required",
+        "settlement": "DEMO",
         "code": "75",
         "label": "PA Required"
       },
       "d90": {
-        "result": "Prior Auth Req - Drug Requires Prior Authorization 75 - Prior Authorization Required 75 8002945979\nQty Limit 76 - Quantity exceeds plan limit (max 30 tablets per 30 days). Quantity reject returned in addition to PA.",
-        "settlement": "00058",
-        "code": "75, 76",
-        "label": "PA Req + QTY Limit"
+        "result": "Prior Authorization Required",
+        "settlement": "DEMO",
+        "code": "75",
+        "label": "PA Required"
+      }
+    },
+    "26-900000002": {
+      "msg": {
+        "result": "Prior Authorization Required",
+        "settlement": "DEMO",
+        "code": "75",
+        "label": "PA Required"
+      },
+      "d30": {
+        "result": "Prior Authorization Required",
+        "settlement": "DEMO",
+        "code": "75",
+        "label": "PA Required"
+      },
+      "d60": {
+        "result": "Prior Authorization Required",
+        "settlement": "DEMO",
+        "code": "75",
+        "label": "PA Required"
+      },
+      "d90": {
+        "result": "Prior Authorization Required",
+        "settlement": "DEMO",
+        "code": "75",
+        "label": "PA Required"
+      }
+    },
+    "26-900000003": {
+      "msg": {
+        "result": "Prior Authorization Required",
+        "settlement": "DEMO",
+        "code": "75",
+        "label": "PA Required"
+      },
+      "d30": {
+        "result": "Prior Authorization Required",
+        "settlement": "DEMO",
+        "code": "75",
+        "label": "PA Required"
+      },
+      "d60": {
+        "result": "Prior Authorization Required",
+        "settlement": "DEMO",
+        "code": "75",
+        "label": "PA Required"
+      },
+      "d90": {
+        "result": "Prior Authorization Required",
+        "settlement": "DEMO",
+        "code": "75",
+        "label": "PA Required"
+      }
+    },
+    "26-900000004": {
+      "msg": {
+        "result": "Prior Authorization Required; Quantity limit exceeded",
+        "settlement": "DEMO",
+        "code": "75,76",
+        "label": "PA + Quantity Limit"
+      },
+      "d30": {
+        "result": "Prior Authorization Required; Quantity limit exceeded",
+        "settlement": "DEMO",
+        "code": "75,76",
+        "label": "PA + Quantity Limit"
+      },
+      "d60": {
+        "result": "Prior Authorization Required; Quantity limit exceeded",
+        "settlement": "DEMO",
+        "code": "75,76",
+        "label": "PA + Quantity Limit"
+      },
+      "d90": {
+        "result": "Prior Authorization Required; Quantity limit exceeded",
+        "settlement": "DEMO",
+        "code": "75,76",
+        "label": "PA + Quantity Limit"
+      }
+    },
+    "26-900000005": {
+      "msg": {
+        "result": "Prior Authorization Required",
+        "settlement": "DEMO",
+        "code": "75",
+        "label": "PA Required"
+      },
+      "d30": {
+        "result": "Prior Authorization Required",
+        "settlement": "DEMO",
+        "code": "75",
+        "label": "PA Required"
+      },
+      "d60": {
+        "result": "Prior Authorization Required",
+        "settlement": "DEMO",
+        "code": "75",
+        "label": "PA Required"
+      },
+      "d90": {
+        "result": "Prior Authorization Required",
+        "settlement": "DEMO",
+        "code": "75",
+        "label": "PA Required"
       }
     }
   },
-  "caseNotes": {
-    "26-123456": "Drug: Wegovy Tablet (semaglutide) 25 mg\nDiagnosis: Weight management, Adult\nClinical Info: ePA Loop-2 fallout (step 1150). Verified Q3, Q4 and Q5 - stable maintenance dose confirmed, patient lost >5% baseline body weight (26.4%), weight documentation on file. Q6 within plan allowance.\nOutcome: Approve for 12 months\nInitials/Date: C123456 Tech 7/23/26"
-  },
+  "caseNotes": {},
   "toolData": {
-    "26-123456": {
+    "26-900000001": {
       "paHistory": [
         {
-          "pa": "26-123456",
-          "drug": "WEGOVY 25mg tab",
-          "date": "07/23/26",
+          "pa": "26-900000001",
+          "drug": "WEGOVY 25MG OR TABS",
+          "date": "10/20/26",
           "outcome": null
         },
         {
-          "pa": "26-106481935",
-          "drug": "WEGOVY tab",
-          "date": "01/19/26",
-          "outcome": "D"
+          "pa": "25-900000001",
+          "drug": "WEGOVY 25MG OR TABS",
+          "date": "09/01/25",
+          "outcome": "A"
         }
       ],
       "claimHistory": [
         {
-          "dt": "07/23/26",
-          "drug": "WEGOVY 25MG TABS",
-          "qty": "30 tabs",
-          "days": 30,
-          "status": "Rejected"
-        },
-        {
-          "dt": "06/25/26",
-          "drug": "WEGOVY 25MG TABS",
-          "qty": "30 tabs",
+          "dt": "09/15/26",
+          "drug": "WEGOVY 25MG OR TABS",
+          "qty": "30",
           "days": 30,
           "status": "Paid"
         },
         {
-          "dt": "05/27/26",
-          "drug": "WEGOVY 25MG TABS",
-          "qty": "30 tabs",
+          "dt": "08/15/26",
+          "drug": "WEGOVY 25MG OR TABS",
+          "qty": "30",
           "days": 30,
           "status": "Paid"
         },
         {
-          "dt": "04/28/26",
-          "drug": "WEGOVY 25MG TABS",
-          "qty": "30 tabs",
+          "dt": "07/15/26",
+          "drug": "WEGOVY 25MG OR TABS",
+          "qty": "30",
           "days": 30,
           "status": "Paid"
         },
         {
-          "dt": "03/30/26",
-          "drug": "WEGOVY 25MG TABS",
-          "qty": "30 tabs",
+          "dt": "06/15/26",
+          "drug": "WEGOVY 25MG OR TABS",
+          "qty": "30",
+          "days": 30,
+          "status": "Paid"
+        }
+      ]
+    },
+    "26-900000002": {
+      "paHistory": [
+        {
+          "pa": "26-900000002",
+          "drug": "WEGOVY 25MG OR TABS",
+          "date": "10/20/26",
+          "outcome": null
+        },
+        {
+          "pa": "25-900000002",
+          "drug": "WEGOVY 25MG OR TABS",
+          "date": "09/01/25",
+          "outcome": "A"
+        }
+      ],
+      "claimHistory": [
+        {
+          "dt": "09/15/26",
+          "drug": "WEGOVY 25MG OR TABS",
+          "qty": "30",
+          "days": 30,
+          "status": "Paid"
+        },
+        {
+          "dt": "08/15/26",
+          "drug": "WEGOVY 25MG OR TABS",
+          "qty": "30",
+          "days": 30,
+          "status": "Paid"
+        },
+        {
+          "dt": "07/15/26",
+          "drug": "WEGOVY 25MG OR TABS",
+          "qty": "30",
+          "days": 30,
+          "status": "Paid"
+        },
+        {
+          "dt": "06/15/26",
+          "drug": "WEGOVY 25MG OR TABS",
+          "qty": "30",
+          "days": 30,
+          "status": "Paid"
+        }
+      ]
+    },
+    "26-900000003": {
+      "paHistory": [
+        {
+          "pa": "26-900000003",
+          "drug": "WEGOVY 25MG OR TABS",
+          "date": "10/20/26",
+          "outcome": null
+        },
+        {
+          "pa": "25-900000003",
+          "drug": "WEGOVY 25MG OR TABS",
+          "date": "09/01/25",
+          "outcome": "A"
+        }
+      ],
+      "claimHistory": [
+        {
+          "dt": "09/15/26",
+          "drug": "WEGOVY 25MG OR TABS",
+          "qty": "30",
+          "days": 30,
+          "status": "Paid"
+        },
+        {
+          "dt": "08/15/26",
+          "drug": "WEGOVY 25MG OR TABS",
+          "qty": "30",
+          "days": 30,
+          "status": "Paid"
+        },
+        {
+          "dt": "07/15/26",
+          "drug": "WEGOVY 25MG OR TABS",
+          "qty": "30",
+          "days": 30,
+          "status": "Paid"
+        },
+        {
+          "dt": "06/15/26",
+          "drug": "WEGOVY 25MG OR TABS",
+          "qty": "30",
+          "days": 30,
+          "status": "Paid"
+        }
+      ]
+    },
+    "26-900000004": {
+      "paHistory": [
+        {
+          "pa": "26-900000004",
+          "drug": "WEGOVY 25MG OR TABS",
+          "date": "10/20/26",
+          "outcome": null
+        },
+        {
+          "pa": "25-900000004",
+          "drug": "WEGOVY 25MG OR TABS",
+          "date": "09/01/25",
+          "outcome": "A"
+        }
+      ],
+      "claimHistory": [
+        {
+          "dt": "09/15/26",
+          "drug": "WEGOVY 25MG OR TABS",
+          "qty": "30",
+          "days": 30,
+          "status": "Paid"
+        },
+        {
+          "dt": "08/15/26",
+          "drug": "WEGOVY 25MG OR TABS",
+          "qty": "30",
+          "days": 30,
+          "status": "Paid"
+        },
+        {
+          "dt": "07/15/26",
+          "drug": "WEGOVY 25MG OR TABS",
+          "qty": "30",
+          "days": 30,
+          "status": "Paid"
+        },
+        {
+          "dt": "06/15/26",
+          "drug": "WEGOVY 25MG OR TABS",
+          "qty": "30",
+          "days": 30,
+          "status": "Paid"
+        }
+      ]
+    },
+    "26-900000005": {
+      "paHistory": [
+        {
+          "pa": "26-900000005",
+          "drug": "WEGOVY 25MG OR TABS",
+          "date": "10/20/26",
+          "outcome": null
+        },
+        {
+          "pa": "25-900000005",
+          "drug": "WEGOVY 25MG OR TABS",
+          "date": "09/01/25",
+          "outcome": "A"
+        }
+      ],
+      "claimHistory": [
+        {
+          "dt": "09/15/26",
+          "drug": "WEGOVY 25MG OR TABS",
+          "qty": "30",
+          "days": 30,
+          "status": "Paid"
+        },
+        {
+          "dt": "08/15/26",
+          "drug": "WEGOVY 25MG OR TABS",
+          "qty": "30",
+          "days": 30,
+          "status": "Paid"
+        },
+        {
+          "dt": "07/15/26",
+          "drug": "WEGOVY 25MG OR TABS",
+          "qty": "30",
+          "days": 30,
+          "status": "Paid"
+        },
+        {
+          "dt": "06/15/26",
+          "drug": "WEGOVY 25MG OR TABS",
+          "qty": "30",
           "days": 30,
           "status": "Paid"
         }
       ]
     }
-  }
+  },
+  "synthetic": true
 }

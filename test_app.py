@@ -29,7 +29,7 @@ class AppTest(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         data = response.json()
         self.assertEqual(data['schemaVersion'], 2)
-        self.assertEqual(data['cases'][0]['id'], '26-123456')
+        self.assertEqual(data['cases'][0]['id'], '26-900000001')
         self.assertEqual(len(data['questionMetadata']), 57)
 
     def test_json_edits_are_read_on_next_request(self):

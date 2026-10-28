@@ -11,7 +11,7 @@ function mkWfSt(){
     s3Open:false, s3Exp:false,
     s4Open:false, s4Edit:false, calc:{w0:'',w1:''}, qOpen:{}, verified:{},
     s5Open:false, s5Gen:false, s5Text:'',
-    s6Open:false, s6State:'idle', s6AltOpt:null, decision:null, mcInput:null, mcRunInput:null,
+    s6Open:false, s6State:'idle', s6AltOpt:null, decision:null, mcInput:null, mcRunInput:null, documentsViewed:[],
   };
 }
 let wfSt=CASES.map(c=>c.legs.map(()=>mkWfSt()));
@@ -193,6 +193,11 @@ function searchMember(){
 
 // ── DOCUMENT MODAL ────────────────────────────────────────────────────────────
 function openDoc(qno){
+  if(Array.isArray(getCase().attachments)){
+    const index=getCase().attachments.findIndex(a=>(a.question_numbers||[]).includes(qno));
+    showDocuments(Math.max(0,index));
+    return;
+  }
   const leg=getLeg(), content=leg.docs&&leg.docs[qno];
   if(!content)return;
   const q=QM[qno];
@@ -201,8 +206,57 @@ function openDoc(qno){
   const modal=el('doc-modal');
   if(modal){modal.style.display='flex';document.body.style.overflow='hidden';}
 }
-function closeDoc(){const m=el('doc-modal');if(m){m.style.display='none';document.body.style.overflow='';}}
+function closeDoc(){
+  const m=el('doc-modal');if(m){m.style.display='none';document.body.style.overflow='';}
+  const pane=el('document-pane');if(pane)pane.hidden=true;
+  el('layout').classList.remove('documents-open');
+  el('review-documents')?.setAttribute('aria-expanded','false');
+  // Unload the previous PDF so switching cases cannot leave a stale record visible.
+  const frame=el('document-frame');if(frame)frame.removeAttribute('src');
+}
 function closeDocOverlay(e){if(e.target===el('doc-modal'))closeDoc();}
+
+function toggleDocuments(){if(el('document-pane').hidden)showDocuments(0);else closeDoc();}
+function showDocuments(index=0){
+  const attachments=getCase().attachments||[], pane=el('document-pane'), tabs=el('document-tabs');
+  pane.hidden=false;el('layout').classList.add('documents-open');
+  el('review-documents').setAttribute('aria-expanded','true');
+  tabs.replaceChildren();
+  attachments.forEach((attachment,i)=>{
+    const button=document.createElement('button');button.type='button';button.role='tab';
+    button.textContent=attachment.ATCHM_DESC||attachment.filename;
+    button.setAttribute('aria-selected',String(i===index));
+    button.onclick=()=>showDocuments(i);tabs.append(button);
+  });
+  const attachment=attachments[index], frame=el('document-frame'), link=el('document-new-tab');
+  frame.hidden=!attachment;link.hidden=!attachment;el('document-empty').hidden=!!attachment;
+  if(!attachment){frame.removeAttribute('src');link.removeAttribute('href');el('document-meta').textContent='';return;}
+  // Only local PDF assets are accepted, including when the JSON is edited later.
+  const url=new URL(attachment.url,location.origin);
+  if(url.origin!==location.origin||!url.pathname.startsWith('/static/documents/')||!url.pathname.endsWith('.pdf')){
+    frame.hidden=true;frame.removeAttribute('src');link.hidden=true;link.removeAttribute('href');
+    el('document-empty').hidden=false;el('document-empty').textContent='Document URL is not a local PDF.';return;
+  }
+  el('document-empty').textContent='No documents are attached to this case.';
+  el('document-meta').textContent=`${getCase().id} · ${getCase().member.name} · ${attachment.CRTE_TS?.slice(0,10)||''}`;
+  frame.src=url.href;link.href=url.href;
+  if(!getWf().documentsViewed.includes(attachment.filename))getWf().documentsViewed.push(attachment.filename);
+}
+
+function setupDocumentResize(){
+  const grip=el('document-grip');let dragging=false;
+  const resize=width=>document.documentElement.style.setProperty('--document-width',`${Math.min(innerWidth*.7,Math.max(320,width))}px`);
+  grip.addEventListener('pointerdown',event=>{
+    dragging=true;grip.setPointerCapture(event.pointerId);el('document-frame').style.pointerEvents='none';event.preventDefault();
+  });
+  grip.addEventListener('pointermove',event=>{if(dragging)resize(innerWidth-event.clientX);});
+  const stop=()=>{dragging=false;el('document-frame').style.pointerEvents='';};
+  grip.addEventListener('pointerup',stop);grip.addEventListener('pointercancel',stop);
+  grip.addEventListener('keydown',event=>{
+    if(!['ArrowLeft','ArrowRight'].includes(event.key))return;
+    event.preventDefault();resize(el('document-pane').getBoundingClientRect().width+(event.key==='ArrowLeft'?30:-30));
+  });
+}
 
 // ── CRITERIA HELPERS ──────────────────────────────────────────────────────────
 function calcPct(){
@@ -801,10 +855,27 @@ function renderWorkflow(){
 
 // ── NAVIGATION ────────────────────────────────────────────────────────────────
 function selectCase(idx){
-  curCase=parseInt(idx); curLeg=0;
+  const next=Number(idx);if(!Number.isInteger(next)||next<0||next>=CASES.length)return;
+  closeDoc();closeTool();curCase=next; curLeg=0;
+  el('pa-input').value=getCase().id;
   renderAll();
+  el('case-message').textContent=`Loaded ${getCase().id}: ${getCase().scenario||getCase().meta.drug}.`;
+}
+let randomBag=[];
+function randomCase(){
+  randomBag=randomBag.filter(index=>index!==curCase);
+  if(!randomBag.length)randomBag=CASES.map((_,index)=>index).filter(index=>index!==curCase);
+  if(!randomBag.length)return;
+  const position=Math.floor(Math.random()*randomBag.length);
+  selectCase(randomBag.splice(position,1)[0]);
+}
+function loadTypedCase(){
+  const value=el('pa-input').value.trim(), index=CASES.findIndex(c=>c.id===value);
+  if(index<0){el('case-message').textContent='PA not found. Choose one of the five synthetic cases.';return;}
+  selectCase(index);
 }
 function selectLeg(idx){
+  closeDoc();
   curLeg=idx;
   renderAll();
 }
@@ -822,7 +893,7 @@ function renderCaseSelector(){
   if(!select){
     select=document.createElement('select');select.id='demo-sel';select.className='demo-sel';
     select.setAttribute('aria-label','Select case');
-    CASES.forEach((c,index)=>{const option=document.createElement('option');option.value=String(index);option.textContent=c.id;select.append(option);});
+    CASES.forEach((c,index)=>{const option=document.createElement('option');option.value=String(index);option.textContent=`${c.id} · ${c.scenario||c.meta.drug}`;select.append(option);});
     select.addEventListener('change',()=>selectCase(select.value));
     document.querySelector('.bar-right').prepend(select);
   }
@@ -836,7 +907,7 @@ function reviewOutput(){
     urgent:!!c.meta.urgent,answers:{...answers},questionPath:result.steps,score:result.terminal,
     pendingVerification:pendingVerify(),verified:{...wf.verified},weightCalculation:{...wf.calc,percentLoss:calcPct()},
     mockClaim:{input:wf.mcInput||MOCK_CLAIM_DEFS[c.id]||{},lastRunInput:wf.mcRunInput,sampleResult:wf.s2Ran?(MC_RESULTS[c.id]?.[wf.s2Tab]||null):null},
-    notes:wf.s5Text,decision:wf.decision
+    synthetic:!!c.synthetic,documentsViewed:[...wf.documentsViewed],notes:wf.s5Text,decision:wf.decision
   };
 }
 function exportReview(){
@@ -847,6 +918,8 @@ function exportReview(){
 }
 window.startApp = ()=>{
   renderAll();
+  setupDocumentResize();
+  el('pa-input').value=getCase().id;
   window.addEventListener('resize',updateTop);
   document.querySelectorAll('.lsec-hdr[onclick]').forEach(node=>{node.tabIndex=0;node.setAttribute('role','button');});
   document.addEventListener('keydown',event=>{

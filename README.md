@@ -17,7 +17,7 @@ python -m uvicorn app:app --reload --port 8081
 - `data/case.json`：schemaVersion 2，包含参考 HTML 的数据、57 个问题和跳转表。
 - `static/index.html`、`styles.css`：参考 HTML 的结构、样式与响应式适配。
 - `static/loader.js`：读取和检查 JSON，加载界面；失败时显示错误信息。
-- `static/app.js`：问题路径、体重计算、药品编辑、历史/文档弹窗、备注和决定的页面状态。
+- `static/app.js`：问题路径、体重计算、药品编辑、历史弹窗、PDF 文档侧栏、备注和决定的页面状态。
 - `pa_caddie_v4.html`：用户上传的原始参考文件，保留不改。
 
 ## 输入 JSON
@@ -35,11 +35,14 @@ python -m uvicorn app:app --reload --port 8081
 | `toolData` | 按案件 ID 配置 PA 历史和 claim 历史 |
 | `caseNotes` | 保留原 HTML 的备注示例供参考；应用生成的备注使用当前答案和验证记录 |
 
-答案使用 `T`（Yes）和 `F`（No）。原 HTML 仅要求人工确认 Q4，该行为已保留到问题元数据中。当前只有一个示例案件；添加多个案件后标题栏出现案件切换菜单，多审核环节显示 Leg 切换。
+答案使用 `T`（Yes）和 `F`（No）。原 HTML 仅要求人工确认 Q4，该行为已保留到问题元数据中。当前提供 5 个完全虚构的案件；标题栏可选择案件、输入 PA 编号加载，或点击 Random case 随机切换。多审核环节显示 Leg 切换。
 
 ## 交互和输出
 
-- 保留六步流程、动态问题路径、答案编辑、Cancel All、文档弹窗、体重计算器和结果确认。
+- 保留六步流程、动态问题路径、答案编辑、Cancel All、体重计算器和结果确认。
+- **Review documents** 或题目中的 **View Document** 打开可拖动调整宽度的 PDF 侧栏，可切换附件或在新标签页打开。文档与案件绑定；切换案件关闭旧文档，打开文档不会自动验证答案。
+- **Random case** 从 5 个虚构案例中随机切换，排除当前案例，一轮内避免重复；也可选择案件或输入完整 PA 编号（26-900000001 至 26-900000005）。本页保留各案件的独立审核状态，刷新后重置。
+- 原 ZIP 所需字段、虚构数据及再生成方法见 `data/SYNTHETIC_DATA.md`。未运行任何真实数据查询脚本；部署无需额外 PDF 依赖。
 - Q4 体重减重比例 = `(baseline - current) / baseline * 100`。输入必须为正且有限，使用未四舍五入的数值与 5% 比较。
 - 修改答案、药品或计算器输入会撤销当前决定；更改计算器输入后必须再次点击 Use result。
 - Denial 确认会记录 `deny`，不再误入 Approval。

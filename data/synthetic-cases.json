@@ -1,0 +1,3181 @@
+[
+  {
+    "synthetic": true,
+    "scenario": "Continuation: weight reduction",
+    "pa": "26-900000001",
+    "asof": "2026-10-20T10:00:00",
+    "header": {
+      "prior_athzn_nbr": "26-900000001",
+      "mbr_acct_id": "DEMO-MEMBER-001",
+      "prior_athzn_drug_nm": "WEGOVY 25MG OR TABS",
+      "prior_athzn_gpi_cd": "6125207000",
+      "gpi10_cd": "6125207000",
+      "pac_cd": "DEMO-PAC",
+      "pac_desc": "Weight management demo",
+      "icd_dx_cd": "DEMO",
+      "icd_dx_cd_desc": "Fictional weight management scenario",
+      "urg_prior_athzn_ind": 0,
+      "rfrnc_nbr": "DEMO-REF-001",
+      "qset_nbr": "DEMO-QSET",
+      "qset_desc": "Synthetic weight management criteria",
+      "pag_nm": "SYNTHETIC PLAN",
+      "dsply_pag_nm": "SYNTHETIC PLAN",
+      "mbr_frst_nm": "Synthetic",
+      "mbr_last_nm": "Member 01",
+      "mbr_brth_dt": "1982-04-12",
+      "mbr_gndr_cd": "F"
+    },
+    "qset": [
+      {
+        "ordinal_nbr": 1,
+        "qstn_txt": "Will the requested drug be used with a reduced-calorie diet AND increased physical activity to reduce excess body weight or maintain weight reduction long term?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 2,
+        "false_rspns_cd": 32,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 2,
+        "qstn_txt": "Is the patient 18 years of age or older?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 3,
+        "false_rspns_cd": 22,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 3,
+        "qstn_txt": "Has the patient completed at least 3 months of therapy with the requested drug at a stable maintenance dose? [If the patient is transitioning from another drug therapy for weight loss, please answer no and proceed.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 4,
+        "false_rspns_cd": 7,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 4,
+        "qstn_txt": "Has the patient lost at least 5 percent of baseline body weight OR has the patient continued to maintain their initial 5 percent weight loss?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 5,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 5,
+        "qstn_txt": "Has documentation of the patient's weight prior to starting drug therapy for weight loss and the patient's current weight, including the dates the weights were taken, been submitted to CVS Health?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 6,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 6,
+        "qstn_txt": "Does the patient require MORE than the plan allowance per month of any of the following: A) 1 package/4 pens of Wegovy (semaglutide) 0.25 mg/0.5 mL injection, B) 1 package/4 pens of Wegovy (semaglutide) 0.5 mg/0.5 mL injection, C) 1 package/4 pens of Wegovy (semaglutide) 1 mg/0.5 mL injection, D) 1 package/4 pens of Wegovy (semaglutide) 1.7 mg/0.75 mL injection, E) 1 package/4 pens of Wegovy (semaglutide) 2.4 mg/0.75 mL injection, F) 1 package/4 pens of Wegovy (semaglutide) HD 7.2 mg/0.75 mL, G) 30 tablets of Wegovy (semaglutide)?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": "D",
+        "false_rspns_cd": "A",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 7,
+        "qstn_txt": "Has the patient participated in a comprehensive weight management program that encourages behavioral modification, reduced-calorie diet, AND increased physical activity with continuing follow-up for at least 6 months prior to using drug therapy?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 8,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 8,
+        "qstn_txt": "Does the patient have a baseline body mass index (BMI) of less than 27 kg/m\u00b2? [If the patient is transitioning from another drug therapy for weight loss, please consider their baseline BMI at the start of any drug therapy when answering this question.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": "D",
+        "false_rspns_cd": 9,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 9,
+        "qstn_txt": "Does the patient have a baseline body mass index (BMI) of 27 kg/m\u00b2 to less than 30 kg/m\u00b2? [If the patient is transitioning from another drug therapy for weight loss, please consider their baseline BMI at the start of any drug therapy when answering this question.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 10,
+        "false_rspns_cd": 13,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 10,
+        "qstn_txt": "Have chart notes showing the patient's baseline body mass index (BMI) been submitted to CVS Health? [If the patient is transitioning from another drug therapy for weight loss, please provide their baseline BMI at the start of any drug therapy.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 11,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 11,
+        "qstn_txt": "Does the patient have at least ONE weight-related comorbid condition (e.g., hypertension, type 2 diabetes mellitus, dyslipidemia)? [If the patient is transitioning from another drug therapy for weight loss, please consider their weight-related comorbid condition(s) at the start of any drug therapy when answering this question.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 12,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 12,
+        "qstn_txt": "Have chart notes indicating the patient's weight-related comorbid condition(s) been submitted to CVS Health? [If the patient is transitioning from another drug therapy for weight loss, please provide their weight-related comorbid condition(s) at the start of any drug therapy.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 19,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 13,
+        "qstn_txt": "Does the patient have a baseline body mass index (BMI) of 30 kg/m\u00b2 to less than 35 kg/m\u00b2? [If the patient is transitioning from another drug therapy for weight loss, please consider their baseline BMI at the start of any drug therapy when answering this question.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 14,
+        "false_rspns_cd": 15,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 14,
+        "qstn_txt": "Have chart notes showing the patient's baseline body mass index (BMI) been submitted to CVS Health? [If the patient is transitioning from another drug therapy for weight loss, please provide their baseline BMI at the start of any drug therapy.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 19,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 15,
+        "qstn_txt": "Does the patient have a baseline body mass index (BMI) of 35 kg/m\u00b2 to less than 40 kg/m\u00b2? [If the patient is transitioning from another drug therapy for weight loss, please consider their baseline BMI at the start of any drug therapy when answering this question.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 16,
+        "false_rspns_cd": 17,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 16,
+        "qstn_txt": "Have chart notes showing the patient's baseline body mass index (BMI) been submitted to CVS Health? [If the patient is transitioning from another drug therapy for weight loss, please provide their baseline BMI at the start of any drug therapy.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 19,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 17,
+        "qstn_txt": "Does the patient have a baseline body mass index (BMI) of 40 kg/m\u00b2 or greater? [If the patient is transitioning from another drug therapy for weight loss, please consider their baseline BMI at the start of any drug therapy when answering this question.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 18,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 18,
+        "qstn_txt": "Have chart notes showing the patient's baseline body mass index (BMI) been submitted to CVS Health? [If the patient is transitioning from another drug therapy for weight loss, please provide their baseline BMI at the start of any drug therapy.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 19,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 19,
+        "qstn_txt": "Is this request for Wegovy (semaglutide) injection?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 20,
+        "false_rspns_cd": 21,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 20,
+        "qstn_txt": "Does the patient require MORE than the plan allowance of 1 package/4 pens per month of any of the following: A) Wegovy 0.25 mg/0.5 mL injection, B) Wegovy 0.5 mg/0.5 mL injection, C) Wegovy 1 mg/0.5 mL injection, D) Wegovy 1.7 mg/0.75 mL injection, E) Wegovy 2.4 mg/0.75 mL injection, F) Wegovy HD 7.2 mg/0.75 mL injection?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": "D",
+        "false_rspns_cd": "A",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 21,
+        "qstn_txt": "Does the patient require MORE than the plan allowance of 30 tablets per month of Wegovy (semaglutide)?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": "D",
+        "false_rspns_cd": "A",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 22,
+        "qstn_txt": "Is the patient 12 to 17 years of age?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 23,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 23,
+        "qstn_txt": "Is this request for ANY of the following: A) Wegovy (semaglutide) HD 7.2 mg/0.75 mL injection, B) Wegovy (semaglutide) tablets?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": "D",
+        "false_rspns_cd": 24,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 24,
+        "qstn_txt": "Is the request for continuation of therapy for a patient that has successfully titrated to a stable maintenance dose? [If the patient is transitioning from another drug therapy for weight loss, please answer no and proceed.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 25,
+        "false_rspns_cd": 28,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 25,
+        "qstn_txt": "Has the patient had a reduction from their baseline body mass index (BMI) OR has the patient continued to maintain their initial BMI reduction?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 26,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 26,
+        "qstn_txt": "Has documentation of the patient's body mass index (BMI) prior to starting drug therapy for weight loss and the patient's current BMI, including the dates the BMIs were taken, been submitted to CVS Health?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 27,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 27,
+        "qstn_txt": "Does the patient require MORE than the plan allowance of 1 package/4 pens of any of the following per month: A) Wegovy 0.25 mg/0.5 mL, B) Wegovy 0.5 mg/0.5 mL, C) Wegovy 1 mg/0.5 mL, D) Wegovy 1.7 mg/0.75 mL, E) Wegovy 2.4 mg/0.75 mL injection?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": "D",
+        "false_rspns_cd": "A",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 28,
+        "qstn_txt": "Has the patient participated in a comprehensive weight management program that encourages behavioral modification, reduced-calorie diet, AND increased physical activity with continuing follow-up for at least 6 months prior to using drug therapy?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 29,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 29,
+        "qstn_txt": "Does the patient have a baseline body mass index (BMI) in the 95th percentile or greater standardized for age and sex (obesity)? [If the patient is transitioning from another drug therapy for weight loss, please consider their baseline BMI at the start of any drug therapy when answering this question.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 30,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 30,
+        "qstn_txt": "Have chart notes showing the patient's baseline body mass index (BMI) percentile standardized for age and sex been submitted to CVS Health? [If the patient is transitioning from another drug therapy for weight loss, please provide their baseline BMI at the start of any drug therapy.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 31,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 31,
+        "qstn_txt": "Does the patient require MORE than the plan allowance of 1 package/4 pens of any of the following per month: A) Wegovy 0.25 mg/0.5 mL, B) Wegovy 0.5 mg/0.5 mL, C) Wegovy 1 mg/0.5 mL, D) Wegovy 1.7 mg/0.75 mL, E) Wegovy 2.4 mg/0.75 mL injection?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": "D",
+        "false_rspns_cd": "A",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 32,
+        "qstn_txt": "Will the requested drug be used to reduce the risk of major adverse cardiovascular events (cardiovascular death, non-fatal myocardial infarction, or non-fatal stroke) in an adult with established cardiovascular disease AND either obesity or overweight?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 33,
+        "false_rspns_cd": 46,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 33,
+        "qstn_txt": "Is the requested drug being used with a reduced-calorie diet AND increased physical activity?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 34,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 34,
+        "qstn_txt": "Is this request for Wegovy (semaglutide) HD 7.2 mg injection?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": "D",
+        "false_rspns_cd": 35,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 35,
+        "qstn_txt": "Does the patient have established cardiovascular disease with a history of ONE of the following: A) previous myocardial infarction (MI), B) previous stroke, C) symptomatic peripheral arterial disease (PAD), as evidenced by intermittent claudication with ankle-brachial index (ABI) less than 0.85 (at rest), peripheral arterial revascularization procedure, or amputation due to atherosclerotic disease, D) prior history of revascularization (coronary artery bypass grafting [CABG], percutaneous coronary intervention [PCI], or angioplasty)?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 36,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 36,
+        "qstn_txt": "Have chart notes supporting the patient's diagnosis, including diagnostic evidence, of ONE of the following: A) previous myocardial infarction (MI), B) previous stroke, C) symptomatic peripheral arterial disease (PAD), D) prior history of revascularization (CABG, PCI, or angioplasty), been submitted to CVS Health?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 37,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 37,
+        "qstn_txt": "Is this request for continuation of therapy?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 38,
+        "false_rspns_cd": 40,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 38,
+        "qstn_txt": "Is the patient being treated with a maintenance dosage of the requested drug which is based on individual treatment response and tolerability?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 39,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 39,
+        "qstn_txt": "Does the patient require MORE than the plan allowance per month of any of the following: A) 1 package/4 pens Wegovy 0.25 mg/0.5 mL, B) 0.5 mg/0.5 mL, C) 1 mg/0.5 mL, D) 1.7 mg/0.75 mL, E) 2.4 mg/0.75 mL injection, F) 30 tablets Wegovy?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": "D",
+        "false_rspns_cd": "A",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 40,
+        "qstn_txt": "Does the patient have a baseline body mass index (BMI) greater than or equal to 27 kg/m\u00b2? [If the patient is transitioning from another drug therapy for weight loss, please consider their baseline BMI at the start of any drug therapy when answering this question.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 41,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 41,
+        "qstn_txt": "Have chart notes showing the patient's baseline body mass index (BMI) been submitted to CVS Health? [If the patient is transitioning from another drug therapy for weight loss, please provide their baseline BMI at the start of any drug therapy.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 42,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 42,
+        "qstn_txt": "Does the patient have type 2 diabetes? [Ozempic is indicated to reduce the risk of major cardiovascular events in adults with type 2 diabetes mellitus and established cardiovascular disease. If the patient may be treated with Ozempic, please provide the patient with a new prescription for Ozempic.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": "D",
+        "false_rspns_cd": 43,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 43,
+        "qstn_txt": "Is the patient currently receiving guideline-directed management and therapy (GDMT) for cardiovascular disease (e.g., lipid-lowering agent, antiplatelet, beta-blocker, renin-angiotensin inhibitor, etc.) OR does the patient have a clinical reason not to be treated with GDMT for cardiovascular disease?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 44,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 44,
+        "qstn_txt": "Have chart notes showing that the patient is currently receiving guideline-directed management and therapy (GDMT) for cardiovascular disease or showing the clinical reason why the patient cannot be treated with GDMT (e.g., intolerance, contraindication, allergy) been submitted to CVS Health?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 45,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 45,
+        "qstn_txt": "Does the patient require MORE than the plan allowance per month of any of the following: A) 1 package/4 pens Wegovy 0.25 mg/0.5 mL, B) 0.5 mg/0.5 mL, C) 1 mg/0.5 mL, D) 1.7 mg/0.75 mL, E) 2.4 mg/0.75 mL injection, F) 30 tablets Wegovy?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": "D",
+        "false_rspns_cd": "A",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 46,
+        "qstn_txt": "Is the requested drug being prescribed for the treatment of noncirrhotic metabolic dysfunction-associated steatohepatitis (MASH), formerly known as nonalcoholic steatohepatitis (NASH), with moderate to advanced liver fibrosis (consistent with stages F2 to F3 fibrosis) in an adult?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 47,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 47,
+        "qstn_txt": "Is the requested drug being used with a reduced-calorie diet AND increased physical activity?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 48,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 48,
+        "qstn_txt": "Is this request for ANY of the following: A) Wegovy (semaglutide) HD 7.2 mg injection, B) Wegovy (semaglutide) tablets?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": "D",
+        "false_rspns_cd": 49,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 49,
+        "qstn_txt": "Is this request for continuation of therapy?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 50,
+        "false_rspns_cd": 54,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 50,
+        "qstn_txt": "Has the patient achieved or maintained a positive clinical response to the requested drug (e.g., improvement in liver function such as reduction in alanine aminotransferase [ALT], improvement in Enhanced Liver Fibrosis [ELF] score, improvement in liver stiffness measurement [LSM] by ultrasound-based elastography, magnetic resonance elastography [MRE])?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 51,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 51,
+        "qstn_txt": "Have chart notes or other documentation supporting that the patient has achieved or maintained a positive clinical response to the requested drug (e.g., improvement in ALT, ELF score, LSM by elastography or MRE) been submitted to CVS Health?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 52,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 52,
+        "qstn_txt": "Is the patient being treated with a maintenance dosage of the requested drug which is based on individual treatment response and tolerability?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 53,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 53,
+        "qstn_txt": "Does the patient require MORE than the plan allowance of 1 package/4 pens of any of the following per month: A) Wegovy 0.25 mg/0.5 mL, B) Wegovy 0.5 mg/0.5 mL, C) Wegovy 1 mg/0.5 mL, D) Wegovy 1.7 mg/0.75 mL, E) Wegovy 2.4 mg/0.75 mL injection?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": "D",
+        "false_rspns_cd": "A",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 54,
+        "qstn_txt": "Is the requested drug being prescribed by, or in consultation with, a gastroenterologist or hepatologist?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 55,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 55,
+        "qstn_txt": "Has the patient's moderate to advanced liver fibrosis (consistent with stages F2 to F3 fibrosis) at baseline been confirmed by ONE of the following: non-invasive liver disease assessment (e.g., ultrasound-based elastography, magnetic resonance elastography [MRE]) OR historical liver biopsy?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 56,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 56,
+        "qstn_txt": "Have chart notes or other documentation supporting that the patient's moderate to advanced liver fibrosis (consistent with stages F2 to F3 fibrosis) at baseline has been confirmed by non-invasive liver disease assessment (e.g., ultrasound-based elastography or MRE) OR historical liver biopsy been submitted to CVS Health?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 57,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 57,
+        "qstn_txt": "Does the patient require MORE than the plan allowance of 1 package/4 pens of any of the following per month: A) Wegovy 0.25 mg/0.5 mL, B) Wegovy 0.5 mg/0.5 mL, C) Wegovy 1 mg/0.5 mL, D) Wegovy 1.7 mg/0.75 mL, E) Wegovy 2.4 mg/0.75 mL injection?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": "D",
+        "false_rspns_cd": "A",
+        "score_val_nbr": 0
+      }
+    ],
+    "submission": [
+      {
+        "CRTE_DT": "2026-10-20T10:00:00",
+        "RX_DESC_TXT": "WEGOVY 25MG OR TABS",
+        "RX_REP_NDC_NBR": "00169442531",
+        "RX_QTY_NBR": 30,
+        "RX_DAYS_SPLY_NBR": 30
+      }
+    ],
+    "prescriber_answers": [
+      {
+        "ORDEAL_NBR": 1,
+        "ANSWR_TXT": "1",
+        "EXTN_TXT": null
+      },
+      {
+        "ORDEAL_NBR": 2,
+        "ANSWR_TXT": "1",
+        "EXTN_TXT": null
+      },
+      {
+        "ORDEAL_NBR": 3,
+        "ANSWR_TXT": "1",
+        "EXTN_TXT": null
+      },
+      {
+        "ORDEAL_NBR": 4,
+        "ANSWR_TXT": "1",
+        "EXTN_TXT": "Baseline 2026-04-15: 220 lb; current 2026-10-15: 198 lb. Synthetic example."
+      },
+      {
+        "ORDEAL_NBR": 5,
+        "ANSWR_TXT": "1",
+        "EXTN_TXT": null
+      },
+      {
+        "ORDEAL_NBR": 6,
+        "ANSWR_TXT": "0",
+        "EXTN_TXT": null
+      }
+    ],
+    "initial_answers": {
+      "1": "T",
+      "2": "T",
+      "3": "T",
+      "4": "T",
+      "5": "T",
+      "6": "F"
+    },
+    "q_comments": {
+      "4": "Baseline 2026-04-15: 220 lb; current 2026-10-15: 198 lb. Synthetic example."
+    },
+    "mock_claims": [
+      {
+        "CRTE_TS": "2026-10-20T10:00:00",
+        "CRTE_BY_USER_ID": "SYSTEM-DEMO",
+        "FILL_DT": "2026-10-20",
+        "INITL_MOCK_IND": "1",
+        "MOCK_STUS_CD": "REJECTED",
+        "RJCT_CD": "75",
+        "RJCT_MSG_TXT": "Prior Authorization Required",
+        "PHMCY_ID": "DEMO-PHARMACY"
+      }
+    ],
+    "pa_history": [
+      {
+        "prior_athzn_nbr": "25-900000001",
+        "prior_athzn_drug_nm": "WEGOVY 25MG OR TABS",
+        "gpi10_cd": "6125207000",
+        "prior_athzn_crte_ts": "2025-09-01",
+        "prior_athzn_rsltn_drvd_cd": "APPROVAL",
+        "prior_athzn_aprv_end_dt": "2026-09-01",
+        "aprv_drtn_day_nbr": 365,
+        "pac_cd": "DEMO-PAC"
+      }
+    ],
+    "claim_history": [
+      {
+        "FILL_DT": "2026-06-15",
+        "CLM_STUS_CD": "P",
+        "RVRSL_DT": null,
+        "DRUG_BRND_NM": "WEGOVY",
+        "DRUG_STRGH_NM": "25MG",
+        "DSPNS_UNT_QTY": 30,
+        "DAY_SPLY_QTY": 30,
+        "GPI10_CD": "6125207000",
+        "NCPDP_RJCT1_CD": null,
+        "PHMCY_NM": "Synthetic Pharmacy"
+      },
+      {
+        "FILL_DT": "2026-07-15",
+        "CLM_STUS_CD": "P",
+        "RVRSL_DT": null,
+        "DRUG_BRND_NM": "WEGOVY",
+        "DRUG_STRGH_NM": "25MG",
+        "DSPNS_UNT_QTY": 30,
+        "DAY_SPLY_QTY": 30,
+        "GPI10_CD": "6125207000",
+        "NCPDP_RJCT1_CD": null,
+        "PHMCY_NM": "Synthetic Pharmacy"
+      },
+      {
+        "FILL_DT": "2026-08-15",
+        "CLM_STUS_CD": "P",
+        "RVRSL_DT": null,
+        "DRUG_BRND_NM": "WEGOVY",
+        "DRUG_STRGH_NM": "25MG",
+        "DSPNS_UNT_QTY": 30,
+        "DAY_SPLY_QTY": 30,
+        "GPI10_CD": "6125207000",
+        "NCPDP_RJCT1_CD": null,
+        "PHMCY_NM": "Synthetic Pharmacy"
+      },
+      {
+        "FILL_DT": "2026-09-15",
+        "CLM_STUS_CD": "P",
+        "RVRSL_DT": null,
+        "DRUG_BRND_NM": "WEGOVY",
+        "DRUG_STRGH_NM": "25MG",
+        "DSPNS_UNT_QTY": 30,
+        "DAY_SPLY_QTY": 30,
+        "GPI10_CD": "6125207000",
+        "NCPDP_RJCT1_CD": null,
+        "PHMCY_NM": "Synthetic Pharmacy"
+      }
+    ],
+    "attachments": [
+      {
+        "ATCHM_ID": "DEMO-1-progress-note.pdf",
+        "filename": "progress-note.pdf",
+        "ATCHM_DESC": "Synthetic progress note",
+        "CRTE_TS": "2026-10-20T10:00:00",
+        "CNTNT_TYP_CD": "application/pdf",
+        "question_numbers": [
+          3
+        ]
+      },
+      {
+        "ATCHM_ID": "DEMO-1-weight-record.pdf",
+        "filename": "weight-record.pdf",
+        "ATCHM_DESC": "Synthetic weight record",
+        "CRTE_TS": "2026-10-20T10:00:00",
+        "CNTNT_TYP_CD": "application/pdf",
+        "question_numbers": [
+          4,
+          5
+        ]
+      }
+    ],
+    "fallout": {
+      "step": 1150,
+      "reason": "Could not validate outcome code; manual criteria review required"
+    }
+  },
+  {
+    "synthetic": true,
+    "scenario": "Continuation: below weight threshold",
+    "pa": "26-900000002",
+    "asof": "2026-10-20T10:00:00",
+    "header": {
+      "prior_athzn_nbr": "26-900000002",
+      "mbr_acct_id": "DEMO-MEMBER-002",
+      "prior_athzn_drug_nm": "WEGOVY 25MG OR TABS",
+      "prior_athzn_gpi_cd": "6125207000",
+      "gpi10_cd": "6125207000",
+      "pac_cd": "DEMO-PAC",
+      "pac_desc": "Weight management demo",
+      "icd_dx_cd": "DEMO",
+      "icd_dx_cd_desc": "Fictional weight management scenario",
+      "urg_prior_athzn_ind": 0,
+      "rfrnc_nbr": "DEMO-REF-002",
+      "qset_nbr": "DEMO-QSET",
+      "qset_desc": "Synthetic weight management criteria",
+      "pag_nm": "SYNTHETIC PLAN",
+      "dsply_pag_nm": "SYNTHETIC PLAN",
+      "mbr_frst_nm": "Synthetic",
+      "mbr_last_nm": "Member 02",
+      "mbr_brth_dt": "1976-06-08",
+      "mbr_gndr_cd": "M"
+    },
+    "qset": [
+      {
+        "ordinal_nbr": 1,
+        "qstn_txt": "Will the requested drug be used with a reduced-calorie diet AND increased physical activity to reduce excess body weight or maintain weight reduction long term?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 2,
+        "false_rspns_cd": 32,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 2,
+        "qstn_txt": "Is the patient 18 years of age or older?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 3,
+        "false_rspns_cd": 22,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 3,
+        "qstn_txt": "Has the patient completed at least 3 months of therapy with the requested drug at a stable maintenance dose? [If the patient is transitioning from another drug therapy for weight loss, please answer no and proceed.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 4,
+        "false_rspns_cd": 7,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 4,
+        "qstn_txt": "Has the patient lost at least 5 percent of baseline body weight OR has the patient continued to maintain their initial 5 percent weight loss?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 5,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 5,
+        "qstn_txt": "Has documentation of the patient's weight prior to starting drug therapy for weight loss and the patient's current weight, including the dates the weights were taken, been submitted to CVS Health?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 6,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 6,
+        "qstn_txt": "Does the patient require MORE than the plan allowance per month of any of the following: A) 1 package/4 pens of Wegovy (semaglutide) 0.25 mg/0.5 mL injection, B) 1 package/4 pens of Wegovy (semaglutide) 0.5 mg/0.5 mL injection, C) 1 package/4 pens of Wegovy (semaglutide) 1 mg/0.5 mL injection, D) 1 package/4 pens of Wegovy (semaglutide) 1.7 mg/0.75 mL injection, E) 1 package/4 pens of Wegovy (semaglutide) 2.4 mg/0.75 mL injection, F) 1 package/4 pens of Wegovy (semaglutide) HD 7.2 mg/0.75 mL, G) 30 tablets of Wegovy (semaglutide)?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": "D",
+        "false_rspns_cd": "A",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 7,
+        "qstn_txt": "Has the patient participated in a comprehensive weight management program that encourages behavioral modification, reduced-calorie diet, AND increased physical activity with continuing follow-up for at least 6 months prior to using drug therapy?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 8,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 8,
+        "qstn_txt": "Does the patient have a baseline body mass index (BMI) of less than 27 kg/m\u00b2? [If the patient is transitioning from another drug therapy for weight loss, please consider their baseline BMI at the start of any drug therapy when answering this question.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": "D",
+        "false_rspns_cd": 9,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 9,
+        "qstn_txt": "Does the patient have a baseline body mass index (BMI) of 27 kg/m\u00b2 to less than 30 kg/m\u00b2? [If the patient is transitioning from another drug therapy for weight loss, please consider their baseline BMI at the start of any drug therapy when answering this question.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 10,
+        "false_rspns_cd": 13,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 10,
+        "qstn_txt": "Have chart notes showing the patient's baseline body mass index (BMI) been submitted to CVS Health? [If the patient is transitioning from another drug therapy for weight loss, please provide their baseline BMI at the start of any drug therapy.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 11,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 11,
+        "qstn_txt": "Does the patient have at least ONE weight-related comorbid condition (e.g., hypertension, type 2 diabetes mellitus, dyslipidemia)? [If the patient is transitioning from another drug therapy for weight loss, please consider their weight-related comorbid condition(s) at the start of any drug therapy when answering this question.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 12,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 12,
+        "qstn_txt": "Have chart notes indicating the patient's weight-related comorbid condition(s) been submitted to CVS Health? [If the patient is transitioning from another drug therapy for weight loss, please provide their weight-related comorbid condition(s) at the start of any drug therapy.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 19,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 13,
+        "qstn_txt": "Does the patient have a baseline body mass index (BMI) of 30 kg/m\u00b2 to less than 35 kg/m\u00b2? [If the patient is transitioning from another drug therapy for weight loss, please consider their baseline BMI at the start of any drug therapy when answering this question.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 14,
+        "false_rspns_cd": 15,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 14,
+        "qstn_txt": "Have chart notes showing the patient's baseline body mass index (BMI) been submitted to CVS Health? [If the patient is transitioning from another drug therapy for weight loss, please provide their baseline BMI at the start of any drug therapy.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 19,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 15,
+        "qstn_txt": "Does the patient have a baseline body mass index (BMI) of 35 kg/m\u00b2 to less than 40 kg/m\u00b2? [If the patient is transitioning from another drug therapy for weight loss, please consider their baseline BMI at the start of any drug therapy when answering this question.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 16,
+        "false_rspns_cd": 17,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 16,
+        "qstn_txt": "Have chart notes showing the patient's baseline body mass index (BMI) been submitted to CVS Health? [If the patient is transitioning from another drug therapy for weight loss, please provide their baseline BMI at the start of any drug therapy.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 19,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 17,
+        "qstn_txt": "Does the patient have a baseline body mass index (BMI) of 40 kg/m\u00b2 or greater? [If the patient is transitioning from another drug therapy for weight loss, please consider their baseline BMI at the start of any drug therapy when answering this question.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 18,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 18,
+        "qstn_txt": "Have chart notes showing the patient's baseline body mass index (BMI) been submitted to CVS Health? [If the patient is transitioning from another drug therapy for weight loss, please provide their baseline BMI at the start of any drug therapy.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 19,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 19,
+        "qstn_txt": "Is this request for Wegovy (semaglutide) injection?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 20,
+        "false_rspns_cd": 21,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 20,
+        "qstn_txt": "Does the patient require MORE than the plan allowance of 1 package/4 pens per month of any of the following: A) Wegovy 0.25 mg/0.5 mL injection, B) Wegovy 0.5 mg/0.5 mL injection, C) Wegovy 1 mg/0.5 mL injection, D) Wegovy 1.7 mg/0.75 mL injection, E) Wegovy 2.4 mg/0.75 mL injection, F) Wegovy HD 7.2 mg/0.75 mL injection?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": "D",
+        "false_rspns_cd": "A",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 21,
+        "qstn_txt": "Does the patient require MORE than the plan allowance of 30 tablets per month of Wegovy (semaglutide)?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": "D",
+        "false_rspns_cd": "A",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 22,
+        "qstn_txt": "Is the patient 12 to 17 years of age?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 23,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 23,
+        "qstn_txt": "Is this request for ANY of the following: A) Wegovy (semaglutide) HD 7.2 mg/0.75 mL injection, B) Wegovy (semaglutide) tablets?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": "D",
+        "false_rspns_cd": 24,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 24,
+        "qstn_txt": "Is the request for continuation of therapy for a patient that has successfully titrated to a stable maintenance dose? [If the patient is transitioning from another drug therapy for weight loss, please answer no and proceed.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 25,
+        "false_rspns_cd": 28,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 25,
+        "qstn_txt": "Has the patient had a reduction from their baseline body mass index (BMI) OR has the patient continued to maintain their initial BMI reduction?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 26,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 26,
+        "qstn_txt": "Has documentation of the patient's body mass index (BMI) prior to starting drug therapy for weight loss and the patient's current BMI, including the dates the BMIs were taken, been submitted to CVS Health?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 27,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 27,
+        "qstn_txt": "Does the patient require MORE than the plan allowance of 1 package/4 pens of any of the following per month: A) Wegovy 0.25 mg/0.5 mL, B) Wegovy 0.5 mg/0.5 mL, C) Wegovy 1 mg/0.5 mL, D) Wegovy 1.7 mg/0.75 mL, E) Wegovy 2.4 mg/0.75 mL injection?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": "D",
+        "false_rspns_cd": "A",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 28,
+        "qstn_txt": "Has the patient participated in a comprehensive weight management program that encourages behavioral modification, reduced-calorie diet, AND increased physical activity with continuing follow-up for at least 6 months prior to using drug therapy?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 29,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 29,
+        "qstn_txt": "Does the patient have a baseline body mass index (BMI) in the 95th percentile or greater standardized for age and sex (obesity)? [If the patient is transitioning from another drug therapy for weight loss, please consider their baseline BMI at the start of any drug therapy when answering this question.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 30,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 30,
+        "qstn_txt": "Have chart notes showing the patient's baseline body mass index (BMI) percentile standardized for age and sex been submitted to CVS Health? [If the patient is transitioning from another drug therapy for weight loss, please provide their baseline BMI at the start of any drug therapy.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 31,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 31,
+        "qstn_txt": "Does the patient require MORE than the plan allowance of 1 package/4 pens of any of the following per month: A) Wegovy 0.25 mg/0.5 mL, B) Wegovy 0.5 mg/0.5 mL, C) Wegovy 1 mg/0.5 mL, D) Wegovy 1.7 mg/0.75 mL, E) Wegovy 2.4 mg/0.75 mL injection?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": "D",
+        "false_rspns_cd": "A",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 32,
+        "qstn_txt": "Will the requested drug be used to reduce the risk of major adverse cardiovascular events (cardiovascular death, non-fatal myocardial infarction, or non-fatal stroke) in an adult with established cardiovascular disease AND either obesity or overweight?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 33,
+        "false_rspns_cd": 46,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 33,
+        "qstn_txt": "Is the requested drug being used with a reduced-calorie diet AND increased physical activity?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 34,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 34,
+        "qstn_txt": "Is this request for Wegovy (semaglutide) HD 7.2 mg injection?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": "D",
+        "false_rspns_cd": 35,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 35,
+        "qstn_txt": "Does the patient have established cardiovascular disease with a history of ONE of the following: A) previous myocardial infarction (MI), B) previous stroke, C) symptomatic peripheral arterial disease (PAD), as evidenced by intermittent claudication with ankle-brachial index (ABI) less than 0.85 (at rest), peripheral arterial revascularization procedure, or amputation due to atherosclerotic disease, D) prior history of revascularization (coronary artery bypass grafting [CABG], percutaneous coronary intervention [PCI], or angioplasty)?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 36,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 36,
+        "qstn_txt": "Have chart notes supporting the patient's diagnosis, including diagnostic evidence, of ONE of the following: A) previous myocardial infarction (MI), B) previous stroke, C) symptomatic peripheral arterial disease (PAD), D) prior history of revascularization (CABG, PCI, or angioplasty), been submitted to CVS Health?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 37,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 37,
+        "qstn_txt": "Is this request for continuation of therapy?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 38,
+        "false_rspns_cd": 40,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 38,
+        "qstn_txt": "Is the patient being treated with a maintenance dosage of the requested drug which is based on individual treatment response and tolerability?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 39,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 39,
+        "qstn_txt": "Does the patient require MORE than the plan allowance per month of any of the following: A) 1 package/4 pens Wegovy 0.25 mg/0.5 mL, B) 0.5 mg/0.5 mL, C) 1 mg/0.5 mL, D) 1.7 mg/0.75 mL, E) 2.4 mg/0.75 mL injection, F) 30 tablets Wegovy?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": "D",
+        "false_rspns_cd": "A",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 40,
+        "qstn_txt": "Does the patient have a baseline body mass index (BMI) greater than or equal to 27 kg/m\u00b2? [If the patient is transitioning from another drug therapy for weight loss, please consider their baseline BMI at the start of any drug therapy when answering this question.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 41,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 41,
+        "qstn_txt": "Have chart notes showing the patient's baseline body mass index (BMI) been submitted to CVS Health? [If the patient is transitioning from another drug therapy for weight loss, please provide their baseline BMI at the start of any drug therapy.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 42,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 42,
+        "qstn_txt": "Does the patient have type 2 diabetes? [Ozempic is indicated to reduce the risk of major cardiovascular events in adults with type 2 diabetes mellitus and established cardiovascular disease. If the patient may be treated with Ozempic, please provide the patient with a new prescription for Ozempic.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": "D",
+        "false_rspns_cd": 43,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 43,
+        "qstn_txt": "Is the patient currently receiving guideline-directed management and therapy (GDMT) for cardiovascular disease (e.g., lipid-lowering agent, antiplatelet, beta-blocker, renin-angiotensin inhibitor, etc.) OR does the patient have a clinical reason not to be treated with GDMT for cardiovascular disease?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 44,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 44,
+        "qstn_txt": "Have chart notes showing that the patient is currently receiving guideline-directed management and therapy (GDMT) for cardiovascular disease or showing the clinical reason why the patient cannot be treated with GDMT (e.g., intolerance, contraindication, allergy) been submitted to CVS Health?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 45,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 45,
+        "qstn_txt": "Does the patient require MORE than the plan allowance per month of any of the following: A) 1 package/4 pens Wegovy 0.25 mg/0.5 mL, B) 0.5 mg/0.5 mL, C) 1 mg/0.5 mL, D) 1.7 mg/0.75 mL, E) 2.4 mg/0.75 mL injection, F) 30 tablets Wegovy?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": "D",
+        "false_rspns_cd": "A",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 46,
+        "qstn_txt": "Is the requested drug being prescribed for the treatment of noncirrhotic metabolic dysfunction-associated steatohepatitis (MASH), formerly known as nonalcoholic steatohepatitis (NASH), with moderate to advanced liver fibrosis (consistent with stages F2 to F3 fibrosis) in an adult?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 47,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 47,
+        "qstn_txt": "Is the requested drug being used with a reduced-calorie diet AND increased physical activity?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 48,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 48,
+        "qstn_txt": "Is this request for ANY of the following: A) Wegovy (semaglutide) HD 7.2 mg injection, B) Wegovy (semaglutide) tablets?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": "D",
+        "false_rspns_cd": 49,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 49,
+        "qstn_txt": "Is this request for continuation of therapy?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 50,
+        "false_rspns_cd": 54,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 50,
+        "qstn_txt": "Has the patient achieved or maintained a positive clinical response to the requested drug (e.g., improvement in liver function such as reduction in alanine aminotransferase [ALT], improvement in Enhanced Liver Fibrosis [ELF] score, improvement in liver stiffness measurement [LSM] by ultrasound-based elastography, magnetic resonance elastography [MRE])?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 51,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 51,
+        "qstn_txt": "Have chart notes or other documentation supporting that the patient has achieved or maintained a positive clinical response to the requested drug (e.g., improvement in ALT, ELF score, LSM by elastography or MRE) been submitted to CVS Health?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 52,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 52,
+        "qstn_txt": "Is the patient being treated with a maintenance dosage of the requested drug which is based on individual treatment response and tolerability?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 53,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 53,
+        "qstn_txt": "Does the patient require MORE than the plan allowance of 1 package/4 pens of any of the following per month: A) Wegovy 0.25 mg/0.5 mL, B) Wegovy 0.5 mg/0.5 mL, C) Wegovy 1 mg/0.5 mL, D) Wegovy 1.7 mg/0.75 mL, E) Wegovy 2.4 mg/0.75 mL injection?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": "D",
+        "false_rspns_cd": "A",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 54,
+        "qstn_txt": "Is the requested drug being prescribed by, or in consultation with, a gastroenterologist or hepatologist?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 55,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 55,
+        "qstn_txt": "Has the patient's moderate to advanced liver fibrosis (consistent with stages F2 to F3 fibrosis) at baseline been confirmed by ONE of the following: non-invasive liver disease assessment (e.g., ultrasound-based elastography, magnetic resonance elastography [MRE]) OR historical liver biopsy?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 56,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 56,
+        "qstn_txt": "Have chart notes or other documentation supporting that the patient's moderate to advanced liver fibrosis (consistent with stages F2 to F3 fibrosis) at baseline has been confirmed by non-invasive liver disease assessment (e.g., ultrasound-based elastography or MRE) OR historical liver biopsy been submitted to CVS Health?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 57,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 57,
+        "qstn_txt": "Does the patient require MORE than the plan allowance of 1 package/4 pens of any of the following per month: A) Wegovy 0.25 mg/0.5 mL, B) Wegovy 0.5 mg/0.5 mL, C) Wegovy 1 mg/0.5 mL, D) Wegovy 1.7 mg/0.75 mL, E) Wegovy 2.4 mg/0.75 mL injection?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": "D",
+        "false_rspns_cd": "A",
+        "score_val_nbr": 0
+      }
+    ],
+    "submission": [
+      {
+        "CRTE_DT": "2026-10-20T10:00:00",
+        "RX_DESC_TXT": "WEGOVY 25MG OR TABS",
+        "RX_REP_NDC_NBR": "00169442531",
+        "RX_QTY_NBR": 30,
+        "RX_DAYS_SPLY_NBR": 30
+      }
+    ],
+    "prescriber_answers": [
+      {
+        "ORDEAL_NBR": 1,
+        "ANSWR_TXT": "1",
+        "EXTN_TXT": null
+      },
+      {
+        "ORDEAL_NBR": 2,
+        "ANSWR_TXT": "1",
+        "EXTN_TXT": null
+      },
+      {
+        "ORDEAL_NBR": 3,
+        "ANSWR_TXT": "1",
+        "EXTN_TXT": null
+      },
+      {
+        "ORDEAL_NBR": 4,
+        "ANSWR_TXT": "0",
+        "EXTN_TXT": "Baseline 2026-04-15: 210 lb; current 2026-10-15: 205 lb. Synthetic example."
+      },
+      {
+        "ORDEAL_NBR": 5,
+        "ANSWR_TXT": "1",
+        "EXTN_TXT": null
+      },
+      {
+        "ORDEAL_NBR": 6,
+        "ANSWR_TXT": "0",
+        "EXTN_TXT": null
+      }
+    ],
+    "initial_answers": {
+      "1": "T",
+      "2": "T",
+      "3": "T",
+      "4": "F",
+      "5": "T",
+      "6": "F"
+    },
+    "q_comments": {
+      "4": "Baseline 2026-04-15: 210 lb; current 2026-10-15: 205 lb. Synthetic example."
+    },
+    "mock_claims": [
+      {
+        "CRTE_TS": "2026-10-20T10:00:00",
+        "CRTE_BY_USER_ID": "SYSTEM-DEMO",
+        "FILL_DT": "2026-10-20",
+        "INITL_MOCK_IND": "1",
+        "MOCK_STUS_CD": "REJECTED",
+        "RJCT_CD": "75",
+        "RJCT_MSG_TXT": "Prior Authorization Required",
+        "PHMCY_ID": "DEMO-PHARMACY"
+      }
+    ],
+    "pa_history": [
+      {
+        "prior_athzn_nbr": "25-900000002",
+        "prior_athzn_drug_nm": "WEGOVY 25MG OR TABS",
+        "gpi10_cd": "6125207000",
+        "prior_athzn_crte_ts": "2025-09-01",
+        "prior_athzn_rsltn_drvd_cd": "APPROVAL",
+        "prior_athzn_aprv_end_dt": "2026-09-01",
+        "aprv_drtn_day_nbr": 365,
+        "pac_cd": "DEMO-PAC"
+      }
+    ],
+    "claim_history": [
+      {
+        "FILL_DT": "2026-06-15",
+        "CLM_STUS_CD": "P",
+        "RVRSL_DT": null,
+        "DRUG_BRND_NM": "WEGOVY",
+        "DRUG_STRGH_NM": "25MG",
+        "DSPNS_UNT_QTY": 30,
+        "DAY_SPLY_QTY": 30,
+        "GPI10_CD": "6125207000",
+        "NCPDP_RJCT1_CD": null,
+        "PHMCY_NM": "Synthetic Pharmacy"
+      },
+      {
+        "FILL_DT": "2026-07-15",
+        "CLM_STUS_CD": "P",
+        "RVRSL_DT": null,
+        "DRUG_BRND_NM": "WEGOVY",
+        "DRUG_STRGH_NM": "25MG",
+        "DSPNS_UNT_QTY": 30,
+        "DAY_SPLY_QTY": 30,
+        "GPI10_CD": "6125207000",
+        "NCPDP_RJCT1_CD": null,
+        "PHMCY_NM": "Synthetic Pharmacy"
+      },
+      {
+        "FILL_DT": "2026-08-15",
+        "CLM_STUS_CD": "P",
+        "RVRSL_DT": null,
+        "DRUG_BRND_NM": "WEGOVY",
+        "DRUG_STRGH_NM": "25MG",
+        "DSPNS_UNT_QTY": 30,
+        "DAY_SPLY_QTY": 30,
+        "GPI10_CD": "6125207000",
+        "NCPDP_RJCT1_CD": null,
+        "PHMCY_NM": "Synthetic Pharmacy"
+      },
+      {
+        "FILL_DT": "2026-09-15",
+        "CLM_STUS_CD": "P",
+        "RVRSL_DT": null,
+        "DRUG_BRND_NM": "WEGOVY",
+        "DRUG_STRGH_NM": "25MG",
+        "DSPNS_UNT_QTY": 30,
+        "DAY_SPLY_QTY": 30,
+        "GPI10_CD": "6125207000",
+        "NCPDP_RJCT1_CD": null,
+        "PHMCY_NM": "Synthetic Pharmacy"
+      }
+    ],
+    "attachments": [
+      {
+        "ATCHM_ID": "DEMO-2-progress-note.pdf",
+        "filename": "progress-note.pdf",
+        "ATCHM_DESC": "Synthetic progress note",
+        "CRTE_TS": "2026-10-20T10:00:00",
+        "CNTNT_TYP_CD": "application/pdf",
+        "question_numbers": [
+          3
+        ]
+      },
+      {
+        "ATCHM_ID": "DEMO-2-weight-record.pdf",
+        "filename": "weight-record.pdf",
+        "ATCHM_DESC": "Synthetic weight record",
+        "CRTE_TS": "2026-10-20T10:00:00",
+        "CNTNT_TYP_CD": "application/pdf",
+        "question_numbers": [
+          4,
+          5
+        ]
+      }
+    ],
+    "fallout": {
+      "step": 1150,
+      "reason": "Could not validate outcome code; manual criteria review required"
+    }
+  },
+  {
+    "synthetic": true,
+    "scenario": "Documentation missing",
+    "pa": "26-900000003",
+    "asof": "2026-10-20T10:00:00",
+    "header": {
+      "prior_athzn_nbr": "26-900000003",
+      "mbr_acct_id": "DEMO-MEMBER-003",
+      "prior_athzn_drug_nm": "WEGOVY 25MG OR TABS",
+      "prior_athzn_gpi_cd": "6125207000",
+      "gpi10_cd": "6125207000",
+      "pac_cd": "DEMO-PAC",
+      "pac_desc": "Weight management demo",
+      "icd_dx_cd": "DEMO",
+      "icd_dx_cd_desc": "Fictional weight management scenario",
+      "urg_prior_athzn_ind": 0,
+      "rfrnc_nbr": "DEMO-REF-003",
+      "qset_nbr": "DEMO-QSET",
+      "qset_desc": "Synthetic weight management criteria",
+      "pag_nm": "SYNTHETIC PLAN",
+      "dsply_pag_nm": "SYNTHETIC PLAN",
+      "mbr_frst_nm": "Synthetic",
+      "mbr_last_nm": "Member 03",
+      "mbr_brth_dt": "1991-02-20",
+      "mbr_gndr_cd": "F"
+    },
+    "qset": [
+      {
+        "ordinal_nbr": 1,
+        "qstn_txt": "Will the requested drug be used with a reduced-calorie diet AND increased physical activity to reduce excess body weight or maintain weight reduction long term?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 2,
+        "false_rspns_cd": 32,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 2,
+        "qstn_txt": "Is the patient 18 years of age or older?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 3,
+        "false_rspns_cd": 22,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 3,
+        "qstn_txt": "Has the patient completed at least 3 months of therapy with the requested drug at a stable maintenance dose? [If the patient is transitioning from another drug therapy for weight loss, please answer no and proceed.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 4,
+        "false_rspns_cd": 7,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 4,
+        "qstn_txt": "Has the patient lost at least 5 percent of baseline body weight OR has the patient continued to maintain their initial 5 percent weight loss?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 5,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 5,
+        "qstn_txt": "Has documentation of the patient's weight prior to starting drug therapy for weight loss and the patient's current weight, including the dates the weights were taken, been submitted to CVS Health?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 6,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 6,
+        "qstn_txt": "Does the patient require MORE than the plan allowance per month of any of the following: A) 1 package/4 pens of Wegovy (semaglutide) 0.25 mg/0.5 mL injection, B) 1 package/4 pens of Wegovy (semaglutide) 0.5 mg/0.5 mL injection, C) 1 package/4 pens of Wegovy (semaglutide) 1 mg/0.5 mL injection, D) 1 package/4 pens of Wegovy (semaglutide) 1.7 mg/0.75 mL injection, E) 1 package/4 pens of Wegovy (semaglutide) 2.4 mg/0.75 mL injection, F) 1 package/4 pens of Wegovy (semaglutide) HD 7.2 mg/0.75 mL, G) 30 tablets of Wegovy (semaglutide)?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": "D",
+        "false_rspns_cd": "A",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 7,
+        "qstn_txt": "Has the patient participated in a comprehensive weight management program that encourages behavioral modification, reduced-calorie diet, AND increased physical activity with continuing follow-up for at least 6 months prior to using drug therapy?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 8,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 8,
+        "qstn_txt": "Does the patient have a baseline body mass index (BMI) of less than 27 kg/m\u00b2? [If the patient is transitioning from another drug therapy for weight loss, please consider their baseline BMI at the start of any drug therapy when answering this question.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": "D",
+        "false_rspns_cd": 9,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 9,
+        "qstn_txt": "Does the patient have a baseline body mass index (BMI) of 27 kg/m\u00b2 to less than 30 kg/m\u00b2? [If the patient is transitioning from another drug therapy for weight loss, please consider their baseline BMI at the start of any drug therapy when answering this question.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 10,
+        "false_rspns_cd": 13,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 10,
+        "qstn_txt": "Have chart notes showing the patient's baseline body mass index (BMI) been submitted to CVS Health? [If the patient is transitioning from another drug therapy for weight loss, please provide their baseline BMI at the start of any drug therapy.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 11,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 11,
+        "qstn_txt": "Does the patient have at least ONE weight-related comorbid condition (e.g., hypertension, type 2 diabetes mellitus, dyslipidemia)? [If the patient is transitioning from another drug therapy for weight loss, please consider their weight-related comorbid condition(s) at the start of any drug therapy when answering this question.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 12,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 12,
+        "qstn_txt": "Have chart notes indicating the patient's weight-related comorbid condition(s) been submitted to CVS Health? [If the patient is transitioning from another drug therapy for weight loss, please provide their weight-related comorbid condition(s) at the start of any drug therapy.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 19,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 13,
+        "qstn_txt": "Does the patient have a baseline body mass index (BMI) of 30 kg/m\u00b2 to less than 35 kg/m\u00b2? [If the patient is transitioning from another drug therapy for weight loss, please consider their baseline BMI at the start of any drug therapy when answering this question.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 14,
+        "false_rspns_cd": 15,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 14,
+        "qstn_txt": "Have chart notes showing the patient's baseline body mass index (BMI) been submitted to CVS Health? [If the patient is transitioning from another drug therapy for weight loss, please provide their baseline BMI at the start of any drug therapy.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 19,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 15,
+        "qstn_txt": "Does the patient have a baseline body mass index (BMI) of 35 kg/m\u00b2 to less than 40 kg/m\u00b2? [If the patient is transitioning from another drug therapy for weight loss, please consider their baseline BMI at the start of any drug therapy when answering this question.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 16,
+        "false_rspns_cd": 17,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 16,
+        "qstn_txt": "Have chart notes showing the patient's baseline body mass index (BMI) been submitted to CVS Health? [If the patient is transitioning from another drug therapy for weight loss, please provide their baseline BMI at the start of any drug therapy.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 19,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 17,
+        "qstn_txt": "Does the patient have a baseline body mass index (BMI) of 40 kg/m\u00b2 or greater? [If the patient is transitioning from another drug therapy for weight loss, please consider their baseline BMI at the start of any drug therapy when answering this question.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 18,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 18,
+        "qstn_txt": "Have chart notes showing the patient's baseline body mass index (BMI) been submitted to CVS Health? [If the patient is transitioning from another drug therapy for weight loss, please provide their baseline BMI at the start of any drug therapy.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 19,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 19,
+        "qstn_txt": "Is this request for Wegovy (semaglutide) injection?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 20,
+        "false_rspns_cd": 21,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 20,
+        "qstn_txt": "Does the patient require MORE than the plan allowance of 1 package/4 pens per month of any of the following: A) Wegovy 0.25 mg/0.5 mL injection, B) Wegovy 0.5 mg/0.5 mL injection, C) Wegovy 1 mg/0.5 mL injection, D) Wegovy 1.7 mg/0.75 mL injection, E) Wegovy 2.4 mg/0.75 mL injection, F) Wegovy HD 7.2 mg/0.75 mL injection?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": "D",
+        "false_rspns_cd": "A",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 21,
+        "qstn_txt": "Does the patient require MORE than the plan allowance of 30 tablets per month of Wegovy (semaglutide)?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": "D",
+        "false_rspns_cd": "A",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 22,
+        "qstn_txt": "Is the patient 12 to 17 years of age?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 23,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 23,
+        "qstn_txt": "Is this request for ANY of the following: A) Wegovy (semaglutide) HD 7.2 mg/0.75 mL injection, B) Wegovy (semaglutide) tablets?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": "D",
+        "false_rspns_cd": 24,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 24,
+        "qstn_txt": "Is the request for continuation of therapy for a patient that has successfully titrated to a stable maintenance dose? [If the patient is transitioning from another drug therapy for weight loss, please answer no and proceed.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 25,
+        "false_rspns_cd": 28,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 25,
+        "qstn_txt": "Has the patient had a reduction from their baseline body mass index (BMI) OR has the patient continued to maintain their initial BMI reduction?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 26,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 26,
+        "qstn_txt": "Has documentation of the patient's body mass index (BMI) prior to starting drug therapy for weight loss and the patient's current BMI, including the dates the BMIs were taken, been submitted to CVS Health?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 27,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 27,
+        "qstn_txt": "Does the patient require MORE than the plan allowance of 1 package/4 pens of any of the following per month: A) Wegovy 0.25 mg/0.5 mL, B) Wegovy 0.5 mg/0.5 mL, C) Wegovy 1 mg/0.5 mL, D) Wegovy 1.7 mg/0.75 mL, E) Wegovy 2.4 mg/0.75 mL injection?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": "D",
+        "false_rspns_cd": "A",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 28,
+        "qstn_txt": "Has the patient participated in a comprehensive weight management program that encourages behavioral modification, reduced-calorie diet, AND increased physical activity with continuing follow-up for at least 6 months prior to using drug therapy?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 29,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 29,
+        "qstn_txt": "Does the patient have a baseline body mass index (BMI) in the 95th percentile or greater standardized for age and sex (obesity)? [If the patient is transitioning from another drug therapy for weight loss, please consider their baseline BMI at the start of any drug therapy when answering this question.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 30,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 30,
+        "qstn_txt": "Have chart notes showing the patient's baseline body mass index (BMI) percentile standardized for age and sex been submitted to CVS Health? [If the patient is transitioning from another drug therapy for weight loss, please provide their baseline BMI at the start of any drug therapy.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 31,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 31,
+        "qstn_txt": "Does the patient require MORE than the plan allowance of 1 package/4 pens of any of the following per month: A) Wegovy 0.25 mg/0.5 mL, B) Wegovy 0.5 mg/0.5 mL, C) Wegovy 1 mg/0.5 mL, D) Wegovy 1.7 mg/0.75 mL, E) Wegovy 2.4 mg/0.75 mL injection?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": "D",
+        "false_rspns_cd": "A",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 32,
+        "qstn_txt": "Will the requested drug be used to reduce the risk of major adverse cardiovascular events (cardiovascular death, non-fatal myocardial infarction, or non-fatal stroke) in an adult with established cardiovascular disease AND either obesity or overweight?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 33,
+        "false_rspns_cd": 46,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 33,
+        "qstn_txt": "Is the requested drug being used with a reduced-calorie diet AND increased physical activity?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 34,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 34,
+        "qstn_txt": "Is this request for Wegovy (semaglutide) HD 7.2 mg injection?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": "D",
+        "false_rspns_cd": 35,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 35,
+        "qstn_txt": "Does the patient have established cardiovascular disease with a history of ONE of the following: A) previous myocardial infarction (MI), B) previous stroke, C) symptomatic peripheral arterial disease (PAD), as evidenced by intermittent claudication with ankle-brachial index (ABI) less than 0.85 (at rest), peripheral arterial revascularization procedure, or amputation due to atherosclerotic disease, D) prior history of revascularization (coronary artery bypass grafting [CABG], percutaneous coronary intervention [PCI], or angioplasty)?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 36,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 36,
+        "qstn_txt": "Have chart notes supporting the patient's diagnosis, including diagnostic evidence, of ONE of the following: A) previous myocardial infarction (MI), B) previous stroke, C) symptomatic peripheral arterial disease (PAD), D) prior history of revascularization (CABG, PCI, or angioplasty), been submitted to CVS Health?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 37,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 37,
+        "qstn_txt": "Is this request for continuation of therapy?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 38,
+        "false_rspns_cd": 40,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 38,
+        "qstn_txt": "Is the patient being treated with a maintenance dosage of the requested drug which is based on individual treatment response and tolerability?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 39,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 39,
+        "qstn_txt": "Does the patient require MORE than the plan allowance per month of any of the following: A) 1 package/4 pens Wegovy 0.25 mg/0.5 mL, B) 0.5 mg/0.5 mL, C) 1 mg/0.5 mL, D) 1.7 mg/0.75 mL, E) 2.4 mg/0.75 mL injection, F) 30 tablets Wegovy?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": "D",
+        "false_rspns_cd": "A",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 40,
+        "qstn_txt": "Does the patient have a baseline body mass index (BMI) greater than or equal to 27 kg/m\u00b2? [If the patient is transitioning from another drug therapy for weight loss, please consider their baseline BMI at the start of any drug therapy when answering this question.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 41,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 41,
+        "qstn_txt": "Have chart notes showing the patient's baseline body mass index (BMI) been submitted to CVS Health? [If the patient is transitioning from another drug therapy for weight loss, please provide their baseline BMI at the start of any drug therapy.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 42,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 42,
+        "qstn_txt": "Does the patient have type 2 diabetes? [Ozempic is indicated to reduce the risk of major cardiovascular events in adults with type 2 diabetes mellitus and established cardiovascular disease. If the patient may be treated with Ozempic, please provide the patient with a new prescription for Ozempic.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": "D",
+        "false_rspns_cd": 43,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 43,
+        "qstn_txt": "Is the patient currently receiving guideline-directed management and therapy (GDMT) for cardiovascular disease (e.g., lipid-lowering agent, antiplatelet, beta-blocker, renin-angiotensin inhibitor, etc.) OR does the patient have a clinical reason not to be treated with GDMT for cardiovascular disease?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 44,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 44,
+        "qstn_txt": "Have chart notes showing that the patient is currently receiving guideline-directed management and therapy (GDMT) for cardiovascular disease or showing the clinical reason why the patient cannot be treated with GDMT (e.g., intolerance, contraindication, allergy) been submitted to CVS Health?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 45,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 45,
+        "qstn_txt": "Does the patient require MORE than the plan allowance per month of any of the following: A) 1 package/4 pens Wegovy 0.25 mg/0.5 mL, B) 0.5 mg/0.5 mL, C) 1 mg/0.5 mL, D) 1.7 mg/0.75 mL, E) 2.4 mg/0.75 mL injection, F) 30 tablets Wegovy?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": "D",
+        "false_rspns_cd": "A",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 46,
+        "qstn_txt": "Is the requested drug being prescribed for the treatment of noncirrhotic metabolic dysfunction-associated steatohepatitis (MASH), formerly known as nonalcoholic steatohepatitis (NASH), with moderate to advanced liver fibrosis (consistent with stages F2 to F3 fibrosis) in an adult?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 47,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 47,
+        "qstn_txt": "Is the requested drug being used with a reduced-calorie diet AND increased physical activity?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 48,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 48,
+        "qstn_txt": "Is this request for ANY of the following: A) Wegovy (semaglutide) HD 7.2 mg injection, B) Wegovy (semaglutide) tablets?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": "D",
+        "false_rspns_cd": 49,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 49,
+        "qstn_txt": "Is this request for continuation of therapy?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 50,
+        "false_rspns_cd": 54,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 50,
+        "qstn_txt": "Has the patient achieved or maintained a positive clinical response to the requested drug (e.g., improvement in liver function such as reduction in alanine aminotransferase [ALT], improvement in Enhanced Liver Fibrosis [ELF] score, improvement in liver stiffness measurement [LSM] by ultrasound-based elastography, magnetic resonance elastography [MRE])?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 51,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 51,
+        "qstn_txt": "Have chart notes or other documentation supporting that the patient has achieved or maintained a positive clinical response to the requested drug (e.g., improvement in ALT, ELF score, LSM by elastography or MRE) been submitted to CVS Health?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 52,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 52,
+        "qstn_txt": "Is the patient being treated with a maintenance dosage of the requested drug which is based on individual treatment response and tolerability?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 53,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 53,
+        "qstn_txt": "Does the patient require MORE than the plan allowance of 1 package/4 pens of any of the following per month: A) Wegovy 0.25 mg/0.5 mL, B) Wegovy 0.5 mg/0.5 mL, C) Wegovy 1 mg/0.5 mL, D) Wegovy 1.7 mg/0.75 mL, E) Wegovy 2.4 mg/0.75 mL injection?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": "D",
+        "false_rspns_cd": "A",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 54,
+        "qstn_txt": "Is the requested drug being prescribed by, or in consultation with, a gastroenterologist or hepatologist?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 55,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 55,
+        "qstn_txt": "Has the patient's moderate to advanced liver fibrosis (consistent with stages F2 to F3 fibrosis) at baseline been confirmed by ONE of the following: non-invasive liver disease assessment (e.g., ultrasound-based elastography, magnetic resonance elastography [MRE]) OR historical liver biopsy?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 56,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 56,
+        "qstn_txt": "Have chart notes or other documentation supporting that the patient's moderate to advanced liver fibrosis (consistent with stages F2 to F3 fibrosis) at baseline has been confirmed by non-invasive liver disease assessment (e.g., ultrasound-based elastography or MRE) OR historical liver biopsy been submitted to CVS Health?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 57,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 57,
+        "qstn_txt": "Does the patient require MORE than the plan allowance of 1 package/4 pens of any of the following per month: A) Wegovy 0.25 mg/0.5 mL, B) Wegovy 0.5 mg/0.5 mL, C) Wegovy 1 mg/0.5 mL, D) Wegovy 1.7 mg/0.75 mL, E) Wegovy 2.4 mg/0.75 mL injection?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": "D",
+        "false_rspns_cd": "A",
+        "score_val_nbr": 0
+      }
+    ],
+    "submission": [
+      {
+        "CRTE_DT": "2026-10-20T10:00:00",
+        "RX_DESC_TXT": "WEGOVY 25MG OR TABS",
+        "RX_REP_NDC_NBR": "00169442531",
+        "RX_QTY_NBR": 30,
+        "RX_DAYS_SPLY_NBR": 30
+      }
+    ],
+    "prescriber_answers": [
+      {
+        "ORDEAL_NBR": 1,
+        "ANSWR_TXT": "1",
+        "EXTN_TXT": null
+      },
+      {
+        "ORDEAL_NBR": 2,
+        "ANSWR_TXT": "1",
+        "EXTN_TXT": null
+      },
+      {
+        "ORDEAL_NBR": 3,
+        "ANSWR_TXT": "1",
+        "EXTN_TXT": null
+      },
+      {
+        "ORDEAL_NBR": 4,
+        "ANSWR_TXT": "1",
+        "EXTN_TXT": "Baseline 2026-04-15: 240 lb; current 2026-10-15: 216 lb. Synthetic example."
+      },
+      {
+        "ORDEAL_NBR": 5,
+        "ANSWR_TXT": "0",
+        "EXTN_TXT": null
+      },
+      {
+        "ORDEAL_NBR": 6,
+        "ANSWR_TXT": "0",
+        "EXTN_TXT": null
+      }
+    ],
+    "initial_answers": {
+      "1": "T",
+      "2": "T",
+      "3": "T",
+      "4": "T",
+      "5": "F",
+      "6": "F"
+    },
+    "q_comments": {
+      "4": "Baseline 2026-04-15: 240 lb; current 2026-10-15: 216 lb. Synthetic example."
+    },
+    "mock_claims": [
+      {
+        "CRTE_TS": "2026-10-20T10:00:00",
+        "CRTE_BY_USER_ID": "SYSTEM-DEMO",
+        "FILL_DT": "2026-10-20",
+        "INITL_MOCK_IND": "1",
+        "MOCK_STUS_CD": "REJECTED",
+        "RJCT_CD": "75",
+        "RJCT_MSG_TXT": "Prior Authorization Required",
+        "PHMCY_ID": "DEMO-PHARMACY"
+      }
+    ],
+    "pa_history": [
+      {
+        "prior_athzn_nbr": "25-900000003",
+        "prior_athzn_drug_nm": "WEGOVY 25MG OR TABS",
+        "gpi10_cd": "6125207000",
+        "prior_athzn_crte_ts": "2025-09-01",
+        "prior_athzn_rsltn_drvd_cd": "APPROVAL",
+        "prior_athzn_aprv_end_dt": "2026-09-01",
+        "aprv_drtn_day_nbr": 365,
+        "pac_cd": "DEMO-PAC"
+      }
+    ],
+    "claim_history": [
+      {
+        "FILL_DT": "2026-06-15",
+        "CLM_STUS_CD": "P",
+        "RVRSL_DT": null,
+        "DRUG_BRND_NM": "WEGOVY",
+        "DRUG_STRGH_NM": "25MG",
+        "DSPNS_UNT_QTY": 30,
+        "DAY_SPLY_QTY": 30,
+        "GPI10_CD": "6125207000",
+        "NCPDP_RJCT1_CD": null,
+        "PHMCY_NM": "Synthetic Pharmacy"
+      },
+      {
+        "FILL_DT": "2026-07-15",
+        "CLM_STUS_CD": "P",
+        "RVRSL_DT": null,
+        "DRUG_BRND_NM": "WEGOVY",
+        "DRUG_STRGH_NM": "25MG",
+        "DSPNS_UNT_QTY": 30,
+        "DAY_SPLY_QTY": 30,
+        "GPI10_CD": "6125207000",
+        "NCPDP_RJCT1_CD": null,
+        "PHMCY_NM": "Synthetic Pharmacy"
+      },
+      {
+        "FILL_DT": "2026-08-15",
+        "CLM_STUS_CD": "P",
+        "RVRSL_DT": null,
+        "DRUG_BRND_NM": "WEGOVY",
+        "DRUG_STRGH_NM": "25MG",
+        "DSPNS_UNT_QTY": 30,
+        "DAY_SPLY_QTY": 30,
+        "GPI10_CD": "6125207000",
+        "NCPDP_RJCT1_CD": null,
+        "PHMCY_NM": "Synthetic Pharmacy"
+      },
+      {
+        "FILL_DT": "2026-09-15",
+        "CLM_STUS_CD": "P",
+        "RVRSL_DT": null,
+        "DRUG_BRND_NM": "WEGOVY",
+        "DRUG_STRGH_NM": "25MG",
+        "DSPNS_UNT_QTY": 30,
+        "DAY_SPLY_QTY": 30,
+        "GPI10_CD": "6125207000",
+        "NCPDP_RJCT1_CD": null,
+        "PHMCY_NM": "Synthetic Pharmacy"
+      }
+    ],
+    "attachments": [
+      {
+        "ATCHM_ID": "DEMO-3-progress-note.pdf",
+        "filename": "progress-note.pdf",
+        "ATCHM_DESC": "Synthetic progress note",
+        "CRTE_TS": "2026-10-20T10:00:00",
+        "CNTNT_TYP_CD": "application/pdf",
+        "question_numbers": [
+          3
+        ]
+      }
+    ],
+    "fallout": {
+      "step": 1150,
+      "reason": "Could not validate outcome code; manual criteria review required"
+    }
+  },
+  {
+    "synthetic": true,
+    "scenario": "Quantity limit review",
+    "pa": "26-900000004",
+    "asof": "2026-10-20T10:00:00",
+    "header": {
+      "prior_athzn_nbr": "26-900000004",
+      "mbr_acct_id": "DEMO-MEMBER-004",
+      "prior_athzn_drug_nm": "WEGOVY 25MG OR TABS",
+      "prior_athzn_gpi_cd": "6125207000",
+      "gpi10_cd": "6125207000",
+      "pac_cd": "DEMO-PAC",
+      "pac_desc": "Weight management demo",
+      "icd_dx_cd": "DEMO",
+      "icd_dx_cd_desc": "Fictional weight management scenario",
+      "urg_prior_athzn_ind": 0,
+      "rfrnc_nbr": "DEMO-REF-004",
+      "qset_nbr": "DEMO-QSET",
+      "qset_desc": "Synthetic weight management criteria",
+      "pag_nm": "SYNTHETIC PLAN",
+      "dsply_pag_nm": "SYNTHETIC PLAN",
+      "mbr_frst_nm": "Synthetic",
+      "mbr_last_nm": "Member 04",
+      "mbr_brth_dt": "1987-09-03",
+      "mbr_gndr_cd": "M"
+    },
+    "qset": [
+      {
+        "ordinal_nbr": 1,
+        "qstn_txt": "Will the requested drug be used with a reduced-calorie diet AND increased physical activity to reduce excess body weight or maintain weight reduction long term?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 2,
+        "false_rspns_cd": 32,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 2,
+        "qstn_txt": "Is the patient 18 years of age or older?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 3,
+        "false_rspns_cd": 22,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 3,
+        "qstn_txt": "Has the patient completed at least 3 months of therapy with the requested drug at a stable maintenance dose? [If the patient is transitioning from another drug therapy for weight loss, please answer no and proceed.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 4,
+        "false_rspns_cd": 7,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 4,
+        "qstn_txt": "Has the patient lost at least 5 percent of baseline body weight OR has the patient continued to maintain their initial 5 percent weight loss?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 5,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 5,
+        "qstn_txt": "Has documentation of the patient's weight prior to starting drug therapy for weight loss and the patient's current weight, including the dates the weights were taken, been submitted to CVS Health?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 6,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 6,
+        "qstn_txt": "Does the patient require MORE than the plan allowance per month of any of the following: A) 1 package/4 pens of Wegovy (semaglutide) 0.25 mg/0.5 mL injection, B) 1 package/4 pens of Wegovy (semaglutide) 0.5 mg/0.5 mL injection, C) 1 package/4 pens of Wegovy (semaglutide) 1 mg/0.5 mL injection, D) 1 package/4 pens of Wegovy (semaglutide) 1.7 mg/0.75 mL injection, E) 1 package/4 pens of Wegovy (semaglutide) 2.4 mg/0.75 mL injection, F) 1 package/4 pens of Wegovy (semaglutide) HD 7.2 mg/0.75 mL, G) 30 tablets of Wegovy (semaglutide)?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": "D",
+        "false_rspns_cd": "A",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 7,
+        "qstn_txt": "Has the patient participated in a comprehensive weight management program that encourages behavioral modification, reduced-calorie diet, AND increased physical activity with continuing follow-up for at least 6 months prior to using drug therapy?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 8,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 8,
+        "qstn_txt": "Does the patient have a baseline body mass index (BMI) of less than 27 kg/m\u00b2? [If the patient is transitioning from another drug therapy for weight loss, please consider their baseline BMI at the start of any drug therapy when answering this question.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": "D",
+        "false_rspns_cd": 9,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 9,
+        "qstn_txt": "Does the patient have a baseline body mass index (BMI) of 27 kg/m\u00b2 to less than 30 kg/m\u00b2? [If the patient is transitioning from another drug therapy for weight loss, please consider their baseline BMI at the start of any drug therapy when answering this question.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 10,
+        "false_rspns_cd": 13,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 10,
+        "qstn_txt": "Have chart notes showing the patient's baseline body mass index (BMI) been submitted to CVS Health? [If the patient is transitioning from another drug therapy for weight loss, please provide their baseline BMI at the start of any drug therapy.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 11,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 11,
+        "qstn_txt": "Does the patient have at least ONE weight-related comorbid condition (e.g., hypertension, type 2 diabetes mellitus, dyslipidemia)? [If the patient is transitioning from another drug therapy for weight loss, please consider their weight-related comorbid condition(s) at the start of any drug therapy when answering this question.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 12,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 12,
+        "qstn_txt": "Have chart notes indicating the patient's weight-related comorbid condition(s) been submitted to CVS Health? [If the patient is transitioning from another drug therapy for weight loss, please provide their weight-related comorbid condition(s) at the start of any drug therapy.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 19,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 13,
+        "qstn_txt": "Does the patient have a baseline body mass index (BMI) of 30 kg/m\u00b2 to less than 35 kg/m\u00b2? [If the patient is transitioning from another drug therapy for weight loss, please consider their baseline BMI at the start of any drug therapy when answering this question.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 14,
+        "false_rspns_cd": 15,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 14,
+        "qstn_txt": "Have chart notes showing the patient's baseline body mass index (BMI) been submitted to CVS Health? [If the patient is transitioning from another drug therapy for weight loss, please provide their baseline BMI at the start of any drug therapy.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 19,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 15,
+        "qstn_txt": "Does the patient have a baseline body mass index (BMI) of 35 kg/m\u00b2 to less than 40 kg/m\u00b2? [If the patient is transitioning from another drug therapy for weight loss, please consider their baseline BMI at the start of any drug therapy when answering this question.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 16,
+        "false_rspns_cd": 17,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 16,
+        "qstn_txt": "Have chart notes showing the patient's baseline body mass index (BMI) been submitted to CVS Health? [If the patient is transitioning from another drug therapy for weight loss, please provide their baseline BMI at the start of any drug therapy.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 19,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 17,
+        "qstn_txt": "Does the patient have a baseline body mass index (BMI) of 40 kg/m\u00b2 or greater? [If the patient is transitioning from another drug therapy for weight loss, please consider their baseline BMI at the start of any drug therapy when answering this question.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 18,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 18,
+        "qstn_txt": "Have chart notes showing the patient's baseline body mass index (BMI) been submitted to CVS Health? [If the patient is transitioning from another drug therapy for weight loss, please provide their baseline BMI at the start of any drug therapy.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 19,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 19,
+        "qstn_txt": "Is this request for Wegovy (semaglutide) injection?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 20,
+        "false_rspns_cd": 21,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 20,
+        "qstn_txt": "Does the patient require MORE than the plan allowance of 1 package/4 pens per month of any of the following: A) Wegovy 0.25 mg/0.5 mL injection, B) Wegovy 0.5 mg/0.5 mL injection, C) Wegovy 1 mg/0.5 mL injection, D) Wegovy 1.7 mg/0.75 mL injection, E) Wegovy 2.4 mg/0.75 mL injection, F) Wegovy HD 7.2 mg/0.75 mL injection?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": "D",
+        "false_rspns_cd": "A",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 21,
+        "qstn_txt": "Does the patient require MORE than the plan allowance of 30 tablets per month of Wegovy (semaglutide)?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": "D",
+        "false_rspns_cd": "A",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 22,
+        "qstn_txt": "Is the patient 12 to 17 years of age?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 23,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 23,
+        "qstn_txt": "Is this request for ANY of the following: A) Wegovy (semaglutide) HD 7.2 mg/0.75 mL injection, B) Wegovy (semaglutide) tablets?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": "D",
+        "false_rspns_cd": 24,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 24,
+        "qstn_txt": "Is the request for continuation of therapy for a patient that has successfully titrated to a stable maintenance dose? [If the patient is transitioning from another drug therapy for weight loss, please answer no and proceed.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 25,
+        "false_rspns_cd": 28,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 25,
+        "qstn_txt": "Has the patient had a reduction from their baseline body mass index (BMI) OR has the patient continued to maintain their initial BMI reduction?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 26,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 26,
+        "qstn_txt": "Has documentation of the patient's body mass index (BMI) prior to starting drug therapy for weight loss and the patient's current BMI, including the dates the BMIs were taken, been submitted to CVS Health?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 27,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 27,
+        "qstn_txt": "Does the patient require MORE than the plan allowance of 1 package/4 pens of any of the following per month: A) Wegovy 0.25 mg/0.5 mL, B) Wegovy 0.5 mg/0.5 mL, C) Wegovy 1 mg/0.5 mL, D) Wegovy 1.7 mg/0.75 mL, E) Wegovy 2.4 mg/0.75 mL injection?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": "D",
+        "false_rspns_cd": "A",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 28,
+        "qstn_txt": "Has the patient participated in a comprehensive weight management program that encourages behavioral modification, reduced-calorie diet, AND increased physical activity with continuing follow-up for at least 6 months prior to using drug therapy?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 29,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 29,
+        "qstn_txt": "Does the patient have a baseline body mass index (BMI) in the 95th percentile or greater standardized for age and sex (obesity)? [If the patient is transitioning from another drug therapy for weight loss, please consider their baseline BMI at the start of any drug therapy when answering this question.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 30,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 30,
+        "qstn_txt": "Have chart notes showing the patient's baseline body mass index (BMI) percentile standardized for age and sex been submitted to CVS Health? [If the patient is transitioning from another drug therapy for weight loss, please provide their baseline BMI at the start of any drug therapy.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 31,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 31,
+        "qstn_txt": "Does the patient require MORE than the plan allowance of 1 package/4 pens of any of the following per month: A) Wegovy 0.25 mg/0.5 mL, B) Wegovy 0.5 mg/0.5 mL, C) Wegovy 1 mg/0.5 mL, D) Wegovy 1.7 mg/0.75 mL, E) Wegovy 2.4 mg/0.75 mL injection?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": "D",
+        "false_rspns_cd": "A",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 32,
+        "qstn_txt": "Will the requested drug be used to reduce the risk of major adverse cardiovascular events (cardiovascular death, non-fatal myocardial infarction, or non-fatal stroke) in an adult with established cardiovascular disease AND either obesity or overweight?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 33,
+        "false_rspns_cd": 46,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 33,
+        "qstn_txt": "Is the requested drug being used with a reduced-calorie diet AND increased physical activity?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 34,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 34,
+        "qstn_txt": "Is this request for Wegovy (semaglutide) HD 7.2 mg injection?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": "D",
+        "false_rspns_cd": 35,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 35,
+        "qstn_txt": "Does the patient have established cardiovascular disease with a history of ONE of the following: A) previous myocardial infarction (MI), B) previous stroke, C) symptomatic peripheral arterial disease (PAD), as evidenced by intermittent claudication with ankle-brachial index (ABI) less than 0.85 (at rest), peripheral arterial revascularization procedure, or amputation due to atherosclerotic disease, D) prior history of revascularization (coronary artery bypass grafting [CABG], percutaneous coronary intervention [PCI], or angioplasty)?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 36,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 36,
+        "qstn_txt": "Have chart notes supporting the patient's diagnosis, including diagnostic evidence, of ONE of the following: A) previous myocardial infarction (MI), B) previous stroke, C) symptomatic peripheral arterial disease (PAD), D) prior history of revascularization (CABG, PCI, or angioplasty), been submitted to CVS Health?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 37,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 37,
+        "qstn_txt": "Is this request for continuation of therapy?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 38,
+        "false_rspns_cd": 40,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 38,
+        "qstn_txt": "Is the patient being treated with a maintenance dosage of the requested drug which is based on individual treatment response and tolerability?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 39,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 39,
+        "qstn_txt": "Does the patient require MORE than the plan allowance per month of any of the following: A) 1 package/4 pens Wegovy 0.25 mg/0.5 mL, B) 0.5 mg/0.5 mL, C) 1 mg/0.5 mL, D) 1.7 mg/0.75 mL, E) 2.4 mg/0.75 mL injection, F) 30 tablets Wegovy?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": "D",
+        "false_rspns_cd": "A",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 40,
+        "qstn_txt": "Does the patient have a baseline body mass index (BMI) greater than or equal to 27 kg/m\u00b2? [If the patient is transitioning from another drug therapy for weight loss, please consider their baseline BMI at the start of any drug therapy when answering this question.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 41,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 41,
+        "qstn_txt": "Have chart notes showing the patient's baseline body mass index (BMI) been submitted to CVS Health? [If the patient is transitioning from another drug therapy for weight loss, please provide their baseline BMI at the start of any drug therapy.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 42,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 42,
+        "qstn_txt": "Does the patient have type 2 diabetes? [Ozempic is indicated to reduce the risk of major cardiovascular events in adults with type 2 diabetes mellitus and established cardiovascular disease. If the patient may be treated with Ozempic, please provide the patient with a new prescription for Ozempic.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": "D",
+        "false_rspns_cd": 43,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 43,
+        "qstn_txt": "Is the patient currently receiving guideline-directed management and therapy (GDMT) for cardiovascular disease (e.g., lipid-lowering agent, antiplatelet, beta-blocker, renin-angiotensin inhibitor, etc.) OR does the patient have a clinical reason not to be treated with GDMT for cardiovascular disease?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 44,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 44,
+        "qstn_txt": "Have chart notes showing that the patient is currently receiving guideline-directed management and therapy (GDMT) for cardiovascular disease or showing the clinical reason why the patient cannot be treated with GDMT (e.g., intolerance, contraindication, allergy) been submitted to CVS Health?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 45,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 45,
+        "qstn_txt": "Does the patient require MORE than the plan allowance per month of any of the following: A) 1 package/4 pens Wegovy 0.25 mg/0.5 mL, B) 0.5 mg/0.5 mL, C) 1 mg/0.5 mL, D) 1.7 mg/0.75 mL, E) 2.4 mg/0.75 mL injection, F) 30 tablets Wegovy?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": "D",
+        "false_rspns_cd": "A",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 46,
+        "qstn_txt": "Is the requested drug being prescribed for the treatment of noncirrhotic metabolic dysfunction-associated steatohepatitis (MASH), formerly known as nonalcoholic steatohepatitis (NASH), with moderate to advanced liver fibrosis (consistent with stages F2 to F3 fibrosis) in an adult?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 47,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 47,
+        "qstn_txt": "Is the requested drug being used with a reduced-calorie diet AND increased physical activity?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 48,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 48,
+        "qstn_txt": "Is this request for ANY of the following: A) Wegovy (semaglutide) HD 7.2 mg injection, B) Wegovy (semaglutide) tablets?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": "D",
+        "false_rspns_cd": 49,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 49,
+        "qstn_txt": "Is this request for continuation of therapy?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 50,
+        "false_rspns_cd": 54,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 50,
+        "qstn_txt": "Has the patient achieved or maintained a positive clinical response to the requested drug (e.g., improvement in liver function such as reduction in alanine aminotransferase [ALT], improvement in Enhanced Liver Fibrosis [ELF] score, improvement in liver stiffness measurement [LSM] by ultrasound-based elastography, magnetic resonance elastography [MRE])?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 51,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 51,
+        "qstn_txt": "Have chart notes or other documentation supporting that the patient has achieved or maintained a positive clinical response to the requested drug (e.g., improvement in ALT, ELF score, LSM by elastography or MRE) been submitted to CVS Health?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 52,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 52,
+        "qstn_txt": "Is the patient being treated with a maintenance dosage of the requested drug which is based on individual treatment response and tolerability?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 53,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 53,
+        "qstn_txt": "Does the patient require MORE than the plan allowance of 1 package/4 pens of any of the following per month: A) Wegovy 0.25 mg/0.5 mL, B) Wegovy 0.5 mg/0.5 mL, C) Wegovy 1 mg/0.5 mL, D) Wegovy 1.7 mg/0.75 mL, E) Wegovy 2.4 mg/0.75 mL injection?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": "D",
+        "false_rspns_cd": "A",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 54,
+        "qstn_txt": "Is the requested drug being prescribed by, or in consultation with, a gastroenterologist or hepatologist?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 55,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 55,
+        "qstn_txt": "Has the patient's moderate to advanced liver fibrosis (consistent with stages F2 to F3 fibrosis) at baseline been confirmed by ONE of the following: non-invasive liver disease assessment (e.g., ultrasound-based elastography, magnetic resonance elastography [MRE]) OR historical liver biopsy?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 56,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 56,
+        "qstn_txt": "Have chart notes or other documentation supporting that the patient's moderate to advanced liver fibrosis (consistent with stages F2 to F3 fibrosis) at baseline has been confirmed by non-invasive liver disease assessment (e.g., ultrasound-based elastography or MRE) OR historical liver biopsy been submitted to CVS Health?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 57,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 57,
+        "qstn_txt": "Does the patient require MORE than the plan allowance of 1 package/4 pens of any of the following per month: A) Wegovy 0.25 mg/0.5 mL, B) Wegovy 0.5 mg/0.5 mL, C) Wegovy 1 mg/0.5 mL, D) Wegovy 1.7 mg/0.75 mL, E) Wegovy 2.4 mg/0.75 mL injection?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": "D",
+        "false_rspns_cd": "A",
+        "score_val_nbr": 0
+      }
+    ],
+    "submission": [
+      {
+        "CRTE_DT": "2026-10-20T10:00:00",
+        "RX_DESC_TXT": "WEGOVY 25MG OR TABS",
+        "RX_REP_NDC_NBR": "00169442531",
+        "RX_QTY_NBR": 60,
+        "RX_DAYS_SPLY_NBR": 30
+      }
+    ],
+    "prescriber_answers": [
+      {
+        "ORDEAL_NBR": 1,
+        "ANSWR_TXT": "1",
+        "EXTN_TXT": null
+      },
+      {
+        "ORDEAL_NBR": 2,
+        "ANSWR_TXT": "1",
+        "EXTN_TXT": null
+      },
+      {
+        "ORDEAL_NBR": 3,
+        "ANSWR_TXT": "1",
+        "EXTN_TXT": null
+      },
+      {
+        "ORDEAL_NBR": 4,
+        "ANSWR_TXT": "1",
+        "EXTN_TXT": "Baseline 2026-04-15: 200 lb; current 2026-10-15: 180 lb. Synthetic example."
+      },
+      {
+        "ORDEAL_NBR": 5,
+        "ANSWR_TXT": "1",
+        "EXTN_TXT": null
+      },
+      {
+        "ORDEAL_NBR": 6,
+        "ANSWR_TXT": "1",
+        "EXTN_TXT": null
+      }
+    ],
+    "initial_answers": {
+      "1": "T",
+      "2": "T",
+      "3": "T",
+      "4": "T",
+      "5": "T",
+      "6": "T"
+    },
+    "q_comments": {
+      "4": "Baseline 2026-04-15: 200 lb; current 2026-10-15: 180 lb. Synthetic example."
+    },
+    "mock_claims": [
+      {
+        "CRTE_TS": "2026-10-20T10:00:00",
+        "CRTE_BY_USER_ID": "SYSTEM-DEMO",
+        "FILL_DT": "2026-10-20",
+        "INITL_MOCK_IND": "1",
+        "MOCK_STUS_CD": "REJECTED",
+        "RJCT_CD": "75,76",
+        "RJCT_MSG_TXT": "Prior Authorization Required; Quantity limit exceeded",
+        "PHMCY_ID": "DEMO-PHARMACY"
+      }
+    ],
+    "pa_history": [
+      {
+        "prior_athzn_nbr": "25-900000004",
+        "prior_athzn_drug_nm": "WEGOVY 25MG OR TABS",
+        "gpi10_cd": "6125207000",
+        "prior_athzn_crte_ts": "2025-09-01",
+        "prior_athzn_rsltn_drvd_cd": "APPROVAL",
+        "prior_athzn_aprv_end_dt": "2026-09-01",
+        "aprv_drtn_day_nbr": 365,
+        "pac_cd": "DEMO-PAC"
+      }
+    ],
+    "claim_history": [
+      {
+        "FILL_DT": "2026-06-15",
+        "CLM_STUS_CD": "P",
+        "RVRSL_DT": null,
+        "DRUG_BRND_NM": "WEGOVY",
+        "DRUG_STRGH_NM": "25MG",
+        "DSPNS_UNT_QTY": 30,
+        "DAY_SPLY_QTY": 30,
+        "GPI10_CD": "6125207000",
+        "NCPDP_RJCT1_CD": null,
+        "PHMCY_NM": "Synthetic Pharmacy"
+      },
+      {
+        "FILL_DT": "2026-07-15",
+        "CLM_STUS_CD": "P",
+        "RVRSL_DT": null,
+        "DRUG_BRND_NM": "WEGOVY",
+        "DRUG_STRGH_NM": "25MG",
+        "DSPNS_UNT_QTY": 30,
+        "DAY_SPLY_QTY": 30,
+        "GPI10_CD": "6125207000",
+        "NCPDP_RJCT1_CD": null,
+        "PHMCY_NM": "Synthetic Pharmacy"
+      },
+      {
+        "FILL_DT": "2026-08-15",
+        "CLM_STUS_CD": "P",
+        "RVRSL_DT": null,
+        "DRUG_BRND_NM": "WEGOVY",
+        "DRUG_STRGH_NM": "25MG",
+        "DSPNS_UNT_QTY": 30,
+        "DAY_SPLY_QTY": 30,
+        "GPI10_CD": "6125207000",
+        "NCPDP_RJCT1_CD": null,
+        "PHMCY_NM": "Synthetic Pharmacy"
+      },
+      {
+        "FILL_DT": "2026-09-15",
+        "CLM_STUS_CD": "P",
+        "RVRSL_DT": null,
+        "DRUG_BRND_NM": "WEGOVY",
+        "DRUG_STRGH_NM": "25MG",
+        "DSPNS_UNT_QTY": 30,
+        "DAY_SPLY_QTY": 30,
+        "GPI10_CD": "6125207000",
+        "NCPDP_RJCT1_CD": null,
+        "PHMCY_NM": "Synthetic Pharmacy"
+      }
+    ],
+    "attachments": [
+      {
+        "ATCHM_ID": "DEMO-4-progress-note.pdf",
+        "filename": "progress-note.pdf",
+        "ATCHM_DESC": "Synthetic progress note",
+        "CRTE_TS": "2026-10-20T10:00:00",
+        "CNTNT_TYP_CD": "application/pdf",
+        "question_numbers": [
+          3
+        ]
+      },
+      {
+        "ATCHM_ID": "DEMO-4-weight-record.pdf",
+        "filename": "weight-record.pdf",
+        "ATCHM_DESC": "Synthetic weight record",
+        "CRTE_TS": "2026-10-20T10:00:00",
+        "CNTNT_TYP_CD": "application/pdf",
+        "question_numbers": [
+          4,
+          5
+        ]
+      }
+    ],
+    "fallout": {
+      "step": 1150,
+      "reason": "Could not validate outcome code; manual criteria review required"
+    }
+  },
+  {
+    "synthetic": true,
+    "scenario": "Age threshold review",
+    "pa": "26-900000005",
+    "asof": "2026-10-20T10:00:00",
+    "header": {
+      "prior_athzn_nbr": "26-900000005",
+      "mbr_acct_id": "DEMO-MEMBER-005",
+      "prior_athzn_drug_nm": "WEGOVY 25MG OR TABS",
+      "prior_athzn_gpi_cd": "6125207000",
+      "gpi10_cd": "6125207000",
+      "pac_cd": "DEMO-PAC",
+      "pac_desc": "Weight management demo",
+      "icd_dx_cd": "DEMO",
+      "icd_dx_cd_desc": "Fictional weight management scenario",
+      "urg_prior_athzn_ind": 0,
+      "rfrnc_nbr": "DEMO-REF-005",
+      "qset_nbr": "DEMO-QSET",
+      "qset_desc": "Synthetic weight management criteria",
+      "pag_nm": "SYNTHETIC PLAN",
+      "dsply_pag_nm": "SYNTHETIC PLAN",
+      "mbr_frst_nm": "Synthetic",
+      "mbr_last_nm": "Member 05",
+      "mbr_brth_dt": "2010-12-15",
+      "mbr_gndr_cd": "F"
+    },
+    "qset": [
+      {
+        "ordinal_nbr": 1,
+        "qstn_txt": "Will the requested drug be used with a reduced-calorie diet AND increased physical activity to reduce excess body weight or maintain weight reduction long term?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 2,
+        "false_rspns_cd": 32,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 2,
+        "qstn_txt": "Is the patient 18 years of age or older?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 3,
+        "false_rspns_cd": 22,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 3,
+        "qstn_txt": "Has the patient completed at least 3 months of therapy with the requested drug at a stable maintenance dose? [If the patient is transitioning from another drug therapy for weight loss, please answer no and proceed.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 4,
+        "false_rspns_cd": 7,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 4,
+        "qstn_txt": "Has the patient lost at least 5 percent of baseline body weight OR has the patient continued to maintain their initial 5 percent weight loss?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 5,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 5,
+        "qstn_txt": "Has documentation of the patient's weight prior to starting drug therapy for weight loss and the patient's current weight, including the dates the weights were taken, been submitted to CVS Health?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 6,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 6,
+        "qstn_txt": "Does the patient require MORE than the plan allowance per month of any of the following: A) 1 package/4 pens of Wegovy (semaglutide) 0.25 mg/0.5 mL injection, B) 1 package/4 pens of Wegovy (semaglutide) 0.5 mg/0.5 mL injection, C) 1 package/4 pens of Wegovy (semaglutide) 1 mg/0.5 mL injection, D) 1 package/4 pens of Wegovy (semaglutide) 1.7 mg/0.75 mL injection, E) 1 package/4 pens of Wegovy (semaglutide) 2.4 mg/0.75 mL injection, F) 1 package/4 pens of Wegovy (semaglutide) HD 7.2 mg/0.75 mL, G) 30 tablets of Wegovy (semaglutide)?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": "D",
+        "false_rspns_cd": "A",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 7,
+        "qstn_txt": "Has the patient participated in a comprehensive weight management program that encourages behavioral modification, reduced-calorie diet, AND increased physical activity with continuing follow-up for at least 6 months prior to using drug therapy?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 8,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 8,
+        "qstn_txt": "Does the patient have a baseline body mass index (BMI) of less than 27 kg/m\u00b2? [If the patient is transitioning from another drug therapy for weight loss, please consider their baseline BMI at the start of any drug therapy when answering this question.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": "D",
+        "false_rspns_cd": 9,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 9,
+        "qstn_txt": "Does the patient have a baseline body mass index (BMI) of 27 kg/m\u00b2 to less than 30 kg/m\u00b2? [If the patient is transitioning from another drug therapy for weight loss, please consider their baseline BMI at the start of any drug therapy when answering this question.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 10,
+        "false_rspns_cd": 13,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 10,
+        "qstn_txt": "Have chart notes showing the patient's baseline body mass index (BMI) been submitted to CVS Health? [If the patient is transitioning from another drug therapy for weight loss, please provide their baseline BMI at the start of any drug therapy.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 11,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 11,
+        "qstn_txt": "Does the patient have at least ONE weight-related comorbid condition (e.g., hypertension, type 2 diabetes mellitus, dyslipidemia)? [If the patient is transitioning from another drug therapy for weight loss, please consider their weight-related comorbid condition(s) at the start of any drug therapy when answering this question.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 12,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 12,
+        "qstn_txt": "Have chart notes indicating the patient's weight-related comorbid condition(s) been submitted to CVS Health? [If the patient is transitioning from another drug therapy for weight loss, please provide their weight-related comorbid condition(s) at the start of any drug therapy.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 19,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 13,
+        "qstn_txt": "Does the patient have a baseline body mass index (BMI) of 30 kg/m\u00b2 to less than 35 kg/m\u00b2? [If the patient is transitioning from another drug therapy for weight loss, please consider their baseline BMI at the start of any drug therapy when answering this question.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 14,
+        "false_rspns_cd": 15,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 14,
+        "qstn_txt": "Have chart notes showing the patient's baseline body mass index (BMI) been submitted to CVS Health? [If the patient is transitioning from another drug therapy for weight loss, please provide their baseline BMI at the start of any drug therapy.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 19,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 15,
+        "qstn_txt": "Does the patient have a baseline body mass index (BMI) of 35 kg/m\u00b2 to less than 40 kg/m\u00b2? [If the patient is transitioning from another drug therapy for weight loss, please consider their baseline BMI at the start of any drug therapy when answering this question.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 16,
+        "false_rspns_cd": 17,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 16,
+        "qstn_txt": "Have chart notes showing the patient's baseline body mass index (BMI) been submitted to CVS Health? [If the patient is transitioning from another drug therapy for weight loss, please provide their baseline BMI at the start of any drug therapy.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 19,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 17,
+        "qstn_txt": "Does the patient have a baseline body mass index (BMI) of 40 kg/m\u00b2 or greater? [If the patient is transitioning from another drug therapy for weight loss, please consider their baseline BMI at the start of any drug therapy when answering this question.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 18,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 18,
+        "qstn_txt": "Have chart notes showing the patient's baseline body mass index (BMI) been submitted to CVS Health? [If the patient is transitioning from another drug therapy for weight loss, please provide their baseline BMI at the start of any drug therapy.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 19,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 19,
+        "qstn_txt": "Is this request for Wegovy (semaglutide) injection?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 20,
+        "false_rspns_cd": 21,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 20,
+        "qstn_txt": "Does the patient require MORE than the plan allowance of 1 package/4 pens per month of any of the following: A) Wegovy 0.25 mg/0.5 mL injection, B) Wegovy 0.5 mg/0.5 mL injection, C) Wegovy 1 mg/0.5 mL injection, D) Wegovy 1.7 mg/0.75 mL injection, E) Wegovy 2.4 mg/0.75 mL injection, F) Wegovy HD 7.2 mg/0.75 mL injection?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": "D",
+        "false_rspns_cd": "A",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 21,
+        "qstn_txt": "Does the patient require MORE than the plan allowance of 30 tablets per month of Wegovy (semaglutide)?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": "D",
+        "false_rspns_cd": "A",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 22,
+        "qstn_txt": "Is the patient 12 to 17 years of age?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 23,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 23,
+        "qstn_txt": "Is this request for ANY of the following: A) Wegovy (semaglutide) HD 7.2 mg/0.75 mL injection, B) Wegovy (semaglutide) tablets?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": "D",
+        "false_rspns_cd": 24,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 24,
+        "qstn_txt": "Is the request for continuation of therapy for a patient that has successfully titrated to a stable maintenance dose? [If the patient is transitioning from another drug therapy for weight loss, please answer no and proceed.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 25,
+        "false_rspns_cd": 28,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 25,
+        "qstn_txt": "Has the patient had a reduction from their baseline body mass index (BMI) OR has the patient continued to maintain their initial BMI reduction?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 26,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 26,
+        "qstn_txt": "Has documentation of the patient's body mass index (BMI) prior to starting drug therapy for weight loss and the patient's current BMI, including the dates the BMIs were taken, been submitted to CVS Health?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 27,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 27,
+        "qstn_txt": "Does the patient require MORE than the plan allowance of 1 package/4 pens of any of the following per month: A) Wegovy 0.25 mg/0.5 mL, B) Wegovy 0.5 mg/0.5 mL, C) Wegovy 1 mg/0.5 mL, D) Wegovy 1.7 mg/0.75 mL, E) Wegovy 2.4 mg/0.75 mL injection?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": "D",
+        "false_rspns_cd": "A",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 28,
+        "qstn_txt": "Has the patient participated in a comprehensive weight management program that encourages behavioral modification, reduced-calorie diet, AND increased physical activity with continuing follow-up for at least 6 months prior to using drug therapy?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 29,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 29,
+        "qstn_txt": "Does the patient have a baseline body mass index (BMI) in the 95th percentile or greater standardized for age and sex (obesity)? [If the patient is transitioning from another drug therapy for weight loss, please consider their baseline BMI at the start of any drug therapy when answering this question.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 30,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 30,
+        "qstn_txt": "Have chart notes showing the patient's baseline body mass index (BMI) percentile standardized for age and sex been submitted to CVS Health? [If the patient is transitioning from another drug therapy for weight loss, please provide their baseline BMI at the start of any drug therapy.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 31,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 31,
+        "qstn_txt": "Does the patient require MORE than the plan allowance of 1 package/4 pens of any of the following per month: A) Wegovy 0.25 mg/0.5 mL, B) Wegovy 0.5 mg/0.5 mL, C) Wegovy 1 mg/0.5 mL, D) Wegovy 1.7 mg/0.75 mL, E) Wegovy 2.4 mg/0.75 mL injection?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": "D",
+        "false_rspns_cd": "A",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 32,
+        "qstn_txt": "Will the requested drug be used to reduce the risk of major adverse cardiovascular events (cardiovascular death, non-fatal myocardial infarction, or non-fatal stroke) in an adult with established cardiovascular disease AND either obesity or overweight?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 33,
+        "false_rspns_cd": 46,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 33,
+        "qstn_txt": "Is the requested drug being used with a reduced-calorie diet AND increased physical activity?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 34,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 34,
+        "qstn_txt": "Is this request for Wegovy (semaglutide) HD 7.2 mg injection?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": "D",
+        "false_rspns_cd": 35,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 35,
+        "qstn_txt": "Does the patient have established cardiovascular disease with a history of ONE of the following: A) previous myocardial infarction (MI), B) previous stroke, C) symptomatic peripheral arterial disease (PAD), as evidenced by intermittent claudication with ankle-brachial index (ABI) less than 0.85 (at rest), peripheral arterial revascularization procedure, or amputation due to atherosclerotic disease, D) prior history of revascularization (coronary artery bypass grafting [CABG], percutaneous coronary intervention [PCI], or angioplasty)?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 36,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 36,
+        "qstn_txt": "Have chart notes supporting the patient's diagnosis, including diagnostic evidence, of ONE of the following: A) previous myocardial infarction (MI), B) previous stroke, C) symptomatic peripheral arterial disease (PAD), D) prior history of revascularization (CABG, PCI, or angioplasty), been submitted to CVS Health?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 37,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 37,
+        "qstn_txt": "Is this request for continuation of therapy?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 38,
+        "false_rspns_cd": 40,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 38,
+        "qstn_txt": "Is the patient being treated with a maintenance dosage of the requested drug which is based on individual treatment response and tolerability?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 39,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 39,
+        "qstn_txt": "Does the patient require MORE than the plan allowance per month of any of the following: A) 1 package/4 pens Wegovy 0.25 mg/0.5 mL, B) 0.5 mg/0.5 mL, C) 1 mg/0.5 mL, D) 1.7 mg/0.75 mL, E) 2.4 mg/0.75 mL injection, F) 30 tablets Wegovy?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": "D",
+        "false_rspns_cd": "A",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 40,
+        "qstn_txt": "Does the patient have a baseline body mass index (BMI) greater than or equal to 27 kg/m\u00b2? [If the patient is transitioning from another drug therapy for weight loss, please consider their baseline BMI at the start of any drug therapy when answering this question.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 41,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 41,
+        "qstn_txt": "Have chart notes showing the patient's baseline body mass index (BMI) been submitted to CVS Health? [If the patient is transitioning from another drug therapy for weight loss, please provide their baseline BMI at the start of any drug therapy.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 42,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 42,
+        "qstn_txt": "Does the patient have type 2 diabetes? [Ozempic is indicated to reduce the risk of major cardiovascular events in adults with type 2 diabetes mellitus and established cardiovascular disease. If the patient may be treated with Ozempic, please provide the patient with a new prescription for Ozempic.]",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": "D",
+        "false_rspns_cd": 43,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 43,
+        "qstn_txt": "Is the patient currently receiving guideline-directed management and therapy (GDMT) for cardiovascular disease (e.g., lipid-lowering agent, antiplatelet, beta-blocker, renin-angiotensin inhibitor, etc.) OR does the patient have a clinical reason not to be treated with GDMT for cardiovascular disease?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 44,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 44,
+        "qstn_txt": "Have chart notes showing that the patient is currently receiving guideline-directed management and therapy (GDMT) for cardiovascular disease or showing the clinical reason why the patient cannot be treated with GDMT (e.g., intolerance, contraindication, allergy) been submitted to CVS Health?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 45,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 45,
+        "qstn_txt": "Does the patient require MORE than the plan allowance per month of any of the following: A) 1 package/4 pens Wegovy 0.25 mg/0.5 mL, B) 0.5 mg/0.5 mL, C) 1 mg/0.5 mL, D) 1.7 mg/0.75 mL, E) 2.4 mg/0.75 mL injection, F) 30 tablets Wegovy?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": "D",
+        "false_rspns_cd": "A",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 46,
+        "qstn_txt": "Is the requested drug being prescribed for the treatment of noncirrhotic metabolic dysfunction-associated steatohepatitis (MASH), formerly known as nonalcoholic steatohepatitis (NASH), with moderate to advanced liver fibrosis (consistent with stages F2 to F3 fibrosis) in an adult?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 47,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 47,
+        "qstn_txt": "Is the requested drug being used with a reduced-calorie diet AND increased physical activity?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 48,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 48,
+        "qstn_txt": "Is this request for ANY of the following: A) Wegovy (semaglutide) HD 7.2 mg injection, B) Wegovy (semaglutide) tablets?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": "D",
+        "false_rspns_cd": 49,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 49,
+        "qstn_txt": "Is this request for continuation of therapy?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 50,
+        "false_rspns_cd": 54,
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 50,
+        "qstn_txt": "Has the patient achieved or maintained a positive clinical response to the requested drug (e.g., improvement in liver function such as reduction in alanine aminotransferase [ALT], improvement in Enhanced Liver Fibrosis [ELF] score, improvement in liver stiffness measurement [LSM] by ultrasound-based elastography, magnetic resonance elastography [MRE])?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 51,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 51,
+        "qstn_txt": "Have chart notes or other documentation supporting that the patient has achieved or maintained a positive clinical response to the requested drug (e.g., improvement in ALT, ELF score, LSM by elastography or MRE) been submitted to CVS Health?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 52,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 52,
+        "qstn_txt": "Is the patient being treated with a maintenance dosage of the requested drug which is based on individual treatment response and tolerability?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 53,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 53,
+        "qstn_txt": "Does the patient require MORE than the plan allowance of 1 package/4 pens of any of the following per month: A) Wegovy 0.25 mg/0.5 mL, B) Wegovy 0.5 mg/0.5 mL, C) Wegovy 1 mg/0.5 mL, D) Wegovy 1.7 mg/0.75 mL, E) Wegovy 2.4 mg/0.75 mL injection?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": "D",
+        "false_rspns_cd": "A",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 54,
+        "qstn_txt": "Is the requested drug being prescribed by, or in consultation with, a gastroenterologist or hepatologist?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 55,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 55,
+        "qstn_txt": "Has the patient's moderate to advanced liver fibrosis (consistent with stages F2 to F3 fibrosis) at baseline been confirmed by ONE of the following: non-invasive liver disease assessment (e.g., ultrasound-based elastography, magnetic resonance elastography [MRE]) OR historical liver biopsy?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 56,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 56,
+        "qstn_txt": "Have chart notes or other documentation supporting that the patient's moderate to advanced liver fibrosis (consistent with stages F2 to F3 fibrosis) at baseline has been confirmed by non-invasive liver disease assessment (e.g., ultrasound-based elastography or MRE) OR historical liver biopsy been submitted to CVS Health?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": 57,
+        "false_rspns_cd": "D",
+        "score_val_nbr": 0
+      },
+      {
+        "ordinal_nbr": 57,
+        "qstn_txt": "Does the patient require MORE than the plan allowance of 1 package/4 pens of any of the following per month: A) Wegovy 0.25 mg/0.5 mL, B) Wegovy 0.5 mg/0.5 mL, C) Wegovy 1 mg/0.5 mL, D) Wegovy 1.7 mg/0.75 mL, E) Wegovy 2.4 mg/0.75 mL injection?",
+        "qstn_typ_cd": "BOOLEAN",
+        "true_rspns_cd": "D",
+        "false_rspns_cd": "A",
+        "score_val_nbr": 0
+      }
+    ],
+    "submission": [
+      {
+        "CRTE_DT": "2026-10-20T10:00:00",
+        "RX_DESC_TXT": "WEGOVY 25MG OR TABS",
+        "RX_REP_NDC_NBR": "00169442531",
+        "RX_QTY_NBR": 30,
+        "RX_DAYS_SPLY_NBR": 30
+      }
+    ],
+    "prescriber_answers": [
+      {
+        "ORDEAL_NBR": 1,
+        "ANSWR_TXT": "1",
+        "EXTN_TXT": null
+      },
+      {
+        "ORDEAL_NBR": 2,
+        "ANSWR_TXT": "0",
+        "EXTN_TXT": null
+      },
+      {
+        "ORDEAL_NBR": 3,
+        "ANSWR_TXT": "1",
+        "EXTN_TXT": null
+      },
+      {
+        "ORDEAL_NBR": 4,
+        "ANSWR_TXT": "1",
+        "EXTN_TXT": "Baseline 2026-04-15: 190 lb; current 2026-10-15: 171 lb. Synthetic example."
+      },
+      {
+        "ORDEAL_NBR": 5,
+        "ANSWR_TXT": "1",
+        "EXTN_TXT": null
+      },
+      {
+        "ORDEAL_NBR": 6,
+        "ANSWR_TXT": "0",
+        "EXTN_TXT": null
+      }
+    ],
+    "initial_answers": {
+      "1": "T",
+      "2": "F",
+      "3": "T",
+      "4": "T",
+      "5": "T",
+      "6": "F"
+    },
+    "q_comments": {
+      "4": "Baseline 2026-04-15: 190 lb; current 2026-10-15: 171 lb. Synthetic example."
+    },
+    "mock_claims": [
+      {
+        "CRTE_TS": "2026-10-20T10:00:00",
+        "CRTE_BY_USER_ID": "SYSTEM-DEMO",
+        "FILL_DT": "2026-10-20",
+        "INITL_MOCK_IND": "1",
+        "MOCK_STUS_CD": "REJECTED",
+        "RJCT_CD": "75",
+        "RJCT_MSG_TXT": "Prior Authorization Required",
+        "PHMCY_ID": "DEMO-PHARMACY"
+      }
+    ],
+    "pa_history": [
+      {
+        "prior_athzn_nbr": "25-900000005",
+        "prior_athzn_drug_nm": "WEGOVY 25MG OR TABS",
+        "gpi10_cd": "6125207000",
+        "prior_athzn_crte_ts": "2025-09-01",
+        "prior_athzn_rsltn_drvd_cd": "APPROVAL",
+        "prior_athzn_aprv_end_dt": "2026-09-01",
+        "aprv_drtn_day_nbr": 365,
+        "pac_cd": "DEMO-PAC"
+      }
+    ],
+    "claim_history": [
+      {
+        "FILL_DT": "2026-06-15",
+        "CLM_STUS_CD": "P",
+        "RVRSL_DT": null,
+        "DRUG_BRND_NM": "WEGOVY",
+        "DRUG_STRGH_NM": "25MG",
+        "DSPNS_UNT_QTY": 30,
+        "DAY_SPLY_QTY": 30,
+        "GPI10_CD": "6125207000",
+        "NCPDP_RJCT1_CD": null,
+        "PHMCY_NM": "Synthetic Pharmacy"
+      },
+      {
+        "FILL_DT": "2026-07-15",
+        "CLM_STUS_CD": "P",
+        "RVRSL_DT": null,
+        "DRUG_BRND_NM": "WEGOVY",
+        "DRUG_STRGH_NM": "25MG",
+        "DSPNS_UNT_QTY": 30,
+        "DAY_SPLY_QTY": 30,
+        "GPI10_CD": "6125207000",
+        "NCPDP_RJCT1_CD": null,
+        "PHMCY_NM": "Synthetic Pharmacy"
+      },
+      {
+        "FILL_DT": "2026-08-15",
+        "CLM_STUS_CD": "P",
+        "RVRSL_DT": null,
+        "DRUG_BRND_NM": "WEGOVY",
+        "DRUG_STRGH_NM": "25MG",
+        "DSPNS_UNT_QTY": 30,
+        "DAY_SPLY_QTY": 30,
+        "GPI10_CD": "6125207000",
+        "NCPDP_RJCT1_CD": null,
+        "PHMCY_NM": "Synthetic Pharmacy"
+      },
+      {
+        "FILL_DT": "2026-09-15",
+        "CLM_STUS_CD": "P",
+        "RVRSL_DT": null,
+        "DRUG_BRND_NM": "WEGOVY",
+        "DRUG_STRGH_NM": "25MG",
+        "DSPNS_UNT_QTY": 30,
+        "DAY_SPLY_QTY": 30,
+        "GPI10_CD": "6125207000",
+        "NCPDP_RJCT1_CD": null,
+        "PHMCY_NM": "Synthetic Pharmacy"
+      }
+    ],
+    "attachments": [
+      {
+        "ATCHM_ID": "DEMO-5-progress-note.pdf",
+        "filename": "progress-note.pdf",
+        "ATCHM_DESC": "Synthetic progress note",
+        "CRTE_TS": "2026-10-20T10:00:00",
+        "CNTNT_TYP_CD": "application/pdf",
+        "question_numbers": [
+          3
+        ]
+      },
+      {
+        "ATCHM_ID": "DEMO-5-weight-record.pdf",
+        "filename": "weight-record.pdf",
+        "ATCHM_DESC": "Synthetic weight record",
+        "CRTE_TS": "2026-10-20T10:00:00",
+        "CNTNT_TYP_CD": "application/pdf",
+        "question_numbers": [
+          4,
+          5
+        ]
+      }
+    ],
+    "fallout": {
+      "step": 1150,
+      "reason": "Could not validate outcome code; manual criteria review required"
+    }
+  }
+]

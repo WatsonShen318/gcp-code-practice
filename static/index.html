@@ -13,7 +13,12 @@
   <span class="brand">CAREMARK</span>
   <span class="bar-sep">|</span>
   <span class="bar-title">PA Caddie — Guided Review</span>
-  <div class="bar-right"><span class="local-demo">Local demo</span><button class="export-btn" id="export-json" onclick="exportReview()" disabled>Export JSON</button>
+  <div class="bar-right"><span class="local-demo">Synthetic data only</span>
+    <input id="pa-input" class="pa-input" aria-label="PA number" placeholder="PA #" onkeydown="if(event.key==='Enter')loadTypedCase()">
+    <button class="export-btn" onclick="loadTypedCase()">Load</button>
+    <button class="export-btn" onclick="randomCase()">Random case</button>
+    <button class="export-btn" id="review-documents" onclick="toggleDocuments()" aria-expanded="false" aria-controls="document-pane">Review documents</button>
+    <button class="export-btn" id="export-json" onclick="exportReview()" disabled>Export JSON</button>
     <span class="bar-role" id="bar-role">Role: Technician &nbsp;|&nbsp; Queue: Pending Approval</span>
   </div>
 </header>
@@ -63,7 +68,19 @@
     <div class="wf-steps" id="wf-steps"></div>
   </main>
 
+  <aside class="document-pane" id="document-pane" aria-label="Review documents" hidden>
+    <div class="document-grip" id="document-grip" role="separator" aria-label="Resize document pane" aria-orientation="vertical" tabindex="0"></div>
+    <div class="document-header"><strong>Review documents</strong><button class="export-btn" onclick="closeDoc()" aria-label="Close documents">Close</button></div>
+    <div class="document-notice">Fictional records for demonstration only</div>
+    <div id="document-tabs" class="document-tabs" role="tablist" aria-label="Case attachments"></div>
+    <div id="document-meta" class="document-meta"></div>
+    <a id="document-new-tab" class="document-new-tab" target="_blank" rel="noopener">Open PDF in new tab ↗</a>
+    <iframe id="document-frame" title="Synthetic case document" hidden></iframe>
+    <p id="document-empty" class="document-empty" hidden>No documents are attached to this case.</p>
+  </aside>
+
 </div>
+<div id="case-message" class="case-message" role="status" aria-live="polite"></div>
 
 <!-- DOCUMENT MODAL -->
 <div class="doc-overlay" id="doc-modal" style="display:none" onclick="closeDocOverlay(event)">
