@@ -1,0 +1,181 @@
+﻿"Step","Content","Note"
+"1","Get the PA
+
+1. Pick up the next case to work
+2. All PACs: Smart Routing 'Get Next' opens the PA in CAS with a PASTA message (the fallout reason and the actions to do)
+3. A tech can also pull a PA by hand from the queue; then there is no PASTA message and the tech does every check
+4. If Smart Routing is down, use the Downtime WI
+5. IBR: the request can also arrive as a phone call, fax, ePA Loop 1, ePA Loop 2 or Unassigned","Display."
+"2","Read the fallout message and the Messages / Guidelines / Red Message tabs
+
+1. Read the case briefing, then do what it says
+2. All PACs: read the PASTA message, then the Messages, Guidelines, Work Instructions and Red Message tabs for this member's client
+3. Wegovy: some clients are worked by a dedicated team (e.g. Wellmark, FLBL, HealthFirst). For those, IM the team the PA number and stop - do not work the case.
+4. IBR: the Red Message tab also shows whether the client sends IBRs and any client-specific rules (for example, no 60-day limit).","Can this decision be automated?"
+"3","Verify the drug name
+
+1. Make sure the drug on the PA is the right CAS drug, so the right criteria and macros load
+2. All PACs: re-select the drug from the drop-down even if it is pre-filled, then check strength
+3.  brand vs generic and form against the claim. If the only option is 'Other, please specify', move on
+4. Why: the ePA vendor and CAS can name the same drug differently (vendor-to-admin mismatch)
+5. IBR: only needs a drug and prescriber entered; 'Other' is allowed for both.","For all standard checks, can they be automated if explicit decision logic is available?"
+"4","Make sure the rejected claim is attached
+
+1. Make sure the rejected claim that started this PA is attached and is the right one.
+2. Wegovy: check the Claims tab. If you attach one yourself, click Cancel on the next pop-up. On an ePA with no rejected claim, do NOT tick 'Rejected Claim Not Available'.
+3. 717-A: not listed separately; the claim comes with the test claim
+4. IBR: attach a rejected claim from the last 7 days. If there is none, or it is older than 7 days, DO tick 'Rejected Claim Not Available' (opposite of the Wegovy ePA rule).","Is there a database we can check against to confirm this automatically?"
+"5","Run the test / mock claim and read the reject
+
+1. Run a test (mock) claim and read what it rejects with
+2. Wegovy: run for today, +30 and +60 days (never +90). A PA-required reject (75, or 70 with a PA phone number) means continue. If the claim pays, check for overrides in the PA History step. 3. 'Refill too soon' (79): re-run at the Next Available Fill Date to see the true reject. Other codes: use the rejection WI
+3. 717-A: same, and check RMT if more information is needed
+4. IBR: same test claim, but a non-PA reject is what you want","Do we already have this functionality or data?"
+"6","Decide if the reject fits this PAC
+
+1. Decide whether this reject fits the PAC being worked
+2. Wegovy / 717-A: needs a PA reject. Our pre-check treats 70, 75 and 76 as PA-required; any other code is routed per that reject. If the claim is not a PA reject, follow the non-PA path
+3. IBR: needs a non-PA benefit reject (not covered, non-formulary, copay, mail, quantity, age, out of network, step, etc.). A reject that carries a PA phone number is NOT an IBR - stop
+4. Brand Strategy Formulary clients reject 606 on generics: that is an IBR. Reject 70 with a '+' in the text: check the Red Message tab for a formulary exception first","Is there explicit logic or data we can use to automate this decision?"
+"7","Check PA history
+
+1. Look at what has already happened on this member and drug
+2. Wegovy: an active approval or an override the system loaded
+3. Auto-approved by System Services: complete normally (duplicate override, void neither).
+4. VTPA or plan-sponsor override in AS400: re-run the mock after it expires, complete, do not abort
+5. Duplicate approval / denial / pending: apply the duplicate rules and close with ePA Abort
+6. 717-A: 2 denials within 60 days = route to Appeals
+7. Active appeal pending = abort. Prior appeal completed and still inside the next-level appeal window = abort and send to Appeals
+8. On second or later touches also read prior reviewer notes, fax history and prescriber responses.
+9. IBR: count IBRs on file for the same drug in the last 60 days (two = send to Appeals, see IBR Steps tab step 4)","Display."
+"8","Pre-checks: exceptions, client allows it, no other path
+
+IBR only - three checks before an IBR can be issued.
+(a) Exception: does the member have an exception available for this reject? If yes, send to Exceptions instead (reject 70 on a call = create an ePA starter; fax / Loop 1 / Loop 2 each go to their Exceptions queue).
+(b) Plan allows IBR: check RMT. Suppressed = do the IBR but give the prescriber the appeals information. Not allowed = close it out by channel (Misdirected for fax, refer to plan for a call, Remove from ePA for Loop 1, Abort for Loop 2).
+(c) Client is not Aetna, Medicare Part D or Medicaid, and not the Drug Exclusion Formulary Exception client.
+Wegovy: only the dedicated-team client check (step 2).","What is the decision logic for these checks?"
+"9","Confirm the criteria form
+
+Check that the criteria form (PAC) on the PA is the right one for this drug and reject.
+Wegovy: it should be PAC131011 'Weight Loss Wegovy PA with Limit'. To check: Change PA Type / Drug Class, click the rejected claim so reject code, phone and GPI fill in, Search, pick the PAC. Right form: Cancel, then Save. Wrong form: change it in the same case and re-enter the drug. Several forms fit: call Vetline.
+717-A: compare reject code, reject phone, GPI and drug class from the mock or attached claim to the selected form.
+IBR: reversed - confirm NO criteria form exists. If one does, forward to the Seniors; it is a PA, not an IBR.","Does the existing HTML already cover this step?"
+"10","Check ICD-10 and that the drug name matches what we approve
+
+Two checks on the PA before reviewing answers.
+(1) Diagnosis: read the ICD-10 code sent with the request. It supports the diagnosis / comorbidity answers in the question set
+(2) Drug name: 'Requested Drug' is what the prescriber originally asked for and never changes. 'Drug Name' is what we are approving and can change. They must make sense together - for example, if the prescriber agrees in the question set to switch drugs, update Drug Name and re-run the mock claim.
+Wegovy only. Not listed in our  717-A or IBR sources","We already compare drug names. Is there mapping logic, such as a pattern matching ""*..."" that automatically maps to a specific drug?"
+"11","Pull up formulary alternatives
+
+717-A only. Look up in Guidelines the formulary alternatives required for this ACF PAC and keep that list in view while reviewing the question set and the documents. Questions Q1 and Q2 depend on it.","Can this be retrieved from the database?"
+"12","Work the question-set answers
+
+Work through the question set and check each answer against the data.
+1. Wegovy: accept attestation questions as answered. Verify: age in CAS; maintenance dose and continuation in AS400 paid claims; quantity and day supply in AS400; drug / formulation. Quantity above the plan allowance, or any 'No' on a program / diet / maintenance-dose attestation = forward to RPh
+2. 717-A: scored approval = verify Q2 (see Q2 step). Scored denial = find the question driving the denial: Q1 prior history and alternatives, Q2 alternatives evidence, Q3 / Q4 diagnosis or other clinical evidence; update the response if the evidence supports it, RFI if more is needed 
+3. Unscored questions: follow the criteria-specific workflow.
+4. IBR: no clinical review","Does this require manual review?"
+"13","Read attachments / chart notes
+
+Open the attachments and read the chart notes for every question marked 'ACTION REQUIRED'.
+1. Wegovy: look for baseline and current weight with dates, baseline BMI, comorbid condition, and CVD / GDMT or MASH evidence when that pathway applies. Also look for anything that contradicts the answer, and confirm the documents are for the right patient (wrong patient = email the split-fax template to CRUSrTech@CVSHealth.com)
+2. Documentation missing = RFI, or forward to RPh as the WI says
+3. 717-A: only when Q2 needs more reasoning or documentation","Display."
+"14","Calculate weight loss % and BMI
+
+Wegovy only. Work out weight loss % and BMI change from the chart-note values.
+Weight loss % = (weight before - weight after) / weight before x 100.
+BMI = weight (lb) x 703 / height (in) squared, then the same % change.
+Do not round. Dates need at least month and year.
+Meets: at least 5% loss (or BMI reduction / maintained loss for continuation). Under 5%: complete denial","The calculator is already integrated."
+"15","Check the formulary-alternative answer (Q2)
+
+717-A only. Check the answer to Q2 (formulary alternatives).
+1. Confirm the required alternatives and whether the prescriber gave enough clinical reasoning or documentation. Free-text answers count if they sufficiently support the prescriber's intent; read clinical notes and history if more evidence is needed
+2. Q2 supported = approval. More information needed = RFI. Q2 not supported = denial, based on the specific case","Does this require manual review?"
+"16","Decide the outcome
+
+Choose one outcome.
+1. Wegovy: meets = approve. Does not meet with complete clinical information = Tech / Nurse pend to clinician and RPh denies. Missing information = RFI. Anything the WI says to forward = RPh. Red Messages tab needing a medical director = pend to clinician
+2. 717-A: approve, RFI or denial from the Q results
+3. IBR: always a no-PA-required (non-clinical) denial","Is Caddie's recommendation based on whether all applicable preceding steps have been verified?"
+"17","Pick the denial / resolution reason
+
+1. IBR (and any denial). On the Denial tab pick the resolution reason that matches the reject type
+2. There are about 25 reject types, each with its own letter wording. California plans use the 'CA IBR-' version of the same reason
+3. Special cases: Plan Exclusion Non-FDA Approved / Other are HMSA only. Exceeds Claim Amount only if a senior advises. Quantity limit: not if a post-limit criteria form exists
+4. Wegovy / 717-A: only when denying (clinical wording)","Data mapping."
+"18","Missing info: send one RFI
+
+1. Missing information: send ONE request for information (RFI) that lists every missing item, using an RFI close option and a template under 2,000 characters
+2. A second RFI on an ePA clears the ePA criteria, so one is all you get. RPh can use the combined RFI + soft denial options.
+3. Wegovy and 717-A only","Do we need, or already have, a table to store the results of this review?"
+"19","Write the PA note (Auto Note)
+
+Write the PA note.
+1. Wegovy: use Auto Note after the drug name and criteria edits are final. The note has (1) outcome, (2) the ENTIRE approval message, (3) what evidence was needed, where it was found, what was found, dates and the calculation. Running Auto Note again erases the earlier Auto Note text
+2. 717-A: document the review rationale; the note changes with approval, denial or RFI.
+IBR: notes per the CAS Notes WI (086494)","Display."
+"20","Check / set the timestamps
+
+Make sure the dates are right.
+Wegovy: check the Completed Date auto-filled. If not, copy the Received date (RRD) into the Completed date (CD), except on an RFI.
+IBR: Received and Completed cannot be the same on a call. Call = 'Set to now' for both (also Verbal Notification if completed on the call; required for NY clients). Fax = the fax timestamp for both. ePA Loop 1 = the 'Edit Date' from transaction details for both. Loop 2 = see the ePA Process WI.","Verify against the source data?"
+"21","Pick close option and approval dates
+
+Pick the close option and set the approval dates.
+1. Wegovy: 'Approved - ePA' (or the pend / RFI / denial option from the decision). Copy approval duration and override instructions with the QSet Copy Dialog. Choose the Resolution Reason and set approval dates from the duration. Check Start and End dates. On a denial, first check System Services did not load an override and void it in AS400.
+2. 717-A: select the close option for approval, denial or RFI and fill the other required fields.
+3. IBR: close option 'Initial Benefit Review'. California plans: 'Fwd to RPh CA CoC Review' (pharmacist checks continuity of care)","Set manually?"
+"22","Concluded By and Member Denial note
+
+Pick who concluded the case and finish the dialog.
+1. All PACs: choose your title in Concluded By (Tech, Pharmacist, Rep, LPN...) and click OK
+2. IBR: also type one single space in the Member Denial note box","Set manually?"
+"23","Finish the PA (and Smart Routing Call Notes)
+
+Click Finish to close the PA. In Smart Routing, also click Finish under Call Notes, otherwise the next Get Next gives an error","What does ""Call Notes"" refer to?"
+"24","See where CAS goes after OK
+
+1. Wegovy. After OK, CAS goes one of three ways: (A) back to Member Center, (B) Override screen, (C) Mock Claim failure screen
+2. A = the override loaded automatically and the mock claim passed; nothing more to do. Per the WI no pop-up appears, and you should NOT check the override in AS400 or run a test claim",""
+"25","Place the override / macro by hand
+
+Load the override by hand (Wegovy, when CAS shows the Override screen).
+1. In CAS: pick the client-type profile (for example Agent H, Reason OD, Ignore PA P, Over Sp Rx N, Drug status F, Clinical/Admin C). Route of Administration Y, Expiration Message Y. GPI / NDC from the approval message or guidelines, daily dose + S, QVT if required. Click Create once.
+2. In AS400: PA number = your initials + date + sequence
+3. 717-A: check the partial macro flag (this row is empty in Process 2)",""
+"26","Fix a mock claim failure
+
+1. Wegovy. CAS shows a Mock Claim failure screen. Re-run the test claim in AS400 for today and 60 days out, check the override GPI against the guidelines, then Resolve (with a note) or mark Not Resolved
+
+2. Common fixes: dose / frequency mismatch, wrong pharmacy ID, day supply not allowed, PLQE needed, refill too soon (re-run at the next fill date)",""
+"27","Run a test claim to confirm it pays
+
+1. After an approval, run another test claim to confirm the claim pays.
+717-A: claim pays = complete processing. Claim does not pay = follow CMS-PRD1-088300 and troubleshoot
+
+2. Wegovy: do NOT run one when CAS went back to Member Center on its own; only on the failure screen",""
+"28","Drug switch (Zepbound to Wegovy)
+
+Wegovy. A Zepbound request switched to Wegovy: on a call, deny Zepbound, send to RPh and open a new Wegovy PA. On fax / ePA, deny Zepbound, send to RPh, no new PA. Update drug name and NDC before closing",""
+"29","Duplicate / appeals abort
+
+1. Stop and send to Appeals, or abort, instead of working the case
+2. Wegovy: duplicate approval / denial / pending = close with ePA Abort
+3. 717-A: 2 denials in 60 days or an appeal window still open = Appeals; active appeal = abort
+4. IBR: two IBRs in 60 days = Appeals. By channel: call = tell the caller about appeals and add a 'No PA Required' member note; fax = re-fax to Appeals; Loop 1 = re-fax the latest letter and remove from ePA workflow; Loop 2 = re-fax the denial letter and abort.",""
+"30","Move to Exceptions, Seniors or California RPh
+
+IBR. Not an IBR after all, or needs special handling
+1. Form exists = Seniors. Exception available = Exceptions queue (or ePA starter for reject 70 on a call)
+2. California client = 'Fwd to RPh CA CoC Review'; the pharmacist checks continuity of care (paid claim in the last 120 days, no change in dose or quantity) and either approves with 'CA CoC Approve' plus override or denies with the CA IBR reason.",""
+"31","Worked-in-error recovery
+
+1. IBR. An IBR was sent on a drug that needs clinical review. Pull the letters (Senior Rep), check for an open appeal (email Appeals.Commercial; do not abort the appeal), open a new PA on the correct criteria with the IBR documents attached, make two outbound calls (prescriber office, then member), approve or send to RPh, then abort the IBR",""
+"32","Problem tickets and feedback
+
+1. Smart Routing errors go to the Smart Routing team. Wrong PASTA messages go on the PASTA Feedback Form",""
+"After step 23","Workflow sequencing and branch conditions for steps 24-27","The individual actions are understandable, but the execution order is not yet clear enough to implement. Step 24 describes what happens after clicking OK, which appears to connect to steps 21-22 rather than necessarily occurring after Finish in step 23. Steps 24-27 are conditional branches, not a sequence every case follows. We need a more explicit workflow with PAC-specific entry conditions, branch conditions and completion criteria. Questions: (1) Does Finish happen only after override and mock-claim issues are resolved, or does it close the PA while follow-up work continues separately? (2) What event or CAS response selects each branch: return to Member Center, Override screen, or Mock Claim Failure? (3) After manually creating an override, is another validation required, and when is the work complete? (4) If a failure is marked Not Resolved, who owns the next action, where does the case go, and can it be finished? (5) For 717-A, when must the post-approval test claim run? Keep this separate from the Wegovy rule that no additional test claim should run after CAS automatically returns to Member Center. Confirm these rules with the business owner before implementation."
